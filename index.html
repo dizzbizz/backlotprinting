@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Back Lot Printing — Opening soon</title>
+<meta name="description" content="Back Lot Printing: a family-owned print shop. Custom apparel and DTF transfers, printed locally and pressed by hand. Opening soon.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%2317150F'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F3EFE6'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%2317150F' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3Ctext x='32' y='25.6' text-anchor='middle' font-family='Brush Script MT, cursive' font-size='12.5' fill='%23FFFFFF'%3EBL%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #17150F;
+    --paper: #F3EFE6;
+    --kraft: #EAE4D6;
+    --muted: #4F493E;
+    --line: #D6CFBF;
+    --orange: #C23B12;
+    --glow: #F6C9A4;
+    --display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
+    --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: var(--ink); text-underline-offset: 3px; }
+  a:hover { color: var(--orange); }
+  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
+
+  .wrap { width: min(1180px, 100% - 48px); margin-inline: auto; }
+
+  /* Header */
+  header { padding: 28px 0; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
+  .logo:hover { color: var(--ink); }
+  .logo-words { display: flex; flex-direction: column; line-height: 1; }
+  .logo-words b { font-family: var(--display); font-weight: 400; font-size: 28px; letter-spacing: 1.5px; }
+  .logo-words small { font-weight: 700; font-size: 10.5px; letter-spacing: 4.8px; margin-top: 5px; }
+  .header-link { font-weight: 500; padding: 10px 0; }
+
+  /* Hero */
+  main { flex: 1; }
+  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 24px 0 80px; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(56px, 7.4vw, 104px);
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin: 0 0 24px;
+    letter-spacing: -0.5px;
+  }
+  .lede { font-size: 20px; color: var(--muted); max-width: 34ch; margin: 0 0 32px; }
+
+  .promises { list-style: none; padding: 0; margin: -8px 0 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .promises li { font-weight: 700; font-size: 15px; padding: 8px 14px; border: 2px solid var(--ink); border-radius: 999px; }
+
+  /* Form */
+  form { display: flex; flex-direction: column; gap: 10px; max-width: 480px; }
+  form label { font-weight: 700; font-size: 15px; }
+  .field { display: flex; gap: 8px; }
+  .field input {
+    flex: 1; min-width: 0; min-height: 56px; padding: 0 20px;
+    border: 2px solid var(--ink); border-radius: 999px; background: #FBF9F4;
+    font: inherit; font-size: 16px; color: var(--ink);
+  }
+  .field input::placeholder { color: #8A8274; }
+  .field button {
+    min-height: 56px; padding: 0 28px; border: none; border-radius: 999px;
+    background: var(--ink); color: var(--paper); font: inherit; font-weight: 700; font-size: 16px;
+    cursor: pointer; white-space: nowrap;
+  }
+  .field button:hover { background: var(--orange); }
+  .field button[disabled] { opacity: 0.6; cursor: progress; }
+  .status { min-height: 24px; font-size: 15px; margin: 2px 0 0; }
+  .status.ok { color: #2F6B3A; font-weight: 700; }
+  .status.err { color: var(--orange); font-weight: 700; }
+
+  .sooner { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); max-width: 480px; }
+  .sooner p { margin: 0 0 12px; font-weight: 700; }
+  .contacts { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; padding: 0; margin: 0; }
+  .contacts a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; }
+
+  /* The shop */
+  .shop { position: relative; width: 100%; max-width: 520px; justify-self: center; }
+  .shop svg.roof { display: block; width: 100%; height: auto; }
+  .bay {
+    position: relative;
+    background: var(--ink);
+    margin-top: -1px;
+    padding: 0 9% 0;
+    aspect-ratio: 520 / 330;
+  }
+  .opening {
+    position: absolute; left: 14%; right: 14%; top: 18%; bottom: 0;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 100%, var(--glow) 0%, #E98D5E 45%, var(--orange) 100%);
+  }
+  .inside {
+    position: absolute; inset: auto 0 0 0; height: 42%;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    padding: 0 12px;
+  }
+  .inside span {
+    font-family: var(--display); font-size: clamp(20px, 3vw, 30px); letter-spacing: 1px;
+    text-transform: uppercase; color: var(--ink); line-height: 1.1;
+  }
+  .door {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(180deg, #E4DDCD 0 22px, #CFC7B6 22px 24px, #DAD3C3 24px 26px);
+    border-bottom: 6px solid #B8AF9C;
+    transform: translateY(-42%);
+    animation: roll-up 1.8s cubic-bezier(.2,.7,.2,1) .4s both;
+  }
+  .door::after {
+    content: ""; position: absolute; left: 50%; bottom: 14px; width: 64px; height: 8px;
+    margin-left: -32px; border-radius: 4px; background: var(--ink);
+  }
+  @keyframes roll-up { from { transform: translateY(0); } to { transform: translateY(-42%); } }
+  .ground { height: 10px; background: var(--ink); border-radius: 0 0 6px 6px; }
+
+  /* Coming */
+  .coming { border-top: 2px solid var(--ink); padding: 48px 0 72px; }
+  .coming h2 { font-family: var(--display); font-weight: 400; font-size: 36px; text-transform: uppercase; margin: 0 0 28px; line-height: 1; }
+  .coming ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  .coming li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
+  .coming h3 { margin: 0 0 4px; font-size: 20px; }
+  .coming p { margin: 0; color: var(--muted); font-size: 16px; }
+  .tag { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--kraft); color: var(--muted); vertical-align: 2px; }
+
+  footer { background: var(--ink); color: #CFC7B6; font-size: 14px; padding: 24px 0; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer a { color: var(--paper); }
+
+  @media (max-width: 880px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-bottom: 56px; }
+    .shop { order: -1; max-width: 400px; }
+    .coming ul { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 480px) {
+    .field { flex-direction: column; }
+    .field button { width: 100%; }
+    .lede { font-size: 18px; }
+    .header-link { font-size: 15px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .door { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Back Lot Printing home">
+      <svg width="46" height="46" viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#17150F"/>
+        <rect x="15" y="33" width="34" height="27" fill="#F3EFE6"/>
+        <path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#17150F" stroke-width="2.4"/>
+        <circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"></circle><text x="32" y="25.6" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="12.5" fill="#FFFFFF">BL</text>
+      </svg>
+      <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
+    </a>
+    <a class="header-link" id="header-social" href="#" hidden>Follow along on Instagram</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>We're rolling up the door soon.</h1>
+      <p class="lede">Back Lot Printing is a family-owned shop getting ready to print custom apparel and DTF transfers. Everything is printed locally and pressed by hand. Leave your email and we'll tell you the day we open.</p>
+      <ul class="promises">
+        <li>Family owned</li>
+        <li>Printed locally</li>
+        <li>Pressed by hand</li>
+      </ul>
+
+      <form id="notify" novalidate>
+        <label for="email">Email address</label>
+        <div class="field">
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
+          <button type="submit">Notify me</button>
+        </div>
+        <p class="status" id="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="sooner" id="sooner">
+        <p>Need something printed sooner? Get in touch.</p>
+        <ul class="contacts" id="contacts"></ul>
+      </div>
+    </div>
+
+    <div class="shop" aria-hidden="true">
+      <svg class="roof" viewBox="0 0 520 170">
+        <path d="M0 170 L260 8 L520 170 Z" fill="#17150F"/>
+        <circle cx="260" cy="114" r="40" fill="#C23B12" stroke="#FFFFFF" stroke-width="5"/>
+        <text x="260" y="132" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="54" fill="#FFFFFF">BL</text>
+      </svg>
+      <div class="bay">
+        <div class="opening">
+          <div class="inside"><span>Presses<br>warming up</span></div>
+          <div class="door"></div>
+        </div>
+      </div>
+      <div class="ground"></div>
+    </div>
+  </div>
+
+  <section class="coming" aria-labelledby="coming-title">
+    <div class="wrap">
+      <h2 id="coming-title">What we'll print</h2>
+      <ul>
+        <li>
+          <svg width="44" height="44" viewBox="0 0 300 320" aria-hidden="true"><path d="M100 20 L60 35 L10 80 L40 125 L70 105 L70 300 L230 300 L230 105 L260 125 L290 80 L240 35 L200 20 C190 45 170 55 150 55 C130 55 110 45 100 20 Z" fill="#17150F"/></svg>
+          <div><h3>Custom apparel</h3><p>Tees, long sleeves, crewnecks and hoodies with your design. No minimums.</p></div>
+        </li>
+        <li>
+          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect x="10" y="2" width="24" height="40" rx="2" fill="#DDEBEA" stroke="#17150F" stroke-width="2.5"/><circle cx="18" cy="12" r="4" fill="#C23B12"/><circle cx="27" cy="22" r="4" fill="#17150F"/><circle cx="18" cy="32" r="4" fill="#C23B12"/></svg>
+          <div><h3>DTF transfers</h3><p>Gang sheets and single transfers, ready to heat-press on your own gear.</p></div>
+        </li>
+        <li>
+          <svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="#17150F" stroke-width="3.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 16 H44 V54 a4 4 0 0 1 -4 4 H16 a4 4 0 0 1 -4 -4 Z"/><path d="M44 24 H50 a6 6 0 0 1 0 12 H44"/><circle cx="28" cy="36" r="7" fill="#C23B12" stroke="none"/></svg>
+          <div><h3>Custom goods <span class="tag">Later</span></h3><p>Hats, mugs, totes, stickers and more, all with your design.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Back Lot Printing · Family owned, printed locally</span>
+    <span id="footer-email"></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   EDIT THESE to make the page yours. Leave a value as "" to hide it.
+   ============================================================ */
+const CONFIG = {
+  email: "hello@backlotprinting.com",   // where people contact you
+  phone: "",                            // e.g. "780-555-0123"
+  instagram: "backlotprinting",         // handle only, no @
+  facebook: "",                         // full page URL, e.g. "https://facebook.com/backlotprinting"
+  // Sign-up collection: paste a form endpoint (e.g. from Formspree, Tally or Basin)
+  // to collect emails automatically. If left blank, "Notify me" opens the visitor's
+  // email app with a pre-filled message to your email above.
+  formEndpoint: ""
+};
+/* ============================================================ */
+
+(function () {
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const list = document.getElementById('contacts');
+  const add = (href, label, icon, external) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = href;
+    if (external) { a.target = '_blank'; a.rel = 'noopener'; }
+    a.innerHTML = icon + '<span></span>';
+    a.querySelector('span').textContent = label;
+    li.appendChild(a); list.appendChild(li);
+  };
+  const ic = (d) => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+
+  if (CONFIG.email) {
+    add('mailto:' + CONFIG.email, CONFIG.email, ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'));
+    const fe = document.getElementById('footer-email');
+    fe.innerHTML = '<a></a>';
+    fe.firstChild.href = 'mailto:' + CONFIG.email;
+    fe.firstChild.textContent = CONFIG.email;
+  }
+  if (CONFIG.phone) add('tel:' + CONFIG.phone.replace(/[^\d+]/g, ''), CONFIG.phone, ic('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>'));
+  if (CONFIG.instagram) {
+    const url = 'https://instagram.com/' + CONFIG.instagram;
+    add(url, '@' + CONFIG.instagram, ic('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>'), true);
+    const hs = document.getElementById('header-social');
+    hs.href = url; hs.target = '_blank'; hs.rel = 'noopener'; hs.hidden = false;
+  }
+  if (CONFIG.facebook) add(CONFIG.facebook, 'Facebook', ic('<path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V21M6 11h8"/>'), true);
+  if (!list.children.length) document.getElementById('sooner').hidden = true;
+
+  const form = document.getElementById('notify');
+  const input = document.getElementById('email');
+  const status = document.getElementById('status');
+  const button = form.querySelector('button');
+  const say = (msg, kind) => { status.textContent = msg; status.className = 'status ' + (kind || ''); };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const value = input.value.trim();
+    if (!value || !input.checkValidity()) {
+      say('Enter an email address like name@example.com.', 'err');
+      input.focus();
+      return;
+    }
+
+    if (!CONFIG.formEndpoint) {
+      if (!CONFIG.email) { say('Sign-ups open soon. Check back shortly.', 'err'); return; }
+      const subject = encodeURIComponent('Notify me when Back Lot Printing opens');
+      const body = encodeURIComponent('Please add ' + value + ' to your opening list.');
+      window.location.href = 'mailto:' + CONFIG.email + '?subject=' + subject + '&body=' + body;
+      say('Your email app should open. Send the message and you\'re on the list.', 'ok');
+      return;
+    }
+
+    button.disabled = true; button.textContent = 'Adding…';
+    try {
+      const res = await fetch(CONFIG.formEndpoint, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+      if (!res.ok) throw new Error('bad status');
+      form.reset();
+      say('You\'re on the list. We\'ll email you the day we open.', 'ok');
+    } catch (err) {
+      say('That didn\'t go through. Try again' + (CONFIG.email ? ', or email ' + CONFIG.email + '.' : '.'), 'err');
+    } finally {
+      button.disabled = false; button.textContent = 'Notify me';
+    }
+  });
+})();
+</script>
+</body>
+</html>

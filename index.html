@@ -410,7 +410,11 @@ document.addEventListener('DOMContentLoaded', function () {
     return Math.max(12, Math.min(base, Math.floor(width / (len * ratio))));
   }
   function render() {
-    ['tumbler', 'flask', 'tag'].forEach(function (k) { document.getElementById('shape-' + k).hidden = k !== state.prod; });
+    ['tumbler', 'flask', 'tag'].forEach(function (k) {
+      var g = document.getElementById('shape-' + k);
+      if (k === state.prod) { g.removeAttribute('hidden'); g.style.display = ''; }
+      else { g.setAttribute('hidden', ''); g.style.display = 'none'; }
+    });
     var f = FINISHES[state.fin], ft = FONTS[state.font];
     document.querySelectorAll('#try-svg .body').forEach(function (el) { el.setAttribute('fill', f[0]); });
     document.querySelectorAll('#try-svg .lid').forEach(function (el) { el.setAttribute('fill', f[1]); });

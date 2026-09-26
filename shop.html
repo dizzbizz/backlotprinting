@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — Back Lot Printing</title>
+<meta name="description" content="Shop engraved tumblers, flasks, dog tags, pet tags, jewelry, gifts, awards and business goods. Bring your own item or pick one of ours.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%231E1B17'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F5F1EA'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%231E1B17' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght@9..144,500..700&family=Yellowtail&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Back Lot Printing home">
+      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+      <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
+    </a>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <a href="shop.html" aria-current="page">Shop</a>
+      <a href="index.html#byo">Bring your own</a>
+      <a href="index.html#business">Business &amp; trade</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-outline btn-sm" href="index.html#quote">Get a quote</a>
+      <a class="cart-link" href="order.html" data-cart-label aria-label="Your order">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        Order <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="shop-head">
+    <div><span class="label">Engraved in our shop</span><h1 class="h1" style="font-size:clamp(40px,5vw,68px)">Shop custom goods</h1></div>
+    <p class="lede" style="max-width:26em">Tap any item to personalize it. Bring your own tumbler, knife or tag, or pick one of ours. Save 10% at 10 pieces and 20% at 50.</p>
+  </div>
+
+  <div class="filters">
+    <div class="chips" id="chips" role="group" aria-label="Category"></div>
+    <div class="filter-row">
+      <label class="search" for="q">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5E564B" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <span class="visually-hidden">Search products</span>
+        <input id="q" type="search" placeholder="Search: knife, flask, dog tag…">
+      </label>
+      <div class="sort">
+        <span class="muted" id="count" aria-live="polite"></span>
+        <label for="sort" style="font-weight:700">Sort</label>
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="low">Price: low to high</option>
+          <option value="high">Price: high to low</option>
+          <option value="az">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden>Nothing matches that. Try another word, or <a href="index.html#quote">ask us</a> — if it's metal, wood or genuine leather, we can probably engrave it.</p>
+
+  <section class="section--tight">
+    <div class="byo" style="grid-template-columns:1fr">
+      <div class="byo-main" style="flex-direction:row;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:28px">
+        <div style="max-width:40em">
+          <span class="label">Don't see it?</span>
+          <h2 class="h2" style="font-size:clamp(30px,3.4vw,44px)">If it fits, we can mark it</h2>
+          <p class="lede" style="margin-top:12px">Stainless, aluminum, brass, titanium, powder-coated metal, wood, genuine leather, slate and stone — flat or gently curved, with up to about 8.5 × 8.5 inches of engraving area.</p>
+        </div>
+        <a class="btn btn-light" href="index.html#quote">Ask about your item</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Personalize dialog -->
+<dialog class="product" id="dlg" aria-labelledby="dlg-name">
+  <button class="dlg-close" type="button" id="dlg-close" aria-label="Close">×</button>
+  <div class="dlg">
+    <div class="dlg-art"><span class="badge" id="dlg-badge"></span><span id="dlg-icon"></span><span class="dlg-preview" id="dlg-preview"></span></div>
+    <form class="dlg-body" id="dlg-form" method="dialog" novalidate>
+      <div class="dlg-top">
+        <div><span class="label" id="dlg-cat" style="margin-bottom:6px"></span><h2 class="h2" id="dlg-name" style="font-size:clamp(28px,3vw,38px)"></h2></div>
+        <span class="dlg-price" id="dlg-price"></span>
+      </div>
+      <p class="muted" id="dlg-desc" style="margin:0"></p>
+      <div class="pills"><span id="dlg-supply"></span><span>Proof before we engrave</span><span>Ready in <span data-cfg="turnaround">3–5 business days</span></span></div>
+      <div class="field">
+        <label for="dlg-text">What should we engrave?</label>
+        <input id="dlg-text" type="text" maxlength="80" placeholder="Name, date, initials — or 'logo, I'll email it'">
+      </div>
+      <div class="field">
+        <label for="dlg-notes">Notes <span class="hint">(optional — colour, font, placement, deadline)</span></label>
+        <input id="dlg-notes" type="text" maxlength="160">
+      </div>
+      <div class="field">
+        <span class="field-label" id="qty-label">Quantity</span>
+        <div class="qty" role="group" aria-labelledby="qty-label">
+          <button type="button" id="qty-dec" aria-label="One fewer">−</button>
+          <input id="qty" type="number" min="1" value="1" aria-labelledby="qty-label">
+          <button type="button" id="qty-inc" aria-label="One more">+</button>
+        </div>
+        <span class="hint" id="qty-hint"></span>
+      </div>
+      <div class="dlg-total">
+        <div><span class="muted" id="dlg-note"></span><strong id="dlg-total"></strong></div>
+        <button class="btn btn-accent" type="submit" id="dlg-add">Add to order</button>
+      </div>
+      <p class="form-status ok" id="dlg-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</dialog>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="logo" href="index.html" aria-label="Back Lot Printing home" style="color:#F5F1EA">
+          <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#F5F1EA"/><rect x="15" y="33" width="34" height="27" fill="#1E1B17"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#F5F1EA" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+          <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
+        </a>
+        <p class="footer-note">Family-owned laser engraving in <span data-cfg="town">[YOUR TOWN]</span>.</p>
+      </div>
+      <div class="footer-col"><strong>Shop</strong><a href="shop.html">All products</a><a href="shop.html?cat=drink">Drinkware</a><a href="shop.html?cat=gifts">Gift ideas</a></div>
+      <div class="footer-col"><strong>Business</strong><a href="shop.html?cat=biz">Tool &amp; asset marking</a><a href="index.html#quote">Bulk quotes</a></div>
+      <div class="footer-col"><strong>Help</strong><a href="index.html#faq">FAQ</a><a href="index.html#quote">Contact</a><a href="order.html">Your order</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> Back Lot Printing</span><span>Engraved by hand</span></div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var P = BL.products();
+  var params = new URLSearchParams(location.search);
+  var state = { cat: params.get('cat') || 'all', q: '', sort: 'featured' };
+  var grid = document.getElementById('grid'), chips = document.getElementById('chips');
+
+  function badge(p) {
+    if (p.byo) return ['Bring yours', 'badge badge--byo'];
+    if (p.feat) return ['Popular', 'badge badge--pop'];
+    if (p.unit === 'ea') return ['Bulk', 'badge badge--bulk'];
+    return ['We supply it', 'badge'];
+  }
+
+  function renderChips() {
+    var counts = {}; P.forEach(function (p) { counts[p.cat] = (counts[p.cat] || 0) + 1; });
+    var list = [{ id: 'all', label: 'Everything' }].concat(BL.CATS).filter(function (c) { return c.id === 'all' || counts[c.id]; });
+    chips.innerHTML = list.map(function (c) {
+      var n = c.id === 'all' ? P.length : counts[c.id];
+      return '<button type="button" class="chip" data-cat="' + c.id + '" aria-pressed="' + (state.cat === c.id) + '">' + BL.esc(c.label) + ' <small>' + n + '</small></button>';
+    }).join('');
+    chips.querySelectorAll('.chip').forEach(function (b) {
+      b.addEventListener('click', function () { state.cat = b.dataset.cat; renderChips(); renderGrid(); });
+    });
+  }
+
+  function renderGrid() {
+    var q = state.q.trim().toLowerCase();
+    var list = P.filter(function (p) {
+      return (state.cat === 'all' || p.cat === state.cat) && (!q || (p.name + ' ' + p.desc).toLowerCase().indexOf(q) !== -1);
+    });
+    if (state.sort === 'featured') list = list.slice().sort(function (a, b) { return (b.feat ? 1 : 0) - (a.feat ? 1 : 0); });
+    if (state.sort === 'low') list = list.slice().sort(function (a, b) { return a.price - b.price; });
+    if (state.sort === 'high') list = list.slice().sort(function (a, b) { return b.price - a.price; });
+    if (state.sort === 'az') list = list.slice().sort(function (a, b) { return a.name.localeCompare(b.name); });
+    grid.innerHTML = list.map(function (p) {
+      var b = badge(p);
+      return '<article class="card"><button type="button" class="card-open" data-id="' + p.id + '" aria-label="Personalize ' + BL.esc(p.name) + ', ' + BL.priceLabel(p) + '">' +
+        '<span class="card-art"><span class="' + b[1] + '">' + b[0] + '</span>' + BL.iconSVG(p.kind) + '</span>' +
+        '<span class="card-name">' + BL.esc(p.name) + '</span><span class="card-desc">' + BL.esc(p.desc) + '</span></button>' +
+        '<div class="card-foot"><span class="card-price">' + BL.priceLabel(p) + '</span><button type="button" class="btn btn-dark btn-sm" data-id="' + p.id + '">Personalize</button></div></article>';
+    }).join('');
+    grid.querySelectorAll('[data-id]').forEach(function (el) { el.addEventListener('click', function () { openProduct(el.dataset.id); }); });
+    document.getElementById('empty').hidden = list.length > 0;
+    document.getElementById('count').textContent = list.length + (list.length === 1 ? ' item' : ' items');
+  }
+
+  document.getElementById('q').addEventListener('input', function (e) { state.q = e.target.value; renderGrid(); });
+  document.getElementById('sort').addEventListener('change', function (e) { state.sort = e.target.value; renderGrid(); });
+
+  /* Dialog */
+  var dlg = document.getElementById('dlg'), cur = null;
+  var qtyIn = document.getElementById('qty'), textIn = document.getElementById('dlg-text'), notesIn = document.getElementById('dlg-notes');
+  function minQty(p) { return p.min || 1; }
+  function updateTotal() {
+    if (!cur) return;
+    var q = Math.max(minQty(cur), parseInt(qtyIn.value, 10) || minQty(cur));
+    var pr = BL.priceFor(cur, q);
+    document.getElementById('dlg-total').textContent = '$' + pr.total.toFixed(2);
+    document.getElementById('dlg-note').textContent = q + ' × ' + BL.money(pr.each) + (pr.note ? ' · ' + pr.note : '');
+    document.getElementById('dlg-preview').textContent = textIn.value || 'your text here';
+  }
+  function openProduct(id, presetText) {
+    cur = BL.find(id); if (!cur) return;
+    var b = badge(cur);
+    var cat = (BL.CATS.find(function (c) { return c.id === cur.cat; }) || {}).label || '';
+    document.getElementById('dlg-badge').textContent = b[0]; document.getElementById('dlg-badge').className = b[1];
+    document.getElementById('dlg-icon').innerHTML = BL.iconSVG(cur.kind);
+    document.getElementById('dlg-cat').textContent = cat;
+    document.getElementById('dlg-name').textContent = cur.name;
+    document.getElementById('dlg-price').textContent = BL.priceLabel(cur);
+    document.getElementById('dlg-desc').textContent = cur.desc;
+    document.getElementById('dlg-supply').textContent = cur.byo ? 'You bring the item' : 'We supply the item';
+    document.getElementById('dlg-status').textContent = '';
+    textIn.value = presetText || ''; notesIn.value = '';
+    qtyIn.min = minQty(cur); qtyIn.value = minQty(cur);
+    document.getElementById('qty-hint').textContent = cur.min ? 'Minimum ' + cur.min : '';
+    updateTotal();
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+    textIn.focus();
+  }
+  function closeDlg() { if (dlg.open) { if (typeof dlg.close === 'function') dlg.close(); else dlg.removeAttribute('open'); } }
+  document.getElementById('dlg-close').addEventListener('click', closeDlg);
+  dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDlg(); });
+  document.getElementById('qty-dec').addEventListener('click', function () { qtyIn.value = Math.max(minQty(cur), (parseInt(qtyIn.value, 10) || 1) - 1); updateTotal(); });
+  document.getElementById('qty-inc').addEventListener('click', function () { qtyIn.value = (parseInt(qtyIn.value, 10) || 0) + 1; updateTotal(); });
+  qtyIn.addEventListener('input', updateTotal);
+  qtyIn.addEventListener('blur', function () { qtyIn.value = Math.max(minQty(cur), parseInt(qtyIn.value, 10) || minQty(cur)); updateTotal(); });
+  textIn.addEventListener('input', updateTotal);
+  document.getElementById('dlg-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = document.getElementById('dlg-status');
+    if (!textIn.value.trim()) { st.textContent = 'Tell us what to engrave — a name, date, or "logo".'; st.className = 'form-status err'; textIn.focus(); return; }
+    var q = Math.max(minQty(cur), parseInt(qtyIn.value, 10) || minQty(cur));
+    BL.addToOrder({ id: cur.id, qty: q, text: textIn.value.trim(), notes: notesIn.value.trim() });
+    st.innerHTML = 'Added ' + q + ' to your order. <a href="order.html">View order</a>';
+    st.className = 'form-status ok';
+  });
+
+  renderChips(); renderGrid();
+  if (params.get('item')) openProduct(params.get('item'), params.get('text') || '');
+});
+</script>
+</body>
+</html>

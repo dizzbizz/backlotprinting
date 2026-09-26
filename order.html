@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your order — Back Lot Printing</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%231E1B17'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F5F1EA'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%231E1B17' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght@9..144,500..700&family=Yellowtail&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="site.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Back Lot Printing home">
+      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+      <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
+    </a>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="index.html#byo">Bring your own</a>
+      <a href="index.html#business">Business &amp; trade</a>
+      <a href="index.html#faq">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a class="cart-link" href="order.html" data-cart-label aria-label="Your order" aria-current="page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        Order <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="order">
+    <div>
+      <h1 class="h1" style="font-size:clamp(40px,5vw,64px);margin-bottom:24px">Your order</h1>
+      <div class="order-items" id="items"></div>
+      <div id="empty" class="empty" hidden style="margin-top:24px">
+        Your order is empty. <a href="shop.html">Browse the shop</a> to add something.
+      </div>
+      <p style="margin-top:20px"><a class="link-strong" href="shop.html">Keep shopping</a></p>
+    </div>
+
+    <form class="summary" id="order-form" novalidate>
+      <h2 class="h2" style="font-size:32px">Send your order</h2>
+      <div class="sum-line"><span>Items</span><span id="sum-count">0</span></div>
+      <div class="sum-line"><span>Subtotal</span><span id="sum-sub">$0</span></div>
+      <div class="sum-line"><span>Tax</span><span>Added on your invoice</span></div>
+      <div class="sum-total"><span>Estimated total</span><strong id="sum-total">$0</strong></div>
+      <p class="notice warn" id="min-warn" hidden>Trade items (tags, tool marking, QR codes) have a $40 minimum. Add a few more, or send it anyway and we'll talk.</p>
+
+      <div class="field"><label for="o-name">Name</label><input id="o-name" name="Name" autocomplete="name" required></div>
+      <div class="field"><label for="o-email">Email</label><input id="o-email" name="Email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="o-phone">Phone <span class="hint">(optional)</span></label><input id="o-phone" name="Phone" type="tel" autocomplete="tel"></div>
+      <fieldset style="border:none;margin:0;padding:0" class="field">
+        <legend class="field-label" style="margin-bottom:6px">How do you want it?</legend>
+        <div class="radio-row">
+          <label><input type="radio" name="Delivery" value="Local pickup" checked> Local pickup</label>
+          <label><input type="radio" name="Delivery" value="Shipping (quote on invoice)"> Shipping</label>
+        </div>
+      </fieldset>
+      <div class="field"><label for="o-date">Need it by <span class="hint">(optional)</span></label><input id="o-date" name="Needed by" type="date"></div>
+      <div class="field"><label for="o-notes">Anything else? <span class="hint">(optional)</span></label><textarea id="o-notes" name="Notes" placeholder="Drop-off time for your own items, logo details, questions…" style="min-height:90px"></textarea></div>
+
+      <p class="notice">This sends your order to us — you're not charged yet. We'll reply with a proof and your final total. Pay by e-transfer or at pickup.</p>
+      <button class="btn btn-accent" type="submit" id="send">Send order request</button>
+      <p class="form-status" id="order-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:none;padding-top:0">
+      <span>© <span data-year>2026</span> Back Lot Printing · <a data-link="email" href="#"></a></span>
+      <span><a href="index.html#faq">Questions?</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var itemsEl = document.getElementById('items');
+
+  function lines() {
+    return BL.getOrder().map(function (l, i) { return { i: i, line: l, p: BL.find(l.id) }; }).filter(function (x) { return x.p; });
+  }
+
+  function render() {
+    var L = lines(), sub = 0, count = 0, tradeSub = 0;
+    itemsEl.innerHTML = L.map(function (x) {
+      var pr = BL.priceFor(x.p, x.line.qty);
+      sub += pr.total; count += x.line.qty;
+      if (x.p.cat === 'biz' && x.p.unit === 'ea') tradeSub += pr.total;
+      return '<div class="order-row">' +
+        '<span class="card-art">' + BL.iconSVG(x.p.kind) + '</span>' +
+        '<div><h3>' + BL.esc(x.p.name) + '</h3>' +
+        '<p>"' + BL.esc(x.line.text) + '"' + (x.line.notes ? ' · ' + BL.esc(x.line.notes) : '') + '</p>' +
+        '<p>' + x.line.qty + ' × ' + BL.money(pr.each) + (pr.note ? ' · ' + pr.note : '') + (x.p.byo ? ' · you bring the item' : '') + '</p>' +
+        '<div class="row-actions">' +
+          '<div class="qty" role="group" aria-label="Quantity for ' + BL.esc(x.p.name) + '"><button type="button" data-dec="' + x.i + '" aria-label="One fewer">−</button><input type="number" value="' + x.line.qty + '" min="' + (x.p.min || 1) + '" data-q="' + x.i + '" aria-label="Quantity"><button type="button" data-inc="' + x.i + '" aria-label="One more">+</button></div>' +
+          '<button type="button" class="link-btn" data-rm="' + x.i + '">Remove</button>' +
+        '</div></div>' +
+        '<span class="row-price">$' + pr.total.toFixed(2) + '</span></div>';
+    }).join('');
+    document.getElementById('empty').hidden = L.length > 0;
+    document.getElementById('sum-count').textContent = count;
+    document.getElementById('sum-sub').textContent = '$' + sub.toFixed(2);
+    document.getElementById('sum-total').textContent = '$' + sub.toFixed(2);
+    document.getElementById('min-warn').hidden = !(tradeSub > 0 && tradeSub < 40);
+    document.getElementById('send').disabled = L.length === 0;
+
+    var setQty = function (idx, q) {
+      var order = BL.getOrder(); var p = BL.find(order[idx].id);
+      order[idx].qty = Math.max((p && p.min) || 1, q || 1);
+      BL.saveOrder(order); render();
+    };
+    itemsEl.querySelectorAll('[data-dec]').forEach(function (b) { b.addEventListener('click', function () { var i = +b.dataset.dec; setQty(i, BL.getOrder()[i].qty - 1); }); });
+    itemsEl.querySelectorAll('[data-inc]').forEach(function (b) { b.addEventListener('click', function () { var i = +b.dataset.inc; setQty(i, BL.getOrder()[i].qty + 1); }); });
+    itemsEl.querySelectorAll('[data-q]').forEach(function (inp) { inp.addEventListener('change', function () { setQty(+inp.dataset.q, parseInt(inp.value, 10)); }); });
+    itemsEl.querySelectorAll('[data-rm]').forEach(function (b) { b.addEventListener('click', function () { var o = BL.getOrder(); o.splice(+b.dataset.rm, 1); BL.saveOrder(o); render(); }); });
+  }
+
+  document.getElementById('order-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = e.target, st = document.getElementById('order-status');
+    var err = function (m, el) { st.textContent = m; st.className = 'form-status err'; if (el) el.focus(); };
+    if (!lines().length) return err('Add something to your order first.');
+    if (!f.elements['Name'].value.trim()) return err('Add your name.', f.elements['Name']);
+    if (!f.elements['Email'].value.trim() || !f.elements['Email'].checkValidity()) return err('Add an email like name@example.com.', f.elements['Email']);
+
+    var total = 0;
+    var summary = lines().map(function (x) {
+      var pr = BL.priceFor(x.p, x.line.qty); total += pr.total;
+      return '- ' + x.line.qty + ' × ' + x.p.name + ' (' + BL.money(pr.each) + ' ea) = $' + pr.total.toFixed(2) +
+        '\n  Engrave: ' + x.line.text + (x.line.notes ? '\n  Notes: ' + x.line.notes : '') + (x.p.byo ? '\n  Customer brings item' : '');
+    }).join('\n');
+    var fields = {
+      'Name': f.elements['Name'].value, 'Email': f.elements['Email'].value, 'Phone': f.elements['Phone'].value || '—',
+      'Delivery': f.elements['Delivery'].value, 'Needed by': f.elements['Needed by'].value || '—',
+      'Order': '\n' + summary, 'Estimated total': '$' + total.toFixed(2) + ' + tax', 'Notes': f.elements['Notes'].value || '—'
+    };
+    BL.sendForm('Order request from ' + fields.Name, fields, st, function () {
+      if (BL.CFG.formEndpoint) { BL.saveOrder([]); render(); f.reset(); st.textContent = 'Order sent. We\'ll email you a proof and total soon.'; st.className = 'form-status ok'; }
+    });
+  });
+
+  render();
+});
+</script>
+</body>
+</html>

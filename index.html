@@ -3,400 +3,461 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Back Lot Printing — Opening soon</title>
-<meta name="description" content="Back Lot Printing: a family-owned print shop. Custom apparel and DTF transfers, printed locally and pressed by hand. Opening soon.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%2317150F'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F3EFE6'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%2317150F' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3Ctext x='32' y='24.9' text-anchor='middle' font-family='Brush Script MT, cursive' font-size='10' fill='%23FFFFFF'%3EBL%3C/text%3E%3C/svg%3E">
+<title>Back Lot Printing — Laser engraving, made locally</title>
+<meta name="description" content="Family-owned laser engraving. Tumblers, flasks, dog tags, pet tags, gifts, metal business cards and tool marking — engraved and checked by hand.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%231E1B17'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F5F1EA'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%231E1B17' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #17150F;
-    --paper: #F3EFE6;
-    --kraft: #EAE4D6;
-    --muted: #4F493E;
-    --line: #D6CFBF;
-    --orange: #C23B12;
-    --glow: #F6C9A4;
-    --display: 'Anton', 'Impact', 'Arial Narrow', sans-serif;
-    --body: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; }
-  body {
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 17px;
-    line-height: 1.55;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  a { color: var(--ink); text-underline-offset: 3px; }
-  a:hover { color: var(--orange); }
-  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 4px; }
-
-  .wrap { width: min(1180px, 100% - 48px); margin-inline: auto; }
-
-  /* Header */
-  header { padding: 28px 0; }
-  header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--ink); }
-  .logo:hover { color: var(--ink); }
-  .logo-words { display: flex; flex-direction: column; line-height: 1; }
-  .logo-words b { font-family: var(--display); font-weight: 400; font-size: 28px; letter-spacing: 1.5px; }
-  .logo-words small { font-weight: 700; font-size: 10.5px; letter-spacing: 4.8px; margin-top: 5px; }
-  .header-link { font-weight: 500; padding: 10px 0; }
-
-  /* Hero */
-  main { flex: 1; }
-  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; padding: 24px 0 80px; min-height: calc(100vh - 110px); box-sizing: border-box; }
-  h1 {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(56px, 7.4vw, 104px);
-    line-height: 0.95;
-    text-transform: uppercase;
-    margin: 0 0 24px;
-    letter-spacing: -0.5px;
-  }
-  .lede { font-size: 20px; color: var(--muted); max-width: 34ch; margin: 0 0 32px; }
-
-  .promises { list-style: none; padding: 0; margin: -8px 0 32px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .promises li { font-weight: 700; font-size: 15px; padding: 8px 14px; border: 2px solid var(--ink); border-radius: 999px; }
-
-  /* Form */
-  form { display: flex; flex-direction: column; gap: 10px; max-width: 480px; }
-  form label { font-weight: 700; font-size: 15px; }
-  .field { display: flex; gap: 8px; }
-  .field input {
-    flex: 1; min-width: 0; min-height: 56px; padding: 0 20px;
-    border: 2px solid var(--ink); border-radius: 999px; background: #FBF9F4;
-    font: inherit; font-size: 16px; color: var(--ink);
-  }
-  .field input::placeholder { color: #8A8274; }
-  .field button {
-    min-height: 56px; padding: 0 28px; border: none; border-radius: 999px;
-    background: var(--ink); color: var(--paper); font: inherit; font-weight: 700; font-size: 16px;
-    cursor: pointer; white-space: nowrap;
-  }
-  .field button:hover { background: var(--orange); }
-  .field button[disabled] { opacity: 0.6; cursor: progress; }
-  .status { min-height: 24px; font-size: 15px; margin: 2px 0 0; }
-  .status.ok { color: #2F6B3A; font-weight: 700; }
-  .status.err { color: var(--orange); font-weight: 700; }
-
-  .sooner { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--line); max-width: 480px; }
-  .sooner p { margin: 0 0 12px; font-weight: 700; }
-  .contacts { display: flex; flex-wrap: wrap; gap: 10px 24px; list-style: none; padding: 0; margin: 0; }
-  .contacts a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 0; }
-
-  /* The shop */
-  .shop { position: relative; width: 100%; max-width: 520px; justify-self: center; }
-  .shop svg.roof { display: block; width: 100%; height: auto; }
-  .bay {
-    position: relative;
-    background: var(--ink);
-    margin-top: -1px;
-    padding: 0 9% 0;
-    aspect-ratio: 520 / 330;
-  }
-  .opening {
-    position: absolute; left: 14%; right: 14%; top: 18%; bottom: 0;
-    overflow: hidden;
-    background: radial-gradient(ellipse at 50% 100%, var(--glow) 0%, #E98D5E 45%, var(--orange) 100%);
-  }
-  .interior { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 78%; }
-  .inside {
-    position: absolute; left: 0; right: 0; bottom: 7%;
-    display: flex; align-items: center; justify-content: center; text-align: center;
-    padding: 0 12px;
-  }
-  .inside span {
-    font-family: var(--display); font-size: clamp(20px, 3vw, 30px); letter-spacing: 1px;
-    text-transform: uppercase; color: var(--ink); line-height: 1.1;
-  }
-  .door {
-    position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(180deg, #E4DDCD 0 22px, #CFC7B6 22px 24px, #DAD3C3 24px 26px);
-    border-bottom: 6px solid #B8AF9C;
-    --open: 0;
-    transform: translateY(calc(var(--open) * -100%));
-    transition: transform 1.4s cubic-bezier(.2,.7,.2,1);
-    will-change: transform;
-  }
-  .door.live { transition: transform .12s linear; }
-  .door::after {
-    content: ""; position: absolute; left: 50%; bottom: 14px; width: 64px; height: 8px;
-    margin-left: -32px; border-radius: 4px; background: var(--ink);
-  }
-  .ground { height: 10px; background: var(--ink); border-radius: 0 0 6px 6px; }
-
-  /* Coming */
-  .coming { border-top: 2px solid var(--ink); padding: 48px 0 72px; }
-  .coming h2 { font-family: var(--display); font-weight: 400; font-size: 36px; text-transform: uppercase; margin: 0 0 28px; line-height: 1; }
-  .coming ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-  .coming li { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: start; }
-  .coming h3 { margin: 0 0 4px; font-size: 20px; }
-  .coming p { margin: 0; color: var(--muted); font-size: 16px; }
-  .tag { display: inline-block; margin-left: 8px; font-size: 12px; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--kraft); color: var(--muted); vertical-align: 2px; }
-
-  footer { background: var(--ink); color: #CFC7B6; font-size: 14px; padding: 24px 0; }
-  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  footer a { color: var(--paper); }
-
-  @media (max-width: 880px) {
-    .hero { grid-template-columns: 1fr; gap: 40px; padding-bottom: 56px; }
-    .shop { order: -1; max-width: 400px; }
-    .coming ul { grid-template-columns: 1fr; gap: 28px; }
-  }
-  @media (max-width: 480px) {
-    .field { flex-direction: column; }
-    .field button { width: 100%; }
-    .lede { font-size: 18px; }
-    .header-link { font-size: 15px; }
-  }
-  .scroll-hint { margin: 14px 0 0; text-align: center; font-size: 14px; color: var(--muted); }
-  @media (prefers-reduced-motion: reduce) {
-    .door, .door.live { transition: none; }
-    .scroll-hint { display: none; }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Fraunces:opsz,wght@9..144,500..700&family=Yellowtail&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script src="products.js"></script>
+<script src="site.js"></script>
 </head>
 <body>
 
-<header>
+<div class="topbar">Local pickup in <span data-cfg="town">[YOUR TOWN]</span> &nbsp;|&nbsp; Bring-your-own engraving from <b>$20</b> &nbsp;|&nbsp; Family owned, made by hand</div>
+
+<header class="site-header">
   <div class="wrap">
-    <a class="logo" href="./" aria-label="Back Lot Printing home">
-      <svg width="46" height="46" viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#17150F"/>
-        <rect x="15" y="33" width="34" height="27" fill="#F3EFE6"/>
-        <path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#17150F" stroke-width="2.4"/>
-        <circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"></circle><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text>
-      </svg>
+    <a class="logo" href="index.html" aria-label="Back Lot Printing home">
+      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
       <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
     </a>
-    <a class="header-link" id="header-social" href="#" hidden>Follow along on Instagram</a>
+    <nav id="site-nav" class="nav" aria-label="Main">
+      <a href="shop.html">Shop</a>
+      <a href="#byo">Bring your own</a>
+      <a href="#business">Business &amp; trade</a>
+      <a href="#work">Our work</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-outline btn-sm" href="#quote">Get a quote</a>
+      <a class="cart-link" href="order.html" data-cart-label aria-label="Your order">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        Order <span class="cart-count" data-cart-count>0</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
 <main>
-  <div class="wrap hero">
-    <div>
-      <h1>We're rolling up the door soon.</h1>
-      <p class="lede">Back Lot Printing is a family-owned laser engraving shop opening in [YOUR TOWN]. Gifts, keepsakes and business goods, engraved and checked by hand. Leave your email and we'll tell you the day we open.</p>
-      <ul class="promises">
-        <li>Family owned</li>
-        <li>Made locally</li>
-        <li>Checked by hand</li>
-      </ul>
-
-      <form id="notify" novalidate>
-        <label for="email">Email address</label>
-        <div class="field">
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required>
-          <button type="submit">Notify me</button>
-        </div>
-        <p class="status" id="status" role="status" aria-live="polite"></p>
-      </form>
-
-      <div class="sooner" id="sooner">
-        <p>Need something printed sooner? Get in touch.</p>
-        <ul class="contacts" id="contacts"></ul>
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="label">Laser engraving in <span data-cfg="town">[YOUR TOWN]</span></span>
+      <h1 class="h1">Engraved gifts &amp; goods, made right here.</h1>
+      <p class="lede">From $20 bring-your-own tumbler engraving to custom metal business cards. Every piece is set up, engraved and checked by hand in our local family shop.</p>
+      <div class="hero-actions">
+        <a class="btn btn-dark" href="shop.html">Shop engraved goods</a>
+        <a class="btn btn-outline" href="#byo">Bring your own item</a>
+      </div>
+      <div class="hero-facts">
+        <div><b>No minimum</b><span>One piece is a real order</span></div>
+        <div><b>Proof first</b><span>You approve every design</span></div>
+        <div><b data-cfg="turnaround">3–5 business days</b><span>Typical turnaround</span></div>
       </div>
     </div>
 
-    <div class="shop" aria-hidden="true">
-      <svg class="roof" viewBox="0 0 520 170">
-        <path d="M0 170 L260 8 L520 170 Z" fill="#17150F"/>
-        <circle cx="260" cy="114" r="40" fill="#C23B12" stroke="#FFFFFF" stroke-width="5"/>
-        <text x="260" y="129" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="44" fill="#FFFFFF">BL</text>
-      </svg>
-      <div class="bay">
-        <div class="opening">
-          <svg class="interior" viewBox="0 0 200 110" preserveAspectRatio="xMidYMin meet">
-            <path d="M22 20 H178" stroke="#17150F" stroke-width="3" stroke-linecap="round"/>
-            <g fill="#17150F">
-              <path d="M40 20 l-6 10 h12 z" fill="none" stroke="#17150F" stroke-width="1.6"/>
-              <path d="M29 32 l-8 4 -5 10 6 3 3-4 v26 h28 v-26 l3 4 6-3 -5-10 -8-4 c-2 4 -5 6 -10 6 s-8-2 -10-6z"/>
-            </g>
-            <g>
-              <path d="M84 20 l-6 10 h12 z" fill="none" stroke="#17150F" stroke-width="1.6"/>
-              <path d="M73 32 l-8 4 -5 10 6 3 3-4 v26 h28 v-26 l3 4 6-3 -5-10 -8-4 c-2 4 -5 6 -10 6 s-8-2 -10-6z" fill="#F3EFE6"/>
-            </g>
-            <g>
-              <path d="M128 20 l-6 10 h12 z" fill="none" stroke="#17150F" stroke-width="1.6"/>
-              <path d="M117 32 l-8 4 -5 10 6 3 3-4 v26 h28 v-26 l3 4 6-3 -5-10 -8-4 c-2 4 -5 6 -10 6 s-8-2 -10-6z" fill="#1F4E4A"/>
-            </g>
-            <g>
-              <path d="M166 20 l-6 10 h12 z" fill="none" stroke="#17150F" stroke-width="1.6"/>
-              <path d="M155 32 l-8 4 -5 10 6 3 3-4 v26 h28 v-26 l3 4 6-3 -5-10 -8-4 c-2 4 -5 6 -10 6 s-8-2 -10-6z" fill="#17150F"/>
-            </g>
-          </svg>
-          <div class="inside"><span>Family shop<br>opening soon</span></div>
-          <div class="door" id="door"></div>
+    <!-- Live preview -->
+    <div class="try" aria-labelledby="try-title">
+      <div class="try-head">
+        <strong id="try-title">Try it — see your engraving</strong>
+        <div class="seg" role="group" aria-label="Product">
+          <button type="button" data-prod="tumbler" aria-pressed="true">Tumbler</button>
+          <button type="button" data-prod="flask" aria-pressed="false">Flask</button>
+          <button type="button" data-prod="tag" aria-pressed="false">Dog tag</button>
         </div>
       </div>
-      <div class="ground"></div>
-      <p class="scroll-hint" id="scroll-hint">Scroll to open the door</p>
+      <div class="try-stage">
+        <svg id="try-svg" viewBox="0 0 240 300" role="img" aria-label="Preview of your engraving">
+          <g id="shape-tumbler">
+            <path class="body" d="M66 34 H174 L160 272 a14 14 0 0 1 -14 13 H94 a14 14 0 0 1 -14 -13 Z"/>
+            <path class="lid" d="M62 34 H178 a6 6 0 0 0 0 -14 H62 a6 6 0 0 0 0 14 Z"/>
+            <path d="M76 50 Q86 160 92 262" stroke="rgba(255,255,255,0.13)" stroke-width="9" fill="none" stroke-linecap="round"/>
+          </g>
+          <g id="shape-flask" hidden>
+            <rect class="lid" x="100" y="18" width="40" height="30" rx="4"/>
+            <rect class="body" x="56" y="46" width="128" height="236" rx="22"/>
+            <path d="M70 66 V262" stroke="rgba(255,255,255,0.13)" stroke-width="9" stroke-linecap="round"/>
+          </g>
+          <g id="shape-tag" hidden>
+            <path d="M120 8 Q70 30 120 70" stroke="#8E9196" stroke-width="3" fill="none" stroke-dasharray="2 4"/>
+            <rect class="body" x="44" y="60" width="152" height="214" rx="46"/>
+            <circle cx="120" cy="90" r="10" fill="#EDE6DA"/>
+          </g>
+          <text id="try-l1" x="120" y="144" text-anchor="middle"></text>
+          <text id="try-l2" x="120" y="172" text-anchor="middle"></text>
+        </svg>
+        <div class="swatches" role="group" aria-label="Finish">
+          <button type="button" class="swatch" data-fin="0" aria-label="Matte black" aria-pressed="true" style="background:#1B1A17"></button>
+          <button type="button" class="swatch" data-fin="1" aria-label="Stainless" aria-pressed="false" style="background:#B9BCC0"></button>
+          <button type="button" class="swatch" data-fin="2" aria-label="Sage" aria-pressed="false" style="background:#6E8B6B"></button>
+          <button type="button" class="swatch" data-fin="3" aria-label="Navy" aria-pressed="false" style="background:#1F2A44"></button>
+        </div>
+      </div>
+      <div class="try-body">
+        <div class="try-fields">
+          <div class="field"><label for="try-in1">Line 1</label><input id="try-in1" type="text" maxlength="16" value="The Millers"></div>
+          <div class="field"><label for="try-in2">Line 2 <span class="hint">(optional)</span></label><input id="try-in2" type="text" maxlength="22" value="EST. 2026"></div>
+        </div>
+        <div class="try-foot">
+          <div class="font-picks" role="group" aria-label="Lettering">
+            <button type="button" data-font="0" aria-pressed="true" style="font-family: Fraunces, Georgia, serif; font-size: 17px;">Classic</button>
+            <button type="button" data-font="1" aria-pressed="false" style="font-family: Yellowtail, cursive; font-size: 22px;">Script</button>
+            <button type="button" data-font="2" aria-pressed="false" style="font-family: Anton, Impact, sans-serif; font-size: 17px;">Block</button>
+          </div>
+          <a id="try-cta" class="btn btn-accent btn-sm" href="shop.html?item=d1">Personalize this</a>
+        </div>
+      </div>
     </div>
   </div>
+</section>
 
-  <section class="coming" aria-labelledby="coming-title">
-    <div class="wrap">
-      <h2 id="coming-title">What we'll make</h2>
+<!-- Materials -->
+<section class="materials" aria-label="Materials we engrave">
+  <div class="wrap">
+    <p>We engrave</p>
+    <ul><li>Stainless</li><li>Aluminum</li><li>Brass</li><li>Powder coat</li><li>Wood</li><li>Leather</li><li>Slate</li><li>Stone</li></ul>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Shop by category</span><h2 class="h2">Something for everyone on your list</h2></div>
+      <a class="link-strong" href="shop.html">See everything</a>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<!-- Bring your own -->
+<section id="byo" class="wrap">
+  <div class="byo">
+    <div class="byo-main">
+      <span class="label">Bring your own item</span>
+      <h2 class="h2">You bring it.<br>We engrave it.</h2>
+      <p class="lede">Already have the tumbler, flask, knife or tool? Drop it off and we'll add a name, initials or logo. Most items are one flat price.</p>
+      <div class="byo-price"><strong>$20</strong><span>per item, text or logo on one side<br><b>$15 each</b> when you bring 5 or more</span></div>
+      <div class="hero-actions">
+        <a class="btn btn-accent" href="shop.html?item=d1">Book a drop-off</a>
+        <a class="btn btn-ghost-light" href="#faq">What can I bring?</a>
+      </div>
+    </div>
+    <div class="byo-list">
       <ul>
-        <li>
-          <svg width="44" height="44" viewBox="0 0 300 320" aria-hidden="true"><path d="M100 20 L60 35 L10 80 L40 125 L70 105 L70 300 L230 300 L230 105 L260 125 L290 80 L240 35 L200 20 C190 45 170 55 150 55 C130 55 110 45 100 20 Z" fill="#17150F"/></svg>
-          <div><h3>Engraved gifts</h3><p>Tumblers, flasks, dog tags, keychains and keepsakes with your name or design.</p></div>
-        </li>
-        <li>
-          <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><rect x="10" y="2" width="24" height="40" rx="2" fill="#DDEBEA" stroke="#17150F" stroke-width="2.5"/><circle cx="18" cy="12" r="4" fill="#C23B12"/><circle cx="27" cy="22" r="4" fill="#17150F"/><circle cx="18" cy="32" r="4" fill="#C23B12"/></svg>
-          <div><h3>For local businesses</h3><p>Metal business cards, tool marking and equipment tags for the shops down the road.</p></div>
-        </li>
-        <li>
-          <svg width="44" height="44" viewBox="0 0 64 64" fill="none" stroke="#17150F" stroke-width="3.5" stroke-linejoin="round" aria-hidden="true"><path d="M12 16 H44 V54 a4 4 0 0 1 -4 4 H16 a4 4 0 0 1 -4 -4 Z"/><path d="M44 24 H50 a6 6 0 0 1 0 12 H44"/><circle cx="28" cy="36" r="7" fill="#C23B12" stroke="none"/></svg>
-          <div><h3>Custom apparel <span class="tag">Later</span></h3><p>Printed shirts and hoodies are next on the list.</p></div>
-        </li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Stainless tumblers</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Flasks &amp; stainless bottles</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Pocket knives</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Multitools</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Metal hand tools</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Lighters</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Watch backs</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E9A58C" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>Dog tags &amp; keychains</li>
+      </ul>
+      <p>Metal, powder coat, wood and genuine leather only, on flat or gently curved faces. We can't take glass, ceramic, clear acrylic, or PVC and vinyl plastics. We test a hidden spot first where we can.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Favourites -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Most ordered</span><h2 class="h2">Local favourites</h2></div>
+      <a class="link-strong" href="shop.html">Shop everything</a>
+    </div>
+    <div class="tiles" id="favs"></div>
+  </div>
+</section>
+
+<!-- Business -->
+<section id="business" class="biz section">
+  <div class="wrap">
+    <div>
+      <span class="label">For businesses &amp; trades</span>
+      <h2 class="h2">Mark your gear. Brand your business.</h2>
+      <p class="lede" style="margin-top:18px">Tool marking, equipment and asset tags, QR codes, metal business cards and client gifts. Local, quick and priced per piece, so a crew of five and a fleet of fifty both make sense.</p>
+      <div class="biz-points">
+        <div><b>Local</b><span>Drop off and pick up, no shipping wait</span></div>
+        <div><b>Permanent</b><span>Burned in, survives the field</span></div>
+        <div><b>Bulk rates</b><span>Save more the more you mark</span></div>
+      </div>
+      <a class="btn btn-light" href="#quote">Get a business quote</a>
+    </div>
+    <div class="price-table">
+      <table>
+        <thead><tr><th scope="col">Item</th><th scope="col">Price</th><th scope="col">At volume</th></tr></thead>
+        <tbody id="biz-rows"></tbody>
+      </table>
+      <p>Trade orders (tags, tool marking, QR codes) have a $40 minimum. Logo setup is free.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Our work -->
+<section id="work" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Recent work</span><h2 class="h2">Fresh off the laser</h2></div>
+      <a class="link-strong" data-link="instagram" href="#">See more on Instagram</a>
+    </div>
+    <!-- TO USE YOUR OWN PHOTOS: put them in an "images" folder and replace each <svg>…</svg>
+         below with  <img src="images/your-photo.jpg" alt="Short description">  -->
+    <div class="work">
+      <figure style="background:#2A2620">
+        <svg width="220" height="280" viewBox="0 0 240 300" aria-hidden="true"><path d="M66 34 H174 L160 272 a14 14 0 0 1 -14 13 H94 a14 14 0 0 1 -14 -13 Z" fill="#1B1A17"/><path d="M62 34 H178 a6 6 0 0 0 0 -14 H62 a6 6 0 0 0 0 14 Z" fill="#3A362D"/><text x="120" y="150" text-anchor="middle" font-family="Yellowtail, cursive" font-size="38" fill="#D9D2C4">Miller</text><text x="120" y="176" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" letter-spacing="4" fill="#D9D2C4">EST. 2026</text></svg>
+        <figcaption>Anniversary tumblers</figcaption>
+      </figure>
+      <figure style="background:#E4E8DF"><svg width="110" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M22 8 H42 A10 10 0 0 1 52 18 V46 A10 10 0 0 1 42 56 H22 A10 10 0 0 1 12 46 V18 A10 10 0 0 1 22 8 Z M29 16 A3 3 0 1 0 35 16 A3 3 0 1 0 29 16 Z" fill="#8E9196" fill-rule="evenodd"/><path d="M20 26 H44 V30 H20 Z M20 34 H40 V38 H20 Z" fill="#1E1B17"/></svg><figcaption>Pet tags</figcaption></figure>
+      <figure style="background:#F1E3D8"><svg width="120" height="110" viewBox="0 0 70 64" aria-hidden="true"><path d="M10 8 H58 A4 4 0 0 1 62 12 V52 A4 4 0 0 1 58 56 H10 Z" fill="#8A6A45"/><path d="M26 24 H52 V40 H26 Z" fill="#4A3522"/></svg><figcaption>Family cutting board</figcaption></figure>
+      <figure style="background:#1F3D3A"><svg width="120" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M40 6 A12 12 0 0 0 30 22 L8 44 L20 56 L42 34 A12 12 0 0 0 58 24 L50 30 L44 28 L42 22 L48 14 Z" fill="#B9BCC0"/><path d="M17 45 L29 33 L31 35 L19 47 Z" fill="#1E1B17"/></svg><figcaption>Crew tool marking</figcaption></figure>
+      <figure style="background:#EDE6DA"><svg width="120" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M27 4 H37 V10 H27 Z M18 12 H46 A4 4 0 0 1 50 16 V56 A4 4 0 0 1 46 60 H18 A4 4 0 0 1 14 56 V16 A4 4 0 0 1 18 12 Z" fill="#B9BCC0" fill-rule="evenodd"/><path d="M22 26 H42 V42 H22 Z" fill="#1E1B17"/></svg><figcaption>Groomsmen flasks</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="wrap about">
+  <!-- TO USE YOUR OWN PHOTO: replace the <svg>…</svg> below with <img src="images/family.jpg" alt="Our family in the shop"> -->
+  <div class="about-photo">
+    <svg width="200" height="160" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#C9BFAE"/><rect x="15" y="33" width="34" height="27" fill="#EDE6DA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#C9BFAE" stroke-width="2.4"/></svg>
+  </div>
+  <div class="about-copy">
+    <span class="label">About the shop</span>
+    <h2 class="h2">A small family shop that sweats the details</h2>
+    <p>Back Lot Printing is a small, family-run engraving shop in <span data-cfg="town">[YOUR TOWN]</span>. We run it out of our own shop, not a warehouse, and every order passes through our hands.</p>
+    <p>Every job is set up, engraved, checked and packed by hand. When you order from us, you're supporting a local family, and getting people who actually care how it turns out.</p>
+    <div class="trio">
+      <div><b>Family owned</b><span>Run by us, start to finish</span></div>
+      <div><b>Made locally</b><span>In our own shop</span></div>
+      <div><b>Checked by hand</b><span>Every single piece</span></div>
+    </div>
+    <div class="signoff">
+      <svg class="stamp" viewBox="0 0 160 160" role="img" aria-label="Family owned, engraved by hand">
+        <defs>
+          <path id="stamp-top" d="M 26 80 A 54 54 0 0 1 134 80"/>
+          <path id="stamp-bot" d="M 20 80 A 60 60 0 0 0 140 80"/>
+        </defs>
+        <circle cx="80" cy="80" r="76" fill="none" stroke="#C23B12" stroke-width="3"/>
+        <circle cx="80" cy="80" r="68" fill="none" stroke="#C23B12" stroke-width="1.2"/>
+        <circle cx="80" cy="80" r="44" fill="none" stroke="#C23B12" stroke-width="1.2"/>
+        <text font-family="DM Sans, sans-serif" font-weight="700" font-size="12.5" letter-spacing="3.2" fill="#C23B12"><textPath href="#stamp-top" startOffset="50%" text-anchor="middle">FAMILY OWNED</textPath></text>
+        <text font-family="DM Sans, sans-serif" font-weight="700" font-size="11" letter-spacing="3" fill="#C23B12"><textPath href="#stamp-bot" startOffset="50%" text-anchor="middle">ENGRAVED BY HAND</textPath></text>
+        <circle cx="24" cy="80" r="3" fill="#C23B12"/><circle cx="136" cy="80" r="3" fill="#C23B12"/>
+        <g transform="translate(56 54) scale(0.75)"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#C23B12"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#C23B12" stroke-width="2.6"/></g>
+      </svg>
+      <div>
+        <span class="signature">The Back Lot family</span>
+        <span class="signoff-note">Thanks for shopping small.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Community -->
+<section class="section--tight">
+  <div class="wrap community">
+    <div><span class="label">In the community</span><h3 class="h2" style="font-size:32px">Proud to be local</h3></div>
+    <div><b>Team fundraisers</b><p>Custom tags, tumblers and ornaments your team or school can sell to raise money. Ask us how it works.</p></div>
+    <div><b>Markets &amp; events</b><p>Catch us at local markets, engraving on the spot while you wait.</p></div>
+    <div><b>Local business pricing</b><p>Neighbouring shops get bulk rates from the very first order.</p></div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" style="background:#fff">
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:48px"><span class="label">How it works</span><h2 class="h2">Simple from start to finish</h2></div>
+    <ol class="steps">
+      <li><h3 class="h3">Choose or bring</h3><p>Pick something from the shop or drop off your own item.</p></li>
+      <li><h3 class="h3">Approve your proof</h3><p>We send a preview. Nothing is engraved until you say go.</p></li>
+      <li><h3 class="h3">We engrave it</h3><p>Set up and engraved in our shop, then checked by hand.</p></li>
+      <li><h3 class="h3">Pick up or ship</h3><p>Local pickup, or we ship it to you.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- Quote -->
+<section id="quote" class="section">
+  <div class="wrap quote">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <span class="label">Custom orders &amp; quotes</span>
+      <h2 class="h2">Tell us what you have in mind</h2>
+      <p class="lede">Team gifts, a wedding party, your crew's tools, or something one-of-a-kind. We'll reply personally with pricing and a mockup, usually within a day.</p>
+      <ul class="contact-list">
+        <li data-cfg-if="phone"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a data-link="phone" href="#"></a></li>
+        <li data-cfg-if="email"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a data-link="email" href="#"></a></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span><span data-cfg="town">[YOUR TOWN]</span> · <span data-cfg="pickup">Pickup by appointment</span></span></li>
       </ul>
     </div>
-  </section>
+    <form class="card-form" id="quote-form" novalidate>
+      <div class="field"><label for="q-name">Name</label><input id="q-name" name="Name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="q-email">Email</label><input id="q-email" name="Email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="q-type">Type of order</label><select id="q-type" name="Type"><option>A gift</option><option>Bring-your-own engraving</option><option>Team, school or fundraiser</option><option>Business or trade</option><option>Wedding or event</option><option>Something else</option></select></div>
+      <div class="field"><label for="q-qty">Quantity</label><input id="q-qty" name="Quantity" type="number" min="1" placeholder="e.g. 12"></div>
+      <div class="field full"><label for="q-msg">Details</label><textarea id="q-msg" name="Details" placeholder="What to engrave, on what, and when you need it" required></textarea></div>
+      <p class="full muted" style="margin:0;font-size:14px">Have a logo or photo? Mention it here and we'll ask you to email it after we reply.</p>
+      <button class="btn btn-accent full" type="submit">Send my request</button>
+      <p class="form-status full" id="quote-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="wrap faq">
+  <div><span class="label">FAQ</span><h2 class="h2">Good questions</h2></div>
+  <div class="faq-list">
+    <details><summary>What can I bring in to be engraved?</summary><p>Metal, powder-coated, wood and genuine leather items with a flat or gently curved face — tumblers (one side), flasks, knives, hand tools, lighters, tags and watch backs — up to about 8.5 × 8.5 inches of engraving area. Most bring-your-own items are $20, or $15 each when you bring 5 or more. We can't engrave glass, ceramic mugs, clear acrylic, or PVC and vinyl plastics.</p></details>
+    <details><summary>Will the engraving wear off?</summary><p>No. It's burned into the material rather than printed on top, so it won't peel, fade or wash away.</p></details>
+    <details><summary>Do I see a proof first?</summary><p>Always. We send a digital preview showing size and placement, and nothing is engraved until you approve it.</p></details>
+    <details><summary>How long does it take?</summary><p>Most orders take <span data-cfg="turnaround">3–5 business days</span>. Need it sooner? Ask and we'll do our best.</p></details>
+    <details><summary>How do I pay?</summary><p>Send your order request and we'll confirm the details and total. You can pay by e-transfer or when you pick up.</p></details>
+    <details><summary>What file should I send for a logo?</summary><p>Vector files (SVG, PDF, AI) are ideal. A high-resolution PNG works too, and we can clean up most logos for you.</p></details>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section class="section--tight">
+  <div class="wrap signup">
+    <div><h2 class="h2" style="font-size:38px">Stay in the loop</h2><p class="muted" style="margin:8px 0 0">New products, market dates, and first word when custom apparel arrives.</p></div>
+    <form id="news-form" novalidate>
+      <label for="news-email" class="visually-hidden">Email address</label>
+      <input id="news-email" type="email" placeholder="you@email.com" autocomplete="email" required>
+      <button class="btn btn-dark" type="submit">Subscribe</button>
+      <p class="form-status" id="news-status" role="status" aria-live="polite" style="flex-basis:100%"></p>
+    </form>
+  </div>
+</section>
 </main>
 
-<footer>
+<footer class="site-footer">
   <div class="wrap">
-    <span>© <span id="year">2026</span> Back Lot Printing · Family owned &amp; made locally</span>
-    <span id="footer-email"></span>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <a class="logo" href="index.html" aria-label="Back Lot Printing home" style="color:#F5F1EA">
+          <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#F5F1EA"/><rect x="15" y="33" width="34" height="27" fill="#1E1B17"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#F5F1EA" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+          <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
+        </a>
+        <p class="footer-note">Family-owned laser engraving in <span data-cfg="town">[YOUR TOWN]</span>. Gifts, keepsakes and business goods, made by hand.</p>
+        <a data-link="instagram" data-cfg-if="instagram" href="#"></a>
+      </div>
+      <div class="footer-col"><strong>Shop</strong><a href="shop.html">All products</a><a href="shop.html?cat=drink">Drinkware</a><a href="shop.html?cat=gifts">Gift ideas</a><a href="#byo">Bring your own</a></div>
+      <div class="footer-col"><strong>Business</strong><a href="shop.html?cat=biz">Tool &amp; asset marking</a><a href="shop.html?item=b1">Metal business cards</a><a href="#quote">Bulk quotes</a></div>
+      <div class="footer-col"><strong>Help</strong><a href="#faq">FAQ</a><a href="#about">About us</a><a href="#quote">Contact</a><a href="order.html">Your order</a></div>
+    </div>
+    <div class="footer-bottom"><span>© <span data-year>2026</span> Back Lot Printing · Family owned in <span data-cfg="town">[YOUR TOWN]</span></span><span>Engraved by hand</span></div>
   </div>
 </footer>
 
 <script>
-/* ============================================================
-   EDIT THESE to make the page yours. Leave a value as "" to hide it.
-   ============================================================ */
-const CONFIG = {
-  email: "hello@backlotprinting.com",   // where people contact you
-  phone: "",                            // e.g. "780-555-0123"
-  instagram: "backlotprinting",         // handle only, no @
-  facebook: "",                         // full page URL, e.g. "https://facebook.com/backlotprinting"
-  // Sign-up collection: paste a form endpoint (e.g. from Formspree, Tally or Basin)
-  // to collect emails automatically. If left blank, "Notify me" opens the visitor's
-  // email app with a pre-filled message to your email above.
-  formEndpoint: ""
-};
-/* ============================================================ */
+document.addEventListener('DOMContentLoaded', function () {
+  var P = BL.products();
+  var byId = function (id) { return BL.find(id); };
 
-(function () {
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const list = document.getElementById('contacts');
-  const add = (href, label, icon, external) => {
-    const li = document.createElement('li');
-    const a = document.createElement('a');
-    a.href = href;
-    if (external) { a.target = '_blank'; a.rel = 'noopener'; }
-    a.innerHTML = icon + '<span></span>';
-    a.querySelector('span').textContent = label;
-    li.appendChild(a); list.appendChild(li);
+  /* Categories with live "from" prices */
+  var catBlurb = {
+    drink: 'Tumblers, flasks, bottles and pint cups', tags: 'Dog tags, pet tags, keychains, bag tags',
+    edc: 'Knives, lighters, money clips, multitools', jewelry: 'Necklaces, dog tags, cuffs, watch backs',
+    gifts: 'Boards, slate, ornaments, photo metal', biz: 'Business cards, asset tags, tool marking'
   };
-  const ic = (d) => '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
-
-  if (CONFIG.email) {
-    add('mailto:' + CONFIG.email, CONFIG.email, ic('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>'));
-    const fe = document.getElementById('footer-email');
-    fe.innerHTML = '<a></a>';
-    fe.firstChild.href = 'mailto:' + CONFIG.email;
-    fe.firstChild.textContent = CONFIG.email;
-  }
-  if (CONFIG.phone) add('tel:' + CONFIG.phone.replace(/[^\d+]/g, ''), CONFIG.phone, ic('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>'));
-  if (CONFIG.instagram) {
-    const url = 'https://instagram.com/' + CONFIG.instagram;
-    add(url, '@' + CONFIG.instagram, ic('<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/>'), true);
-    const hs = document.getElementById('header-social');
-    hs.href = url; hs.target = '_blank'; hs.rel = 'noopener'; hs.hidden = false;
-  }
-  if (CONFIG.facebook) add(CONFIG.facebook, 'Facebook', ic('<path d="M15 3h-2.5A3.5 3.5 0 0 0 9 6.5V21M6 11h8"/>'), true);
-  if (!list.children.length) document.getElementById('sooner').hidden = true;
-
-  /* Roll-up door: follows scrolling, or the mouse if the page can't scroll */
-  const door = document.getElementById('door');
-  const hint = document.getElementById('scroll-hint');
-  const CLOSED = 0.12, OPEN = 0.86;
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let mouseP = 0, ticking = false;
-  const scrollRoom = () => document.documentElement.scrollHeight - window.innerHeight;
-  const setOpen = (p) => door.style.setProperty('--open', (CLOSED + Math.max(0, Math.min(1, p)) * (OPEN - CLOSED)).toFixed(4));
-  const update = () => {
-    ticking = false;
-    const room = scrollRoom();
-    const p = room > 80 ? window.scrollY / Math.min(room, 420) : mouseP;
-    setOpen(p);
-  };
-  const queue = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
-
-  if (reduce) {
-    door.style.setProperty('--open', '0.5');
-  } else {
-    // first load: roll up a little, then hand control to scrolling
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      setOpen(0);
-      update();
-      setTimeout(() => door.classList.add('live'), 1400);
-    }));
-    window.addEventListener('scroll', queue, { passive: true });
-    window.addEventListener('resize', queue);
-    window.addEventListener('mousemove', (e) => {
-      if (scrollRoom() > 80) return;
-      mouseP = 1 - e.clientY / window.innerHeight;
-      queue();
-    });
-    if (scrollRoom() <= 80) hint.textContent = 'Move your mouse up to open the door';
-    window.addEventListener('scroll', () => { if (window.scrollY > 40) hint.style.visibility = 'hidden'; }, { passive: true });
-  }
-
-  const form = document.getElementById('notify');
-  const input = document.getElementById('email');
-  const status = document.getElementById('status');
-  const button = form.querySelector('button');
-  const say = (msg, kind) => { status.textContent = msg; status.className = 'status ' + (kind || ''); };
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const value = input.value.trim();
-    if (!value || !input.checkValidity()) {
-      say('Enter an email address like name@example.com.', 'err');
-      input.focus();
-      return;
-    }
-
-    if (!CONFIG.formEndpoint) {
-      if (!CONFIG.email) { say('Sign-ups open soon. Check back shortly.', 'err'); return; }
-      const subject = encodeURIComponent('Notify me when Back Lot Printing opens');
-      const body = encodeURIComponent('Please add ' + value + ' to your opening list.');
-      window.location.href = 'mailto:' + CONFIG.email + '?subject=' + subject + '&body=' + body;
-      say('Your email app should open. Send the message and you\'re on the list.', 'ok');
-      return;
-    }
-
-    button.disabled = true; button.textContent = 'Adding…';
-    try {
-      const res = await fetch(CONFIG.formEndpoint, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
-      });
-      if (!res.ok) throw new Error('bad status');
-      form.reset();
-      say('You\'re on the list. We\'ll email you the day we open.', 'ok');
-    } catch (err) {
-      say('That didn\'t go through. Try again' + (CONFIG.email ? ', or email ' + CONFIG.email + '.' : '.'), 'err');
-    } finally {
-      button.disabled = false; button.textContent = 'Notify me';
-    }
+  var catArt = { drink: 'tumbler', tags: 'dogtag', edc: 'knife', jewelry: 'jewelry', gifts: 'board', biz: 'card' };
+  var catBg = { drink: '#EDE6DA', tags: '#E4E8DF', edc: '#EDE6DA', jewelry: '#F1E3D8', gifts: '#EDE6DA', biz: '#E0E7E5' };
+  var html = '';
+  Object.keys(catBlurb).forEach(function (c) {
+    var items = P.filter(function (p) { return p.cat === c; });
+    if (!items.length) return;
+    var pool = c === 'biz' ? items : (items.filter(function (p) { return p.unit !== 'ea'; }).length ? items.filter(function (p) { return p.unit !== 'ea'; }) : items);
+    var low = pool.reduce(function (a, p) { return p.price < a.price ? p : a; });
+    var label = (BL.CATS.find(function (x) { return x.id === c; }) || {}).label || c;
+    html += '<a class="cat" href="shop.html?cat=' + c + '"><span class="cat-art" style="background:' + catBg[c] + '">' + BL.iconSVG(catArt[c]) + '</span>' +
+      '<span class="cat-text"><b>' + BL.esc(label) + '</b><span>' + catBlurb[c] + '</span><em>From ' + BL.priceLabel(low).replace(/^From /, '') + '</em></span></a>';
   });
-})();
+  document.getElementById('cats').innerHTML = html;
+
+  /* Favourites */
+  var favIds = ['d1', 'd2', 't1', 'b1'];
+  var subs = { d1: 'Bring your own · $15 each for 5+', d2: 'Flask included', t1: 'Stainless, with chain', b1: 'Minimum 25 cards' };
+  document.getElementById('favs').innerHTML = favIds.map(byId).filter(Boolean).map(function (p) {
+    return '<a class="tile" href="shop.html?item=' + p.id + '"><span class="tile-art">' + BL.iconSVG(p.kind) + '</span>' +
+      '<span class="tile-row"><b>' + BL.esc(p.name) + '</b><span>' + BL.priceLabel(p) + '</span></span><small>' + (subs[p.id] || '') + '</small></a>';
+  }).join('');
+
+  /* Business price table */
+  var bizIds = ['b3', 'b2', 'b4', 'b1', 'b6', 'b5'];
+  document.getElementById('biz-rows').innerHTML = bizIds.map(byId).filter(Boolean).map(function (p) {
+    var vol = p.tiers && p.tiers.length ? BL.money(p.tiers[p.tiers.length - 1][1]) + (p.unit === 'ea' ? ' ea' : '') + ' at ' + p.tiers[p.tiers.length - 1][0] + '+' : '—';
+    return '<tr><td>' + BL.esc(p.name) + '</td><td>' + BL.priceLabel(p) + '</td><td>' + vol + '</td></tr>';
+  }).join('');
+
+  /* Live preview */
+  var FINISHES = [['#1B1A17', '#3A362D', '#D9D2C4'], ['#B9BCC0', '#8E9196', '#2A2620'], ['#6E8B6B', '#4E664C', '#F5F1EA'], ['#1F2A44', '#141C30', '#E6E1D6']];
+  var FONTS = [["Fraunces, Georgia, serif", 0.52, 30], ["Yellowtail, cursive", 0.46, 38], ["Anton, Impact, sans-serif", 0.46, 34]];
+  var PRODUCTS = { tumbler: ['d1', 'Personalize this'], flask: ['d2', 'Order this flask — ' + BL.priceLabel(byId('d2') || { price: 28 })], tag: ['t1', 'Order this tag — ' + BL.priceLabel(byId('t1') || { price: 15 })] };
+  var state = { prod: 'tumbler', fin: 0, font: 0 };
+  var in1 = document.getElementById('try-in1'), in2 = document.getElementById('try-in2');
+  var l1 = document.getElementById('try-l1'), l2 = document.getElementById('try-l2');
+  var cta = document.getElementById('try-cta');
+
+  function fit(text, base, ratio, width) {
+    var len = Math.max(1, (text || '').length);
+    return Math.max(12, Math.min(base, Math.floor(width / (len * ratio))));
+  }
+  function render() {
+    ['tumbler', 'flask', 'tag'].forEach(function (k) { document.getElementById('shape-' + k).hidden = k !== state.prod; });
+    var f = FINISHES[state.fin], ft = FONTS[state.font];
+    document.querySelectorAll('#try-svg .body').forEach(function (el) { el.setAttribute('fill', f[0]); });
+    document.querySelectorAll('#try-svg .lid').forEach(function (el) { el.setAttribute('fill', f[1]); });
+    var width = state.prod === 'tag' ? 124 : 104;
+    var mid = state.prod === 'tag' ? 180 : state.prod === 'flask' ? 160 : 150;
+    var two = in2.value.trim().length > 0;
+    [l1, l2].forEach(function (el) { el.setAttribute('font-family', ft[0]); el.setAttribute('fill', f[2]); });
+    l1.textContent = in1.value; l2.textContent = in2.value;
+    l1.setAttribute('font-size', fit(in1.value, ft[2], ft[1], width));
+    l2.setAttribute('font-size', fit(in2.value, Math.round(ft[2] * 0.5), ft[1], width));
+    l1.setAttribute('y', two ? mid - 6 : mid + 8); l2.setAttribute('y', mid + 22);
+    var p = PRODUCTS[state.prod];
+    var text = [in1.value, in2.value].filter(function (s) { return s.trim(); }).join(' / ');
+    cta.href = 'shop.html?item=' + p[0] + (text ? '&text=' + encodeURIComponent(text) : '');
+    cta.textContent = p[1];
+    document.getElementById('try-svg').setAttribute('aria-label', 'Preview: ' + state.prod + ' engraved with ' + (text || 'your text'));
+  }
+  function press(groupSel, attr, val) {
+    document.querySelectorAll(groupSel).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute(attr) === String(val) ? 'true' : 'false'); });
+  }
+  document.querySelectorAll('[data-prod]').forEach(function (b) { b.addEventListener('click', function () { state.prod = b.dataset.prod; press('[data-prod]', 'data-prod', state.prod); render(); }); });
+  document.querySelectorAll('[data-fin]').forEach(function (b) { b.addEventListener('click', function () { state.fin = +b.dataset.fin; press('[data-fin]', 'data-fin', state.fin); render(); }); });
+  document.querySelectorAll('[data-font]').forEach(function (b) { b.addEventListener('click', function () { state.font = +b.dataset.font; press('[data-font]', 'data-font', state.font); render(); }); });
+  in1.addEventListener('input', render); in2.addEventListener('input', render);
+  render();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+
+  /* Forms */
+  var qf = document.getElementById('quote-form');
+  qf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = document.getElementById('quote-status');
+    var name = qf.elements['Name'], email = qf.elements['Email'], msg = qf.elements['Details'];
+    if (!name.value.trim()) { st.textContent = 'Add your name.'; st.className = 'form-status err'; name.focus(); return; }
+    if (!email.value.trim() || !email.checkValidity()) { st.textContent = 'Add an email like name@example.com.'; st.className = 'form-status err'; email.focus(); return; }
+    if (!msg.value.trim()) { st.textContent = 'Tell us a little about what you need.'; st.className = 'form-status err'; msg.focus(); return; }
+    var fields = {}; ['Name', 'Email', 'Type', 'Quantity', 'Details'].forEach(function (k) { fields[k] = qf.elements[k].value; });
+    BL.sendForm('Quote request from ' + fields.Name, fields, st, function () { if (BL.CFG.formEndpoint) qf.reset(); });
+  });
+  var nf = document.getElementById('news-form');
+  nf.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = document.getElementById('news-status'), em = document.getElementById('news-email');
+    if (!em.value.trim() || !em.checkValidity()) { st.textContent = 'Add an email like name@example.com.'; st.className = 'form-status err'; em.focus(); return; }
+    BL.sendForm('Newsletter sign-up', { Email: em.value, Request: 'Please add me to the Back Lot Printing email list.' }, st, function () { if (BL.CFG.formEndpoint) nf.reset(); });
+  });
+});
 </script>
 </body>
 </html>

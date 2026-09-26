@@ -9,7 +9,8 @@
      name   product name
      price  number, no $ sign
      unit   "flat" = per item, "ea" = each (bulk item), "from" = starting at
-     cat    drink | pets | tags | edc | jewelry | gifts | awards | biz
+     cat    drink | pets | tags | edc | gifts | awards | biz
+            (jewelry is hidden for now — add a line with cat: "jewelry" to bring it back)
      kind   picture: tumbler flask bottle dogtag keychain card knife jewelry
             board coaster award patch tool ornament lighter photo
      byo    true if the customer brings the item
@@ -32,6 +33,7 @@ window.BACKLOT_PRODUCTS = [
   { id: "p3", name: "Collar Nameplate", price: 20, unit: "flat", cat: "pets", kind: "card", desc: "Slide-on brass or steel plate for leather collars. No jingling tag." },
 
   { id: "t1", name: "Dog Tags", price: 15, unit: "flat", cat: "tags", kind: "dogtag", feat: true, desc: "Military-style stainless tag with chain. Names, dates, quotes or coordinates." },
+  { id: "t6", name: "Dog Tag Necklace", price: 22, unit: "flat", cat: "tags", kind: "dogtag", desc: "We supply a stainless tag on a necklace chain. Names, a date or coordinates, front and back." },
   { id: "t2", name: "Keychain", price: 14, unit: "flat", cat: "tags", kind: "keychain", desc: "Stainless, aluminum or genuine leather. Engraved on one or both sides." },
   { id: "t3", name: "Bottle Opener Keychain", price: 16, unit: "flat", cat: "tags", kind: "keychain", desc: "Solid steel opener with your name or logo." },
   { id: "t4", name: "Luggage Tag", price: 18, unit: "flat", cat: "tags", kind: "card", desc: "Aluminum or genuine leather tag with your details on the back." },
@@ -43,12 +45,6 @@ window.BACKLOT_PRODUCTS = [
   { id: "e4", name: "Money Clip", price: 22, unit: "flat", cat: "edc", kind: "card", desc: "Stainless money clip with initials. A clean, simple gift." },
   { id: "e5", name: "Golf Divot Tool & Ball Marker", price: 20, unit: "flat", cat: "edc", kind: "tool", desc: "Metal divot tool with a matching ball marker, engraved with initials or a logo." },
   { id: "e6", name: "Multitool Engraving", price: 20, unit: "flat", cat: "edc", kind: "tool", byo: true, desc: "Your multitool, marked so it comes home with you." },
-
-  { id: "j1", name: "Bar Necklace", price: 28, unit: "flat", cat: "jewelry", kind: "card", desc: "Flat stainless bar with names, coordinates or a date." },
-  { id: "j2", name: "Dog Tag Necklace", price: 22, unit: "flat", cat: "jewelry", kind: "dogtag", desc: "Stainless tag on a chain with names, a date or coordinates. Both sides available." },
-  { id: "j3", name: "Cuff Bracelet", price: 30, unit: "flat", cat: "jewelry", kind: "jewelry", desc: "Stainless cuff with a short quote or names across the top face." },
-  { id: "j4", name: "Watch Back Engraving", price: 35, unit: "flat", cat: "jewelry", kind: "coaster", byo: true, desc: "A message on the back of a watch. We check the case and test first." },
-  { id: "j5", name: "Cufflinks", price: 32, unit: "flat", cat: "jewelry", kind: "card", desc: "Pair of stainless cufflinks with initials. A wedding favourite." },
 
   { id: "g1", name: "Cutting Board", price: 45, unit: "flat", cat: "gifts", kind: "board", desc: "Bamboo or maple board with names or a date. Design area up to 8.5 × 8.5 in." },
   { id: "g2", name: "Slate Coasters (set of 4)", price: 36, unit: "flat", cat: "gifts", kind: "coaster", desc: "Natural slate with felt feet. Logos and monograms come out crisp." },

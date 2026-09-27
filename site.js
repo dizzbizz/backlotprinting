@@ -27,6 +27,11 @@
     return '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="' + ic[0] + '" fill="' + ic[2] + '" fill-rule="evenodd"/><path d="' + ic[1] + '" fill="#C23B12"/></svg>';
   }
 
+  function art(p, alt) {
+    if (p && p.img) return '<img src="' + p.img + '" alt="' + String(alt || p.name).replace(/"/g, '&quot;') + '" loading="lazy">';
+    return iconSVG(p ? p.kind : 'card');
+  }
+
   var CATS = [
     { id: 'drink', label: 'Drinkware' }, { id: 'pets', label: 'Pets' },
     { id: 'tags', label: 'Tags & keychains' }, { id: 'edc', label: 'Everyday carry' },
@@ -128,7 +133,7 @@
   }
 
   window.BL = {
-    CFG: CFG, CATS: CATS, iconSVG: iconSVG, money: money, priceLabel: priceLabel, priceFor: priceFor,
+    CFG: CFG, CATS: CATS, iconSVG: iconSVG, art: art, money: money, priceLabel: priceLabel, priceFor: priceFor,
     getOrder: getOrder, saveOrder: saveOrder, addToOrder: addToOrder, sendForm: sendForm,
     products: function () { return window.BACKLOT_PRODUCTS || []; },
     find: function (id) { return (window.BACKLOT_PRODUCTS || []).find(function (p) { return p.id === id; }); },

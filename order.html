@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
       sub += pr.total; count += x.line.qty;
       if (x.p.cat === 'biz' && x.p.unit === 'ea') tradeSub += pr.total;
       return '<div class="order-row">' +
-        '<span class="card-art">' + BL.iconSVG(x.p.kind) + '</span>' +
+        '<span class="card-art">' + BL.art(x.p, '') + '</span>' +
         '<div><h3>' + BL.esc(x.p.name) + '</h3>' +
         '<p>"' + BL.esc(x.line.text) + '"' + (x.line.notes ? ' · ' + BL.esc(x.line.notes) : '') + '</p>' +
         '<p>' + x.line.qty + ' × ' + BL.money(pr.each) + (pr.note ? ' · ' + pr.note : '') + (x.p.byo ? ' · you bring the item' : '') + '</p>' +

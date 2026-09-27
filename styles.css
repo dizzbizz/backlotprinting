@@ -265,6 +265,12 @@ h1, h2, h3 { margin: 0; }
 .card:hover { border-color: var(--ink); }
 .card-art { position: relative; height: 170px; background: var(--sand); border-radius: 14px; display: flex; align-items: center; justify-content: center; }
 .card-art svg { width: 104px; height: 104px; }
+.card-art, .tile-art, .cat-art, .dlg-art { overflow: hidden; }
+.card-art img, .tile-art img, .cat-art img, .dlg-art img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.card-art:has(img), .tile-art:has(img), .cat-art:has(img), .dlg-art:has(img) { background: #EEE8E0 !important; }
+.dlg-art img { position: absolute; inset: 0; }
+.dlg-art:has(img) .dlg-preview { background: rgba(245,241,234,.9); bottom: 0; padding: 10px 16px; }
+.badge { z-index: 1; }
 .badge { position: absolute; top: 10px; left: 10px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: #D6CFBF; color: var(--muted); }
 .badge--byo { background: var(--teal); color: #fff; }
 .badge--pop { background: var(--accent); color: #fff; }

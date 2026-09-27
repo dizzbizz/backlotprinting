@@ -17,6 +17,7 @@
      feat   true to show it first / as popular
      min    (optional) minimum quantity
      tiers  (optional) cheaper price at quantity, e.g. [[5, 15]] = $15 each for 5+
+     img    (optional) a real photo, e.g. "images/my-photo.jpg" — put the file in the images folder
      desc   short description
    ============================================================ */
 window.BACKLOT_PRODUCTS = [
@@ -28,7 +29,7 @@ window.BACKLOT_PRODUCTS = [
   { id: "d5", name: "Stainless Pint Cup", price: 24, unit: "flat", cat: "drink", kind: "tumbler", desc: "Unbreakable stainless pint, engraved on one side. Cabin, boat or bar." },
   { id: "d6", name: "Bottle Engraving", price: 20, unit: "flat", cat: "drink", kind: "bottle", byo: true, tiers: [[5, 15]], desc: "Your own stainless or powder-coated bottle, marked on one side so it never goes missing." },
 
-  { id: "p1", name: "Pet ID Tag", price: 18, unit: "flat", cat: "pets", kind: "dogtag", feat: true, desc: "Name and phone number deep-engraved on both sides of a stainless tag. Won't wear off." },
+  { id: "p1", name: "Pet ID Tag", price: 18, unit: "flat", cat: "pets", kind: "dogtag", feat: true, img: "images/pet-tag-luigi.jpg", desc: "Name and phone number deep-engraved on both sides of a stainless tag. Won't wear off." },
   { id: "p2", name: "Pet Memorial Slate", price: 40, unit: "flat", cat: "pets", kind: "coaster", desc: "Natural slate with your pet's name, dates and photo. A gentle keepsake." },
   { id: "p3", name: "Collar Nameplate", price: 20, unit: "flat", cat: "pets", kind: "card", desc: "Slide-on brass or steel plate for leather collars. No jingling tag." },
 
@@ -57,7 +58,7 @@ window.BACKLOT_PRODUCTS = [
   { id: "a2", name: "Metal Plaque", price: 50, unit: "flat", cat: "awards", kind: "card", desc: "Engraved aluminum or brass plate on a wood backer." },
   { id: "a3", name: "Challenge Coin", price: 20, unit: "flat", cat: "awards", kind: "coaster", desc: "Solid brass coin engraved both sides. Crews, teams, first responders." },
 
-  { id: "b1", name: "Metal Business Cards", price: 8, unit: "ea", cat: "biz", kind: "card", feat: true, min: 25, tiers: [[50, 6], [100, 4.5]], desc: "Stainless or black anodized aluminum. Minimum 25. $6 each at 50, $4.50 at 100+." },
+  { id: "b1", name: "Metal Business Cards", price: 8, unit: "ea", cat: "biz", kind: "card", feat: true, img: "images/metal-business-card.jpg", min: 25, tiers: [[50, 6], [100, 4.5]], desc: "Stainless or black anodized aluminum. Minimum 25. $6 each at 50, $4.50 at 100+." },
   { id: "b2", name: "Equipment & Asset Tags", price: 4, unit: "ea", cat: "biz", kind: "card", min: 10, tiers: [[50, 3.2]], desc: "Serial numbers, QR codes and company info on aluminum or steel. $40 minimum order." },
   { id: "b3", name: "Tool Marking", price: 3, unit: "ea", cat: "biz", kind: "tool", min: 14, tiers: [[50, 2.4]], desc: "Your company name on the metal of each hand tool. $40 minimum order." },
   { id: "b4", name: "QR Code Tags", price: 5, unit: "ea", cat: "biz", kind: "card", min: 8, tiers: [[50, 4]], desc: "Scannable QR codes for manuals, menus, reviews or inventory. $40 minimum order." },

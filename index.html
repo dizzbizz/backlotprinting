@@ -376,7 +376,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var pool = c === 'biz' ? items : (items.filter(function (p) { return p.unit !== 'ea'; }).length ? items.filter(function (p) { return p.unit !== 'ea'; }) : items);
     var low = pool.reduce(function (a, p) { return p.price < a.price ? p : a; });
     var label = (BL.CATS.find(function (x) { return x.id === c; }) || {}).label || c;
-    html += '<a class="cat" href="shop.html?cat=' + c + '"><span class="cat-art" style="background:' + catBg[c] + '">' + BL.iconSVG(catArt[c]) + '</span>' +
+    var withPhoto = items.find(function (p) { return p.img; });
+    html += '<a class="cat" href="shop.html?cat=' + c + '"><span class="cat-art" style="background:' + catBg[c] + '">' + (withPhoto ? BL.art(withPhoto, label + ' — engraved example') : BL.iconSVG(catArt[c])) + '</span>' +
       '<span class="cat-text"><b>' + BL.esc(label) + '</b><span>' + catBlurb[c] + '</span><em>From ' + BL.priceLabel(low).replace(/^From /, '') + '</em></span></a>';
   });
   document.getElementById('cats').innerHTML = html;
@@ -385,7 +386,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var favIds = ['d1', 'd2', 't1', 'b1'];
   var subs = { d1: 'Bring your own · $15 each for 5+', d2: 'Flask included', t1: 'Stainless, with chain', b1: 'Minimum 25 cards' };
   document.getElementById('favs').innerHTML = favIds.map(byId).filter(Boolean).map(function (p) {
-    return '<a class="tile" href="shop.html?item=' + p.id + '"><span class="tile-art">' + BL.iconSVG(p.kind) + '</span>' +
+    return '<a class="tile" href="shop.html?item=' + p.id + '"><span class="tile-art">' + BL.art(p) + '</span>' +
       '<span class="tile-row"><b>' + BL.esc(p.name) + '</b><span>' + BL.priceLabel(p) + '</span></span><small>' + (subs[p.id] || '') + '</small></a>';
   }).join('');
 

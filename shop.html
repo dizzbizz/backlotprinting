@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
     grid.innerHTML = list.map(function (p) {
       var b = badge(p);
       return '<article class="card"><button type="button" class="card-open" data-id="' + p.id + '" aria-label="Personalize ' + BL.esc(p.name) + ', ' + BL.priceLabel(p) + '">' +
-        '<span class="card-art"><span class="' + b[1] + '">' + b[0] + '</span>' + BL.iconSVG(p.kind) + '</span>' +
+        '<span class="card-art"><span class="' + b[1] + '">' + b[0] + '</span>' + BL.art(p, p.name + ' — engraved example') + '</span>' +
         '<span class="card-name">' + BL.esc(p.name) + '</span><span class="card-desc">' + BL.esc(p.desc) + '</span></button>' +
         '<div class="card-foot"><span class="card-price">' + BL.priceLabel(p) + '</span><button type="button" class="btn btn-dark btn-sm" data-id="' + p.id + '">Personalize</button></div></article>';
     }).join('');
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var b = badge(cur);
     var cat = (BL.CATS.find(function (c) { return c.id === cur.cat; }) || {}).label || '';
     document.getElementById('dlg-badge').textContent = b[0]; document.getElementById('dlg-badge').className = b[1];
-    document.getElementById('dlg-icon').innerHTML = BL.iconSVG(cur.kind);
+    document.getElementById('dlg-icon').innerHTML = BL.art(cur, cur.name + ' — engraved example');
     document.getElementById('dlg-cat').textContent = cat;
     document.getElementById('dlg-name').textContent = cur.name;
     document.getElementById('dlg-price').textContent = BL.priceLabel(cur);

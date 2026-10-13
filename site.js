@@ -36,7 +36,7 @@
   var CATS = [
     { id: 'drink', label: 'Drinkware' }, { id: 'pets', label: 'Pets' },
     { id: 'tags', label: 'Tags & keychains' }, { id: 'edc', label: 'Everyday carry' },
-    { id: 'jewelry', label: 'Jewelry' }, { id: 'gifts', label: 'Gifts & home' }, { id: 'kids', label: 'Kids & crafts' }, { id: 'print', label: '3D printing' },
+    { id: 'jewelry', label: 'Jewelry' }, { id: 'gifts', label: 'Gifts & home' }, { id: 'kids', label: 'Wood & ornaments' }, { id: 'print', label: '3D printing' },
     { id: 'awards', label: 'Awards' }, { id: 'biz', label: 'Business & trade' }
   ];
 

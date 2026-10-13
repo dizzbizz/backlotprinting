@@ -504,3 +504,5 @@ dialog.product::backdrop { background: rgba(30,27,23,.55); }
 .topbar--xmas b { color: #fff; }
 .topbar--xmas a { color: #fff; font-weight: 700; margin-left: 6px; }
 .topbar--xmas a:hover { color: var(--ink); }
+
+.about-mark { width: min(330px, 70%); height: auto; }

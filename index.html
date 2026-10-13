@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Back Lot Printing — Laser engraving, made locally</title>
-<meta name="description" content="Family-owned laser engraving. Tumblers, flasks, dog tags, pet tags, gifts, metal business cards and tool marking — engraved and checked by hand.">
+<title>Back Lot Printing — Laser engraving &amp; 3D printing, made locally</title>
+<meta name="description" content="Family-owned laser engraving and 3D printing. Tumblers, flasks, dog tags, pet tags, gifts, metal business cards and tool marking — engraved and checked by hand.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M4 26 L32 5 L60 26 V60 H4 Z' fill='%231E1B17'/%3E%3Crect x='15' y='33' width='34' height='27' fill='%23F5F1EA'/%3E%3Cpath d='M15 39.5 H49 M15 46 H49 M15 52.5 H49' stroke='%231E1B17' stroke-width='2.4'/%3E%3Ccircle cx='32' cy='21.5' r='9.2' fill='%23C23B12' stroke='%23FFFFFF' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,9 +16,10 @@
 </head>
 <body>
 
-<div class="topbar">Local pickup in <span data-cfg="town">[YOUR TOWN]</span> &nbsp;|&nbsp; Bring-your-own engraving from <b>$20</b> &nbsp;|&nbsp; Family owned, made by hand</div>
+<div class="topbar topbar--xmas" data-xmas-until="2026-12-14"><b>Christmas orders are open.</b> Order by Monday, December 14 for pickup before Christmas. <a href="shop.html?cat=gifts">Shop gifts</a></div>
+<div class="topbar" data-topbar-default hidden>Local pickup in <span data-cfg="town">[YOUR TOWN]</span> &nbsp;|&nbsp; Bring-your-own engraving from <b>$20</b> &nbsp;|&nbsp; Family owned, made by hand</div>
 
-<header class="site-header">
+<header class="site-header site-header--dark">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="Back Lot Printing home">
       <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
@@ -26,6 +27,7 @@
     </a>
     <nav id="site-nav" class="nav" aria-label="Main">
       <a href="shop.html">Shop</a>
+      <a href="shop.html?cat=print">3D printing</a>
       <a href="#byo">Bring your own</a>
       <a href="#business">Business &amp; trade</a>
       <a href="#work">Our work</a>
@@ -46,24 +48,59 @@
 
 <main>
 <!-- Hero -->
-<section class="hero">
+<section class="hero hero--laser">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="label">Laser engraving in <span data-cfg="town">[YOUR TOWN]</span></span>
-      <h1 class="h1">Engraved gifts &amp; goods, made right here.</h1>
-      <p class="lede">From $20 bring-your-own tumbler engraving to custom metal business cards. Every piece is set up, engraved and checked by hand in our local family shop.</p>
+      <p class="hero-kicker">Laser engraving &amp; 3D printing in <span data-cfg="town">Sherwood Park</span></p>
+      <h1 class="h1 burn" aria-label="Engraved gifts and goods, made right here.">
+        <span class="burn-line" aria-hidden="true"><span class="burn-text">Engraved gifts</span></span>
+        <span class="burn-line" aria-hidden="true"><span class="burn-text">&amp; goods, made</span></span>
+        <span class="burn-line" aria-hidden="true"><span class="burn-text">right here.</span></span>
+      </h1>
+      <p class="lede">From $20 bring-your-own tumbler engraving to custom metal business cards, golf balls and 3D prints. Every piece is set up, engraved and checked by hand in our local family shop.</p>
       <div class="hero-actions">
-        <a class="btn btn-dark" href="shop.html">Shop engraved goods</a>
-        <a class="btn btn-outline" href="#byo">Bring your own item</a>
+        <a class="btn btn-accent" href="shop.html">Shop engraved goods</a>
+        <a class="btn btn-ghost-light" href="#byo">Bring your own item</a>
       </div>
       <div class="hero-facts">
         <div><b>No minimum</b><span>One piece is a real order</span></div>
         <div><b>Proof first</b><span>You approve every design</span></div>
-        <div><b data-cfg="turnaround">3–5 business days</b><span>Typical turnaround</span></div>
+        <div><b data-cfg="turnaround">1-5 business days</b><span>Typical turnaround</span></div>
       </div>
     </div>
+    <div class="hero-stack">
+      <a class="hs hs-1" href="shop.html?item=d8"><img src="images/witches-brew-tumbler-both-sides.jpg" alt="Witches' Brew tumbler engraved on both sides"></a>
+      <a class="hs hs-2" href="shop.html?item=g8"><img src="images/golf-ball-best-dad.jpg" alt="Golf ball engraved Best Dad By Par"></a>
+      <a class="hs hs-3" href="shop.html?cat=pets"><img src="images/pet-tag-luigi.jpg" alt="Black bone pet tag engraved Luigi"></a>
+      <a class="hs hs-4" href="shop.html?item=d1"><img src="images/yeti-cheers-closeup.jpg" alt="Yeti tumbler engraved Cheers to the Best"></a>
+    </div>
+  </div>
+  <div class="hero-materials" aria-label="Materials we engrave">
+    <div class="wrap">
+      <p>We engrave</p>
+      <ul><li>Stainless</li><li>Aluminum</li><li>Brass</li><li>Powder coat</li><li>Wood</li><li>Leather</li><li>Slate</li><li>Stone</li></ul>
+    </div>
+  </div>
+</section>
 
-    <!-- Live preview -->
+<!-- Categories -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div><span class="label">Shop by category</span><h2 class="h2">Something for everyone on your list</h2></div>
+      <a class="link-strong" href="shop.html">See everything</a>
+    </div>
+    <div class="cats" id="cats"></div>
+  </div>
+</section>
+
+<!-- Try it -->
+<section class="section try-section" id="try">
+  <div class="wrap try-wrap">
+    <div class="try-copy">
+      <h2 class="h2">See your name on it</h2>
+      <p class="lede">Type a name or a date, pick a finish and a lettering style, and get a feel for it before you order. You'll still get a proper proof to approve before anything is engraved.</p>
+    </div>
     <div class="try" aria-labelledby="try-title">
       <div class="try-head">
         <strong id="try-title">Try it — see your engraving</strong>
@@ -115,25 +152,6 @@
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Materials -->
-<section class="materials" aria-label="Materials we engrave">
-  <div class="wrap">
-    <p>We engrave</p>
-    <ul><li>Stainless</li><li>Aluminum</li><li>Brass</li><li>Powder coat</li><li>Wood</li><li>Leather</li><li>Slate</li><li>Stone</li></ul>
-  </div>
-</section>
-
-<!-- Categories -->
-<section class="section">
-  <div class="wrap">
-    <div class="section-head">
-      <div><span class="label">Shop by category</span><h2 class="h2">Something for everyone on your list</h2></div>
-      <a class="link-strong" href="shop.html">See everything</a>
-    </div>
-    <div class="cats" id="cats"></div>
   </div>
 </section>
 
@@ -208,17 +226,15 @@
       <div><span class="label">Recent work</span><h2 class="h2">Fresh off the laser</h2></div>
       <a class="link-strong" data-link="instagram" href="#">See more on Instagram</a>
     </div>
-    <!-- TO USE YOUR OWN PHOTOS: put them in an "images" folder and replace each <svg>…</svg>
-         below with  <img src="images/your-photo.jpg" alt="Short description">  -->
-    <div class="work">
-      <figure style="background:#2A2620">
-        <svg width="220" height="280" viewBox="0 0 240 300" aria-hidden="true"><path d="M66 34 H174 L160 272 a14 14 0 0 1 -14 13 H94 a14 14 0 0 1 -14 -13 Z" fill="#1B1A17"/><path d="M62 34 H178 a6 6 0 0 0 0 -14 H62 a6 6 0 0 0 0 14 Z" fill="#3A362D"/><text x="120" y="150" text-anchor="middle" font-family="Yellowtail, cursive" font-size="38" fill="#D9D2C4">Miller</text><text x="120" y="176" text-anchor="middle" font-family="DM Sans, sans-serif" font-weight="700" font-size="12" letter-spacing="4" fill="#D9D2C4">EST. 2026</text></svg>
-        <figcaption>Anniversary tumblers</figcaption>
-      </figure>
-      <figure style="background:#E4E8DF"><svg width="110" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M22 8 H42 A10 10 0 0 1 52 18 V46 A10 10 0 0 1 42 56 H22 A10 10 0 0 1 12 46 V18 A10 10 0 0 1 22 8 Z M29 16 A3 3 0 1 0 35 16 A3 3 0 1 0 29 16 Z" fill="#8E9196" fill-rule="evenodd"/><path d="M20 26 H44 V30 H20 Z M20 34 H40 V38 H20 Z" fill="#1E1B17"/></svg><figcaption>Pet tags</figcaption></figure>
-      <figure style="background:#F1E3D8"><svg width="120" height="110" viewBox="0 0 70 64" aria-hidden="true"><path d="M10 8 H58 A4 4 0 0 1 62 12 V52 A4 4 0 0 1 58 56 H10 Z" fill="#8A6A45"/><path d="M26 24 H52 V40 H26 Z" fill="#4A3522"/></svg><figcaption>Family cutting board</figcaption></figure>
-      <figure style="background:#1F3D3A"><svg width="120" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M40 6 A12 12 0 0 0 30 22 L8 44 L20 56 L42 34 A12 12 0 0 0 58 24 L50 30 L44 28 L42 22 L48 14 Z" fill="#B9BCC0"/><path d="M17 45 L29 33 L31 35 L19 47 Z" fill="#1E1B17"/></svg><figcaption>Crew tool marking</figcaption></figure>
-      <figure style="background:#EDE6DA"><svg width="120" height="110" viewBox="0 0 64 64" aria-hidden="true"><path d="M27 4 H37 V10 H27 Z M18 12 H46 A4 4 0 0 1 50 16 V56 A4 4 0 0 1 46 60 H18 A4 4 0 0 1 14 56 V16 A4 4 0 0 1 18 12 Z" fill="#B9BCC0" fill-rule="evenodd"/><path d="M22 26 H42 V42 H22 Z" fill="#1E1B17"/></svg><figcaption>Groomsmen flasks</figcaption></figure>
+        <div class="work">
+      <figure><img src="images/yeti-cheers-closeup.jpg" alt="Blue Yeti tumbler engraved with a classic car and Cheers to the Best" loading="lazy"><figcaption>Custom Yeti tumbler</figcaption></figure>
+      <figure><img src="images/witches-brew-tumbler-both-sides.jpg" alt="Teal stemless tumbler engraved with a Witches Brew label and a witch on a broom" loading="lazy"><figcaption>Halloween tumblers</figcaption></figure>
+      <figure><img src="images/golf-ball-best-dad.jpg" alt="Golf ball engraved with Best Dad By Par and a flag" loading="lazy"><figcaption>Engraved golf balls</figcaption></figure>
+      <figure><img src="images/pet-tag-luigi.jpg" alt="Black bone-shaped pet tag engraved with the name Luigi" loading="lazy"><figcaption>Pet ID tags</figcaption></figure>
+      <figure><img src="images/rotary-rotor-braap.jpg" alt="Basswood rotary rotor being laser engraved with BRAAP and Rotary Power" loading="lazy" style="object-position: center 40%"><figcaption>Rotary rotor cut-out</figcaption></figure>
+      <figure><img src="images/whippet-ornaments.jpg" alt="Two laser-cut wooden whippet ornaments" loading="lazy"><figcaption>Wooden dog cut-outs</figcaption></figure>
+      <figure><img src="images/tool-marking-wrench.jpg" alt="Chrome wrench laser-marked with the initials KH" loading="lazy"><figcaption>Tool marking</figcaption></figure>
+      <figure><img src="images/eagle-coin.jpg" alt="Coin engraved with an eagle and a star border" loading="lazy"><figcaption>Custom coins</figcaption></figure>
     </div>
   </div>
 </section>
@@ -226,9 +242,7 @@
 <!-- About -->
 <section id="about" class="wrap about">
   <!-- TO USE YOUR OWN PHOTO: replace the <svg>…</svg> below with <img src="images/family.jpg" alt="Our family in the shop"> -->
-  <div class="about-photo">
-    <svg width="200" height="160" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#C9BFAE"/><rect x="15" y="33" width="34" height="27" fill="#EDE6DA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#C9BFAE" stroke-width="2.4"/></svg>
-  </div>
+  <div class="about-photo"><img src="images/in-the-shop.jpg" alt="A golf ball engraved Best Dad By Par in our 3D-printed jig inside the laser" loading="lazy"></div>
   <div class="about-copy">
     <span class="label">About the shop</span>
     <h2 class="h2">A small family shop that sweats the details</h2>
@@ -272,14 +286,32 @@
 </section>
 
 <!-- How it works -->
-<section class="section" style="background:#fff">
+<section class="section process">
   <div class="wrap">
-    <div style="text-align:center;margin-bottom:48px"><span class="label">How it works</span><h2 class="h2">Simple from start to finish</h2></div>
-    <ol class="steps">
-      <li><h3 class="h3">Choose or bring</h3><p>Pick something from the shop or drop off your own item.</p></li>
-      <li><h3 class="h3">Approve your proof</h3><p>We send a preview. Nothing is engraved until you say go.</p></li>
-      <li><h3 class="h3">We engrave it</h3><p>Set up and engraved in our shop, then checked by hand.</p></li>
-      <li><h3 class="h3">Pick up or ship</h3><p>Local pickup, or we ship it to you.</p></li>
+    <div class="section-head">
+      <div><span class="label">How it works</span><h2 class="h2">From your idea to your hands</h2></div>
+    </div>
+    <ol class="process-steps">
+      <li>
+        <figure><img src="images/step-1-bring.jpg" alt="A customer's own earbud case, engraved with an eagle" loading="lazy"></figure>
+        <h3 class="h3">Choose or bring</h3>
+        <p>Pick something from the shop, or drop off your own tumbler, case, tool or golf balls.</p>
+      </li>
+      <li>
+        <figure><img src="images/step-2-proof.jpg" alt="A digital proof of a Best Dad By Par golf ball design" loading="lazy"></figure>
+        <h3 class="h3">Approve your proof</h3>
+        <p>We send you a preview at actual size. Nothing gets engraved until you say go.</p>
+      </li>
+      <li>
+        <figure><img src="images/step-3-engrave.jpg" alt="The laser glowing as it engraves a rotary rotor in basswood" loading="lazy"></figure>
+        <h3 class="h3">We engrave it</h3>
+        <p>Set up, tested and engraved in our own shop, then cleaned and checked by hand.</p>
+      </li>
+      <li>
+        <figure><img src="images/step-4-pickup.jpg" alt="The finished golf ball held in a hand" loading="lazy"></figure>
+        <h3 class="h3">Pick it up</h3>
+        <p>Grab it from us locally, usually within a few days, or ask about shipping.</p>
+      </li>
     </ol>
   </div>
 </section>
@@ -345,7 +377,7 @@
           <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#F5F1EA"/><rect x="15" y="33" width="34" height="27" fill="#1E1B17"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#F5F1EA" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="32" y="24.9" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
           <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
         </a>
-        <p class="footer-note">Family-owned laser engraving in <span data-cfg="town">[YOUR TOWN]</span>. Gifts, keepsakes and business goods, made by hand.</p>
+        <p class="footer-note">Family-owned laser engraving &amp; 3D printing in <span data-cfg="town">[YOUR TOWN]</span>. Gifts, keepsakes and business goods, made by hand.</p>
         <a data-link="instagram" data-cfg-if="instagram" href="#"></a>
       </div>
       <div class="footer-col"><strong>Shop</strong><a href="shop.html">All products</a><a href="shop.html?cat=drink">Drinkware</a><a href="shop.html?cat=gifts">Gift ideas</a><a href="#byo">Bring your own</a></div>
@@ -365,10 +397,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var catBlurb = {
     drink: 'Tumblers, flasks, bottles and pint cups', tags: 'Dog tags, pet tags, keychains, bag tags',
     pets: 'Pet ID tags, collar plates, memorial slate', edc: 'Knives, lighters, money clips, multitools',
-    gifts: 'Boards, slate, ornaments, photo metal', biz: 'Business cards, asset tags, tool marking'
+    gifts: 'Boards, slate, ornaments, photo metal', print: 'Name keychains, jigs, custom prints', kids: 'Paint-your-own wooden cut-outs', awards: 'Challenge coins, plaques, awards', biz: 'Business cards, asset tags, tool marking'
   };
-  var catArt = { drink: 'tumbler', tags: 'keychain', pets: 'dogtag', edc: 'knife', gifts: 'board', biz: 'card' };
-  var catBg = { drink: '#EDE6DA', tags: '#E4E8DF', pets: '#F1E3D8', edc: '#EDE6DA', gifts: '#EDE6DA', biz: '#E0E7E5' };
+  var catArt = { drink: 'tumbler', tags: 'keychain', pets: 'dogtag', edc: 'knife', gifts: 'board', print: 'print3d', kids: 'ornament', awards: 'award', biz: 'card' };
+  var catBg = { drink: '#EDE6DA', tags: '#E4E8DF', pets: '#F1E3D8', edc: '#EDE6DA', gifts: '#EDE6DA', print: '#E4E8DF', kids: '#F1E3D8', awards: '#EDE6DA', biz: '#E0E7E5' };
   var html = '';
   Object.keys(catBlurb).forEach(function (c) {
     var items = P.filter(function (p) { return p.cat === c; });
@@ -383,8 +415,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('cats').innerHTML = html;
 
   /* Favourites */
-  var favIds = ['d1', 'd2', 't1', 'b1'];
-  var subs = { d1: 'Bring your own · $15 each for 5+', d2: 'Flask included', t1: 'Stainless, with chain', b1: 'Minimum 25 cards' };
+  var favIds = ['d1', 'd8', 'g8', 'b1'];
+  var subs = { d1: 'Bring your own · $15 each for 5+', d8: 'Engraved on both sides', g8: 'Bring your own · $4 each for 6+', b1: 'Min. 25 · just $3 each at 100+' };
   document.getElementById('favs').innerHTML = favIds.map(byId).filter(Boolean).map(function (p) {
     return '<a class="tile" href="shop.html?item=' + p.id + '"><span class="tile-art">' + BL.art(p) + '</span>' +
       '<span class="tile-row"><b>' + BL.esc(p.name) + '</b><span>' + BL.priceLabel(p) + '</span></span><small>' + (subs[p.id] || '') + '</small></a>';

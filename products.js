@@ -9,10 +9,10 @@
      name   product name
      price  number, no $ sign
      unit   "flat" = per item, "ea" = each (bulk item), "from" = starting at
-     cat    drink | pets | tags | edc | gifts | awards | biz
+     cat    drink | pets | tags | edc | gifts | kids | print | awards | biz
             (jewelry is hidden for now — add a line with cat: "jewelry" to bring it back)
      kind   picture: tumbler flask bottle dogtag keychain card knife jewelry
-            board coaster award patch tool ornament lighter photo
+            board coaster award patch tool ornament lighter photo print3d
      byo    true if the customer brings the item
      feat   true to show it first / as popular
      min    (optional) minimum quantity
@@ -21,7 +21,8 @@
      desc   short description
    ============================================================ */
 window.BACKLOT_PRODUCTS = [
-  { id: "d1", name: "Tumbler Engraving", price: 20, unit: "flat", cat: "drink", kind: "tumbler", byo: true, feat: true, tiers: [[5, 15]], desc: "Bring any stainless or powder-coated tumbler. Name, initials or logo on one side. $15 each when you bring 5 or more." },
+  { id: "d1", name: "Tumbler Engraving", price: 20, unit: "flat", cat: "drink", kind: "tumbler", byo: true, feat: true, tiers: [[5, 15]], img: "images/yeti-cheers-closeup.jpg", desc: "Bring any stainless or powder-coated tumbler. Name, initials or logo on one side. $15 each when you bring 5 or more." },
+  { id: "d8", name: "Witches' Brew Halloween Tumbler", price: 30, unit: "flat", cat: "drink", kind: "tumbler", feat: true, img: "images/witches-brew-tumbler-both-sides.jpg", desc: "Insulated stemless tumbler with a clear lid, engraved on both sides: our Witches' Brew Co. label on the front, a witch on her broom with bats on the back. Order by Oct 20 for Halloween." },
   { id: "d2", name: "Custom Engraved Flask", price: 28, unit: "flat", cat: "drink", kind: "flask", feat: true, desc: "Stainless hip flask included, engraved with your name, date or logo. A classic groomsmen gift." },
   { id: "d7", name: "Flask Engraving", price: 18, unit: "flat", cat: "drink", kind: "flask", byo: true, desc: "Bring your own stainless flask. Name, monogram or date on the front." },
   { id: "d3", name: "20 oz Tumbler", price: 38, unit: "flat", cat: "drink", kind: "tumbler", desc: "We supply a powder-coated stainless tumbler with lid, engraved through to the steel." },
@@ -31,6 +32,7 @@ window.BACKLOT_PRODUCTS = [
 
   { id: "p1", name: "Pet ID Tag", price: 18, unit: "flat", cat: "pets", kind: "dogtag", feat: true, img: "images/pet-tag-luigi.jpg", desc: "Name and phone number deep-engraved on both sides of a stainless tag. Won't wear off." },
   { id: "p2", name: "Pet Memorial Slate", price: 40, unit: "flat", cat: "pets", kind: "coaster", desc: "Natural slate with your pet's name, dates and photo. A gentle keepsake." },
+  { id: "p4", name: "Wood Dog Portrait", price: 25, unit: "flat", cat: "pets", kind: "board", img: "images/whippet-head.jpg", desc: "Laser-cut basswood profile of your dog's breed with engraved details. Add their name on the collar. Pictured: our whippet." },
   { id: "p3", name: "Collar Nameplate", price: 20, unit: "flat", cat: "pets", kind: "card", desc: "Slide-on brass or steel plate for leather collars. No jingling tag." },
 
   { id: "t1", name: "Dog Tags", price: 15, unit: "flat", cat: "tags", kind: "dogtag", feat: true, desc: "Military-style stainless tag with chain. Names, dates, quotes or coordinates." },
@@ -46,21 +48,32 @@ window.BACKLOT_PRODUCTS = [
   { id: "e4", name: "Money Clip", price: 22, unit: "flat", cat: "edc", kind: "card", desc: "Stainless money clip with initials. A clean, simple gift." },
   { id: "e5", name: "Golf Divot Tool & Ball Marker", price: 20, unit: "flat", cat: "edc", kind: "tool", desc: "Metal divot tool with a matching ball marker, engraved with initials or a logo." },
   { id: "e6", name: "Multitool Engraving", price: 20, unit: "flat", cat: "edc", kind: "tool", byo: true, desc: "Your multitool, marked so it comes home with you." },
+  { id: "e7", name: "Earbud Case Engraving", price: 20, unit: "flat", cat: "edc", kind: "card", byo: true, feat: true, img: "images/airpods-case-eagle.jpg", desc: "Bring your AirPods or hard earbud case and we'll engrave a name, logo or design on the front. Light surface mark, tested first." },
 
   { id: "g1", name: "Cutting Board", price: 45, unit: "flat", cat: "gifts", kind: "board", desc: "Bamboo or maple board with names or a date. Design area up to 8.5 × 8.5 in." },
   { id: "g2", name: "Slate Coasters (set of 4)", price: 36, unit: "flat", cat: "gifts", kind: "coaster", desc: "Natural slate with felt feet. Logos and monograms come out crisp." },
   { id: "g3", name: "Photo on Metal", price: 40, unit: "flat", cat: "gifts", kind: "photo", desc: "Send a photo and we engrave it onto aluminum or stainless." },
   { id: "g4", name: "Christmas Ornament", price: 15, unit: "flat", cat: "gifts", kind: "ornament", desc: "Wood or metal ornament with names and the year." },
+  { id: "g7", name: "Halloween Ornament", price: 12, unit: "flat", cat: "gifts", kind: "ornament", feat: true, img: "images/halloween-pumpkin.jpg", desc: "Laser-cut basswood jack-o'-lantern with a hanging hole. Bat and ghost designs too — paint it or leave it natural." },
+  { id: "g8", name: "Engraved Golf Balls", price: 5, unit: "ea", cat: "gifts", kind: "coaster", byo: true, feat: true, tiers: [[6, 4]], img: "images/golf-ball-best-dad.jpg", desc: "Bring your own golf balls and we'll engrave names, initials, a logo or our Best Dad By Par design. $4 each for 6 or more. Want us to supply the balls? Just ask." },
+  { id: "g9", name: "Rotary Rotor Cut-out", price: 20, unit: "flat", cat: "gifts", kind: "ornament", img: "images/rotary-rotor-braap.jpg", desc: "Laser-cut basswood rotary engine rotor with seal details, a cut-through gear and BRAAP up top. Add a name, club or plate number." },
+  { id: "k1", name: "Paint-Your-Own Turtle", price: 8, unit: "flat", cat: "kids", kind: "patch", feat: true, img: "images/turtle-painted-by-kids.jpg", desc: "Designed by kids, coloured by kids! A laser-cut basswood turtle ready to paint. The one pictured was painted by our own kids. Paint not included." },
   { id: "g5", name: "Leather Hat Patch", price: 10, unit: "ea", cat: "gifts", kind: "patch", tiers: [[25, 6]], desc: "Genuine leather patch, ready to sew or stick on a hat. $6 each for 25 or more." },
   { id: "g6", name: "Leather Wallet", price: 42, unit: "flat", cat: "gifts", kind: "patch", desc: "Genuine leather wallet with initials or a brand on the front." },
 
+
+  /* ---- 3D printing ---- */
+  { id: "x1", name: "Custom Name Keychain", price: 10, unit: "flat", cat: "print", kind: "print3d", feat: true, tiers: [[10, 8]], desc: "3D-printed keychain with a raised name in two colours. Pick your colours. $8 each for 10 or more — great for teams and party favours." },
+  { id: "x2", name: "Custom Jigs & Organizers", price: 15, unit: "from", cat: "print", kind: "print3d", img: "images/3d-printed-golf-jig.jpg", desc: "Holders, trays and organizers designed to fit your exact items — like our 6-ball golf jig. Tell us what it needs to hold and we'll quote it." },
+  { id: "x3", name: "Printed + Engraved Combo", price: 25, unit: "from", cat: "print", kind: "print3d", desc: "A 3D-printed piece paired with laser engraving: a display stand for a coin, a gift box for engraved golf balls, a keychain with an engraved metal tag. Ask for ideas." },
+  { id: "x4", name: "Custom 3D Print", price: 10, unit: "from", cat: "print", kind: "print3d", desc: "Have an idea, a sketch or a part you need? We design and print it. Priced by size and print time — send us the details for a quote." },
   { id: "a1", name: "Black Acrylic Award", price: 55, unit: "flat", cat: "awards", kind: "award", desc: "Black or coloured acrylic, engraved in crisp contrast. Tournaments, banquets, staff awards." },
   { id: "a2", name: "Metal Plaque", price: 50, unit: "flat", cat: "awards", kind: "card", desc: "Engraved aluminum or brass plate on a wood backer." },
-  { id: "a3", name: "Challenge Coin", price: 20, unit: "flat", cat: "awards", kind: "coaster", desc: "Solid brass coin engraved both sides. Crews, teams, first responders." },
+  { id: "a3", name: "Challenge Coin", price: 20, unit: "flat", cat: "awards", kind: "coaster", img: "images/skull-coin.jpg", desc: "Heavy 4 mm coin with your design engraved in warm gold tones on silver. Crews, teams, clubs and keepsakes." },
 
-  { id: "b1", name: "Metal Business Cards", price: 8, unit: "ea", cat: "biz", kind: "card", feat: true, img: "images/metal-business-card.jpg", min: 25, tiers: [[50, 6], [100, 4.5]], desc: "Stainless or black anodized aluminum. Minimum 25. $6 each at 50, $4.50 at 100+." },
+  { id: "b1", name: "Metal Business Cards", price: 4, unit: "ea", cat: "biz", kind: "card", feat: true, img: "images/metal-business-card.jpg", min: 25, tiers: [[50, 3.5], [100, 3]], desc: "Black anodized aluminum, engraved both sides. 25 for $100 ($4 each), $3.50 each at 50, $3 each at 100+. Free logo setup." },
   { id: "b2", name: "Equipment & Asset Tags", price: 4, unit: "ea", cat: "biz", kind: "card", min: 10, tiers: [[50, 3.2]], desc: "Serial numbers, QR codes and company info on aluminum or steel. $40 minimum order." },
-  { id: "b3", name: "Tool Marking", price: 3, unit: "ea", cat: "biz", kind: "tool", min: 14, tiers: [[50, 2.4]], desc: "Your company name on the metal of each hand tool. $40 minimum order." },
+  { id: "b3", name: "Tool Marking", price: 3, unit: "ea", cat: "biz", kind: "tool", min: 14, tiers: [[50, 2.4]], img: "images/tool-marking-wrench.jpg", desc: "Your company name on the metal of each hand tool. $40 minimum order." },
   { id: "b4", name: "QR Code Tags", price: 5, unit: "ea", cat: "biz", kind: "card", min: 8, tiers: [[50, 4]], desc: "Scannable QR codes for manuals, menus, reviews or inventory. $40 minimum order." },
   { id: "b5", name: "Name Badges", price: 15, unit: "flat", cat: "biz", kind: "card", tiers: [[50, 12]], desc: "Magnetic or pin-back metal badges for staff." },
   { id: "b6", name: "Branded Bottle Openers", price: 7, unit: "ea", cat: "biz", kind: "keychain", min: 25, tiers: [[50, 5.6]], desc: "Steel openers with your logo. Minimum 25 — great client and trade-show handouts." }

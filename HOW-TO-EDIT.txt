@@ -1,0 +1,60 @@
+BACK LOT PRINTING — WEBSITE FILES
+==================================
+
+WHAT'S IN THIS FOLDER
+  index.html     Homepage
+  shop.html      Shop (all products, personalize, add to order)
+  order.html     Customer's order + "Send order request"
+  config.js      YOUR DETAILS  <- edit this
+  products.js    YOUR PRODUCTS <- edit this to add/remove/reprice items
+  styles.css     Look and layout (no need to edit)
+  site.js        How it works (no need to edit)
+
+------------------------------------------------------------
+STEP 1 — ADD YOUR DETAILS (config.js)
+------------------------------------------------------------
+Right-click config.js > Open with > Notepad (Mac: TextEdit).
+Fill in the text inside the quotes:
+  town, email, phone, instagram, facebook,
+  turnaround, pickup
+Keep the quotes " " and the commas. Save.
+
+------------------------------------------------------------
+STEP 2 — CHECK YOUR PRODUCTS (products.js)
+------------------------------------------------------------
+Open products.js the same way. Each line is one product.
+  Change a price:  edit the number after  price:
+  Remove an item:  delete its whole line
+  Add an item:     copy a line, paste it, change the details
+                   (give it a new id, like "d9")
+Save.
+
+------------------------------------------------------------
+STEP 3 — UPLOAD TO GITHUB
+------------------------------------------------------------
+1. Open your GitHub repository.
+2. Click "Add file" > "Upload files".
+3. Drag in ALL SEVEN files from this folder.
+   (The new index.html replaces your coming-soon page.
+    Want to keep the coming-soon page live for now? Upload
+    everything EXCEPT index.html until you're ready.)
+4. Click "Commit changes". Your site updates in a minute or two.
+
+------------------------------------------------------------
+HOW ORDERS REACH YOU
+------------------------------------------------------------
+Customers add items, then press "Send order request".
+  - By default this opens THEIR email app with the full order
+    written out, addressed to the email in config.js.
+  - To receive orders automatically instead, make a free form
+    at formspree.io and paste its link into formEndpoint in
+    config.js.
+No money is taken online. You reply with a proof and total,
+and they pay by e-transfer or at pickup.
+
+------------------------------------------------------------
+ADDING YOUR OWN PHOTOS (optional)
+------------------------------------------------------------
+Make a folder called  images  and put your photos in it.
+In index.html, search for  "TO USE YOUR OWN PHOTO"  — the
+note right there shows exactly what to swap in.

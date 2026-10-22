@@ -21,7 +21,10 @@
     ornament: ['M8 36 A24 22 0 1 0 56 36 A24 22 0 1 0 8 36 Z M28 8 H36 V14 H28 Z', 'M20 33 H44 V39 H20 Z', '#1E1B17'],
     lighter: ['M18 16 H46 V58 H18 Z M18 6 H40 V14 H18 Z', 'M24 26 H40 V42 H24 Z', '#1E1B17'],
     print3d: ['M32 4 L56 17 V45 L32 58 L8 45 V17 Z', 'M32 30 L56 17 M32 30 L8 17 M32 30 V58 L30 58 V31 L8 18.5 L9 16.5 L32 29 L55 16.5 L56 18.5 L34 30 V58 L32 58 Z', '#1E1B17'],
-    photo: ['M6 10 H58 V54 H6 Z', 'M12 44 L24 30 L34 40 L42 32 L52 44 Z M40 18 A4 4 0 1 0 48 18 A4 4 0 1 0 40 18 Z', '#1E1B17']
+    photo: ['M6 10 H58 V54 H6 Z', 'M12 44 L24 30 L34 40 L42 32 L52 44 Z M40 18 A4 4 0 1 0 48 18 A4 4 0 1 0 40 18 Z', '#1E1B17'],
+    tshirt: ['M23 7 L10 13 L3 27 L13 32 L16 27 V58 H48 V27 L51 32 L61 27 L54 13 L41 7 Q32 15 23 7 Z', 'M24 30 H40 V44 H24 Z', '#1E1B17'],
+    transfer: ['M10 5 H45 L56 16 V59 H10 Z', 'M32 21 L36 30 L46 31 L38.5 37.5 L41 47 L32 42 L23 47 L25.5 37.5 L18 31 L28 30 Z', '#3A362D'],
+    tote: ['M11 23 H53 L50 59 H14 Z M21 23 V17 A11 11 0 0 1 43 17 V23 H39 V17 A7 7 0 0 0 25 17 V23 Z', 'M24 33 H40 V47 H24 Z', '#8A6A45']
   };
   function iconSVG(kind) {
     var ic = ICONS[kind] || ICONS.card;
@@ -36,7 +39,7 @@
   var CATS = [
     { id: 'drink', label: 'Drinkware' }, { id: 'pets', label: 'Pets' },
     { id: 'tags', label: 'Tags & keychains' }, { id: 'edc', label: 'Everyday carry' },
-    { id: 'jewelry', label: 'Jewelry' }, { id: 'gifts', label: 'Gifts & home' }, { id: 'kids', label: 'Wood & ornaments' }, { id: 'print', label: '3D printing' },
+    { id: 'jewelry', label: 'Jewelry' }, { id: 'gifts', label: 'Gifts & home' }, { id: 'kids', label: 'Wood & ornaments' }, { id: 'print', label: '3D printing' }, { id: 'apparel', label: 'Custom shirts & DTF' },
     { id: 'awards', label: 'Awards' }, { id: 'biz', label: 'Business & trade' }
   ];
 

@@ -506,3 +506,17 @@ dialog.product::backdrop { background: rgba(30,27,23,.55); }
 .topbar--xmas a:hover { color: var(--ink); }
 
 .about-mark { width: min(330px, 70%); height: auto; }
+
+/* ---------- Shirts link added: keep menu items on one line, switch to the menu button on narrower screens ---------- */
+.nav { gap: 22px; }
+.nav a { white-space: nowrap; }
+@media (max-width: 1380px) {
+  .menu-toggle { display: inline-flex; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: var(--paper); border-bottom: 1px solid var(--line); padding: 8px 24px 16px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .site-header .wrap { gap: 16px; justify-content: space-between; }
+  .site-header--dark .nav { background: var(--ink); border-bottom-color: #3A342C; }
+  .site-header--dark .nav a { border-bottom-color: #3A342C; }
+}
+.header-actions .btn, .cart-link { white-space: nowrap; }

@@ -9,10 +9,11 @@
      name   product name
      price  number, no $ sign
      unit   "flat" = per item, "ea" = each (bulk item), "from" = starting at
-     cat    drink | pets | tags | edc | gifts | kids | print | awards | biz
+     cat    drink | pets | tags | edc | gifts | kids | print | apparel | awards | biz
             (jewelry is hidden for now — add a line with cat: "jewelry" to bring it back)
      kind   picture: tumbler flask bottle dogtag keychain card knife jewelry
             board coaster award patch tool ornament lighter photo print3d
+            tshirt transfer tote
      byo    true if the customer brings the item
      feat   true to show it first / as popular
      min    (optional) minimum quantity
@@ -64,6 +65,15 @@ window.BACKLOT_PRODUCTS = [
   { id: "x2", name: "Custom Jigs & Organizers", price: 15, unit: "from", cat: "print", kind: "print3d", img: "images/3d-printed-golf-jig.jpg", desc: "Holders, trays and organizers designed to fit your exact items — like our 6-ball golf jig. Tell us what it needs to hold and we'll quote it." },
   { id: "x3", name: "Printed + Engraved Combo", price: 25, unit: "from", cat: "print", kind: "print3d", desc: "A 3D-printed piece paired with laser engraving: a display stand for a coin, a gift box for engraved golf balls, a keychain with an engraved metal tag. Ask for ideas." },
   { id: "x4", name: "Custom 3D Print", price: 10, unit: "from", cat: "print", kind: "print3d", desc: "Have an idea, a sketch or a part you need? We design and print it. Priced by size and print time — send us the details for a quote." },
+  { id: "s1", name: "Custom Printed T-Shirt", price: 25, unit: "from", cat: "apparel", kind: "tshirt", feat: true, tiers: [[12, 20], [24, 17]], desc: "Soft cotton tee in your size and colour with your design, name or logo printed in full colour (DTF). Looks great on light and dark shirts. $20 each for 12+, $17 each for 24+." },
+  { id: "s2", name: "Shirt Printing — Bring Your Own", price: 15, unit: "from", cat: "apparel", kind: "tshirt", byo: true, tiers: [[12, 11]], desc: "Bring your own tee, hoodie, jacket, apron or tote and we press your design on. Cotton, polyester, blends, canvas and denim. Front print from $15, $11 each for 12+." },
+  { id: "s3", name: "Team & Event Shirts", price: 18, unit: "ea", cat: "apparel", kind: "tshirt", min: 12, tiers: [[24, 15], [50, 13]], desc: "Hockey and ball teams, family reunions, stags and stagettes, staff shirts. Front print included; add names or numbers on the back. Minimum 12. $15 each at 24+, $13 each at 50+." },
+  { id: "s4", name: "Custom Hoodie", price: 45, unit: "from", cat: "apparel", kind: "tshirt", tiers: [[12, 38]], desc: "Pullover hoodie with your design on the front, back or both. Team names and numbers welcome. $38 each for 12+." },
+  { id: "s8", name: "Custom DTF on Anything", price: 15, unit: "from", cat: "apparel", kind: "transfer", byo: true, feat: true, desc: "If it's fabric and can take the heat, we can press it: hoodies, jackets, work shirts, aprons, tote and duffel bags, pillow covers, blankets, pet bandanas and more. Bring it in or we'll source it. Caps: ask first. Priced by print size." },
+  { id: "s5", name: "Custom Tote Bag", price: 18, unit: "flat", cat: "apparel", kind: "tote", tiers: [[12, 14]], desc: "Heavy cotton tote printed in full colour. Markets, teachers, gifts and giveaways. $14 each for 12+." },
+  { id: "s6", name: "DTF Transfers — Press Them Yourself", price: 4, unit: "from", cat: "apparel", kind: "transfer", feat: true, desc: "Ready-to-press transfers of your design for your own heat press. Pocket or left-chest size from $4, full front (up to 11 in) from $10. Pressing instructions included." },
+  { id: "s7", name: "DTF Gang Sheet (13 × 19 in)", price: 25, unit: "flat", cat: "apparel", kind: "transfer", tiers: [[5, 22]], desc: "Fill a 13 × 19 in sheet with as many designs as fit, printed and powdered, ready to press. Send your files and we'll help with the layout. $22 each for 5+." },
+
   { id: "a1", name: "Black Acrylic Award", price: 55, unit: "flat", cat: "awards", kind: "award", desc: "Black or coloured acrylic, engraved in crisp contrast. Tournaments, banquets, staff awards." },
   { id: "a2", name: "Metal Plaque", price: 50, unit: "flat", cat: "awards", kind: "card", desc: "Engraved aluminum or brass plate on a wood backer." },
   { id: "a3", name: "Challenge Coin", price: 20, unit: "flat", cat: "awards", kind: "coaster", img: "images/skull-coin.jpg", desc: "Heavy 4 mm coin with your design engraved in warm gold tones on silver. Crews, teams, clubs and keepsakes." },

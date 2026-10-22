@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shop — Back Lot Printing</title>
-<meta name="description" content="Shop engraved tumblers, flasks, dog tags, pet tags, gifts, awards and business goods. Bring your own item or pick one of ours.">
+<meta name="description" content="Shop engraved tumblers, flasks, dog tags, pet tags, gifts, awards, business goods, custom shirts and DTF transfers. Bring your own item or pick one of ours.">
 <link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-192.png" type="image/png" sizes="192x192">
@@ -24,12 +24,13 @@
 <header class="site-header">
   <div class="wrap">
     <a class="logo" href="index.html" aria-label="Back Lot Printing home">
-      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="30.73" y="24.97" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+      <svg width="48" height="48" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#1E1B17"/><rect x="15" y="33" width="34" height="27" fill="#F5F1EA"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#1E1B17" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><path d="M27.57 26.1V16.9H30.07Q31.07 16.9 31.53 17.39Q31.98 17.88 31.98 19V19.4Q31.98 20.05 31.75 20.45Q31.52 20.86 31.04 20.98Q31.67 21.14 31.88 21.72Q32.09 22.29 32.09 23.13Q32.09 24.02 31.92 24.69Q31.75 25.36 31.32 25.73Q30.88 26.1 30.07 26.1ZM29.37 20.37H29.75Q30 20.37 30.08 20.17Q30.15 19.97 30.15 19.69V18.77Q30.15 18.32 29.76 18.32H29.37ZM29.55 24.48Q30.27 24.48 30.27 23.8V22.65Q30.27 22.26 30.15 22.03Q30.03 21.8 29.71 21.8H29.37V24.47Q29.49 24.48 29.55 24.48ZM32.7 26.1V16.9H34.54V24.53H36.43V26.1Z" fill="#FFFFFF"/></svg>
       <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
     </a>
     <nav id="site-nav" class="nav" aria-label="Main">
       <a href="shop.html" aria-current="page">Shop</a>
       <a href="shop.html?cat=print">3D printing</a>
+      <a href="shop.html?cat=apparel">Custom shirts</a>
       <a href="index.html#byo">Bring your own</a>
       <a href="index.html#business">Business &amp; trade</a>
       <a href="index.html#about">About</a>
@@ -50,8 +51,8 @@
 
 <main class="wrap">
   <div class="shop-head">
-    <div><span class="label">Engraved in our shop</span><h1 class="h1" style="font-size:clamp(40px,5vw,68px)">Shop custom goods</h1></div>
-    <p class="lede" style="max-width:26em">Tap any item to personalize it. Bring your own tumbler, knife or tag, or pick one of ours. Save 10% at 10 pieces and 20% at 50.</p>
+    <div><span class="label">Made in our shop</span><h1 class="h1" style="font-size:clamp(40px,5vw,68px)">Shop custom goods</h1></div>
+    <p class="lede" style="max-width:26em">Tap any item to personalize it. Bring your own tumbler, knife, tag or shirt, or pick one of ours. Save 10% at 10 pieces and 20% at 50.</p>
   </div>
 
   <div class="filters">
@@ -103,9 +104,9 @@
         <span class="dlg-price" id="dlg-price"></span>
       </div>
       <p class="muted" id="dlg-desc" style="margin:0"></p>
-      <div class="pills"><span id="dlg-supply"></span><span>Proof before we engrave</span><span>Ready in <span data-cfg="turnaround">3–5 business days</span></span></div>
+      <div class="pills"><span id="dlg-supply"></span><span id="dlg-proof">Proof before we engrave</span><span>Ready in <span data-cfg="turnaround">3–5 business days</span></span></div>
       <div class="field">
-        <label for="dlg-text">What should we engrave?</label>
+        <label for="dlg-text" id="dlg-ask">What should we engrave?</label>
         <input id="dlg-text" type="text" maxlength="80" placeholder="Name, date, initials — or 'logo, I'll email it'">
       </div>
       <div class="field">
@@ -135,10 +136,10 @@
     <div class="footer-grid">
       <div class="footer-col">
         <a class="logo" href="index.html" aria-label="Back Lot Printing home" style="color:#F5F1EA">
-          <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#F5F1EA"/><rect x="15" y="33" width="34" height="27" fill="#1E1B17"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#F5F1EA" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><text x="30.73" y="24.97" text-anchor="middle" font-family="Yellowtail, 'Brush Script MT', cursive" font-size="10" fill="#FFFFFF">BL</text></svg>
+          <svg width="52" height="52" viewBox="0 0 64 64" aria-hidden="true"><path d="M4 26 L32 5 L60 26 V60 H4 Z" fill="#F5F1EA"/><rect x="15" y="33" width="34" height="27" fill="#1E1B17"/><path d="M15 39.5 H49 M15 46 H49 M15 52.5 H49" stroke="#F5F1EA" stroke-width="2.4"/><circle cx="32" cy="21.5" r="9.2" fill="#C23B12" stroke="#FFFFFF" stroke-width="1.6"/><path d="M27.57 26.1V16.9H30.07Q31.07 16.9 31.53 17.39Q31.98 17.88 31.98 19V19.4Q31.98 20.05 31.75 20.45Q31.52 20.86 31.04 20.98Q31.67 21.14 31.88 21.72Q32.09 22.29 32.09 23.13Q32.09 24.02 31.92 24.69Q31.75 25.36 31.32 25.73Q30.88 26.1 30.07 26.1ZM29.37 20.37H29.75Q30 20.37 30.08 20.17Q30.15 19.97 30.15 19.69V18.77Q30.15 18.32 29.76 18.32H29.37ZM29.55 24.48Q30.27 24.48 30.27 23.8V22.65Q30.27 22.26 30.15 22.03Q30.03 21.8 29.71 21.8H29.37V24.47Q29.49 24.48 29.55 24.48ZM32.7 26.1V16.9H34.54V24.53H36.43V26.1Z" fill="#FFFFFF"/></svg>
           <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
         </a>
-        <p class="footer-note">Family-owned laser engraving &amp; 3D printing in <span data-cfg="town">[YOUR TOWN]</span>.</p>
+        <p class="footer-note">Family-owned laser engraving, 3D printing &amp; custom shirts in <span data-cfg="town">[YOUR TOWN]</span>.</p>
       </div>
       <div class="footer-col"><strong>Shop</strong><a href="shop.html">All products</a><a href="shop.html?cat=drink">Drinkware</a><a href="shop.html?cat=gifts">Gift ideas</a></div>
       <div class="footer-col"><strong>Business</strong><a href="shop.html?cat=biz">Tool &amp; asset marking</a><a href="index.html#quote">Bulk quotes</a></div>
@@ -221,6 +222,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('dlg-price').textContent = BL.priceLabel(cur);
     document.getElementById('dlg-desc').textContent = cur.desc;
     document.getElementById('dlg-supply').textContent = cur.byo ? 'You bring the item' : 'We supply the item';
+    var isPrint = cur.cat === 'apparel';
+    document.getElementById('dlg-proof').textContent = isPrint ? 'Proof before we print' : 'Proof before we engrave';
+    document.getElementById('dlg-ask').textContent = isPrint ? 'What should we print?' : 'What should we engrave?';
+    textIn.placeholder = isPrint ? "Your text or 'design, I'll email it' + sizes & colours" : "Name, date, initials — or 'logo, I'll email it'";
     document.getElementById('dlg-status').textContent = '';
     textIn.value = presetText || ''; notesIn.value = '';
     qtyIn.min = minQty(cur); qtyIn.value = minQty(cur);
@@ -240,7 +245,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('dlg-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var st = document.getElementById('dlg-status');
-    if (!textIn.value.trim()) { st.textContent = 'Tell us what to engrave — a name, date, or "logo".'; st.className = 'form-status err'; textIn.focus(); return; }
+    if (!textIn.value.trim()) { st.textContent = cur.cat === 'apparel' ? 'Tell us what to print — text, or "design, I\'ll email it".' : 'Tell us what to engrave — a name, date, or "logo".'; st.className = 'form-status err'; textIn.focus(); return; }
     var q = Math.max(minQty(cur), parseInt(qtyIn.value, 10) || minQty(cur));
     BL.addToOrder({ id: cur.id, qty: q, text: textIn.value.trim(), notes: notesIn.value.trim() });
     st.innerHTML = 'Added ' + q + ' to your order. <a href="order.html">View order</a>';

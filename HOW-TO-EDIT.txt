@@ -80,3 +80,16 @@ FORMS        Quote, order and newsletter forms now send through
              fall back to opening the customer's email app.
 GIFT PICKS   The Christmas row on the home page hides itself after
              Dec 14. To reuse it, change data-show-until in index.html.
+
+---------------------------------------------------------------
+PHOTO SLOTS (drop a file in the images folder, it shows up by itself)
+---------------------------------------------------------------
+images/apparel-hoodie.jpg    Custom hoodies      (shirt gallery)
+images/apparel-team.jpg      Team shirts         (shirt gallery)
+images/apparel-bag.jpg       Totes & aprons      (shirt gallery)
+images/apparel-closeup.jpg   Print detail        (shirt gallery)
+images/about-photo.jpg       About section photo
+Shirt gallery photos: portrait, about 1000 x 1250 px, product centred.
+Product photos: square, about 1000 x 1000 px.
+The images/w folder holds small WebP copies made automatically.
+New photos work without them.

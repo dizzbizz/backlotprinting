@@ -31,8 +31,15 @@
     return '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="' + ic[0] + '" fill="' + ic[2] + '" fill-rule="evenodd"/><path d="' + ic[1] + '" fill="#C23B12"/></svg>';
   }
 
+  /* Photos that have right-sized WebP copies in images/w/ (made for you; new photos still work without them) */
+  var WEBP = {"3d-printed-golf-jig":[480,800,1000],"airpods-case-eagle":[480,800,1000],"custom-tee-leo-black":[480,800,1000],"custom-tee-your-logo-white":[480,800,1000],"eagle-coin":[480,800,1000],"golf-ball-best-dad":[480,800,1000],"halloween-pumpkin":[480,800,1000],"metal-business-card":[480,800,1000],"pet-tag-luigi":[480,800,1000],"rotary-rotor-braap":[480,800,1000],"skull-coin":[480,800,1000],"step-1-bring":[480,800],"step-2-proof":[480,800],"step-3-engrave":[480,800],"step-4-pickup":[480,800],"tool-marking-wrench":[480,800,1000],"turtle-painted-by-kids":[480,800,1000],"turtle-wood":[480,800,1000],"whippet-head":[480,800,1000],"whippet-ornaments":[480,800,1000],"witches-brew-tumbler-both-sides":[480,800,1000],"witches-brew-tumbler-front":[480,800,1000]};
+  function pic(src, alt, sizes) {
+    var name = String(src).replace(/^images\//, '').replace(/\.jpe?g$/i, ''), w = WEBP[name], ss = '';
+    if (w) ss = ' srcset="' + w.map(function (x) { return 'images/w/' + name + '-' + x + '.webp ' + x + 'w'; }).join(', ') + '" sizes="' + (sizes || '(max-width: 560px) 50vw, (max-width: 1100px) 33vw, 300px') + '" width="1000" height="1000"';
+    return '<img src="' + src + '"' + ss + ' alt="' + String(alt == null ? '' : alt).replace(/"/g, '&quot;') + '" loading="lazy" decoding="async">';
+  }
   function art(p, alt) {
-    if (p && p.img) return '<img src="' + p.img + '" alt="' + String(alt || p.name).replace(/"/g, '&quot;') + '" loading="lazy" decoding="async">';
+    if (p && p.img) return pic(p.img, alt == null ? p.name : alt);
     return iconSVG(p ? p.kind : 'card');
   }
 
@@ -151,7 +158,7 @@
   }
 
   window.BL = {
-    CFG: CFG, CATS: CATS, iconSVG: iconSVG, art: art, money: money, priceLabel: priceLabel, priceFor: priceFor,
+    CFG: CFG, CATS: CATS, iconSVG: iconSVG, art: art, pic: pic, money: money, priceLabel: priceLabel, priceFor: priceFor,
     getOrder: getOrder, saveOrder: saveOrder, addToOrder: addToOrder, sendForm: sendForm,
     products: function () { return window.BACKLOT_PRODUCTS || []; },
     find: function (id) { return (window.BACKLOT_PRODUCTS || []).find(function (p) { return p.id === id; }); },
@@ -189,5 +196,39 @@
     targets.forEach(function (t) { io.observe(t); });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { applyConfig(); setupMenu(); updateCartCount(); seasonalBanner(); seasonalBlocks(); mobileBar(); });
+  /* Photo slots: a figure with data-slot="images/name.jpg" shows itself once that file exists */
+  function photoSlots() {
+    document.querySelectorAll('[data-slot]').forEach(function (fig) {
+      var probe = new Image();
+      probe.onload = function () { var im = fig.querySelector('img'); if (im) im.src = fig.getAttribute('data-slot'); fig.hidden = false; };
+      probe.src = fig.getAttribute('data-slot');
+    });
+  }
+
+  /* Tap or click a photo to see it large, with its caption */
+  function lightbox() {
+    var dlg = null, lastFocus = null;
+    function open(a) {
+      if (!dlg) {
+        dlg = document.createElement('dialog'); dlg.className = 'lightbox';
+        dlg.innerHTML = '<figure><img alt=""><figcaption></figcaption></figure><button type="button" class="lightbox-close" aria-label="Close photo">&times;</button>';
+        document.body.appendChild(dlg);
+        dlg.addEventListener('click', function (e) { if (e.target === dlg || e.target.closest('.lightbox-close')) dlg.close(); });
+        dlg.addEventListener('close', function () { if (lastFocus) lastFocus.focus(); });
+      }
+      var small = a.querySelector('img'), fig = a.closest('figure'), cap = fig && fig.querySelector('figcaption');
+      var big = dlg.querySelector('img');
+      big.src = a.getAttribute('href'); big.alt = small ? small.alt : '';
+      dlg.querySelector('figcaption').textContent = cap ? cap.textContent : (small ? small.alt : '');
+      lastFocus = a;
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-zoom]');
+      if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+      e.preventDefault(); open(a);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { applyConfig(); setupMenu(); updateCartCount(); seasonalBanner(); seasonalBlocks(); mobileBar(); photoSlots(); lightbox(); });
 })();

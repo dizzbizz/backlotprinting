@@ -58,3 +58,25 @@ ADDING YOUR OWN PHOTOS (optional)
 Make a folder called  images  and put your photos in it.
 In index.html, search for  "TO USE YOUR OWN PHOTO"  — the
 note right there shows exactly what to swap in.
+
+
+CUSTOM SHIRTS & DTF
+Shirt and DTF products use cat: "apparel" in products.js (ids s1-s7).
+Picture kinds for them: tshirt, transfer, tote. Add img: "images/your-photo.jpg" once you have real photos.
+
+---------------------------------------------------------------
+NEW (Nov 2026)
+---------------------------------------------------------------
+REVIEWS      Open reviews.js and paste real reviews in. The Reviews
+             section appears on its own once there is at least one.
+             Add your Google links in the same file.
+ABOUT PHOTO  Save a photo as images/about-photo.jpg. It replaces
+             the logo in the About section automatically.
+FORMS        Quote, order and newsletter forms now send through
+             Netlify Forms (with file upload on the quote form).
+             In Netlify: Site configuration > Forms > Enable form
+             detection, then add an email notification to
+             hello@backlotprinting.com. Until that is on, forms
+             fall back to opening the customer's email app.
+GIFT PICKS   The Christmas row on the home page hides itself after
+             Dec 14. To reuse it, change data-show-until in index.html.

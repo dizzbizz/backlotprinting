@@ -22,7 +22,8 @@
      desc   short description
    ============================================================ */
 window.BACKLOT_PRODUCTS = [
-  { id: "d1", name: "Tumbler Engraving", price: 20, unit: "flat", cat: "drink", kind: "tumbler", byo: true, feat: true, tiers: [[5, 15]], img: "images/witches-brew-tumbler-front.jpg", desc: "Bring any stainless or powder-coated tumbler. Name, initials or logo on one side. $15 each when you bring 5 or more." },
+  { id: "d1", name: "Tumbler Engraving", price: 20, unit: "flat", cat: "drink", kind: "tumbler", byo: true, feat: true, tiers: [[5, 15]], img: "images/witches-brew-tumbler-front.jpg", desc: "Bring any stainless or powder-coated tumbler. Name, initials or logo on one side. $15 each when you bring 5 or more. Want both sides? Pick Tumbler Engraving, Both Sides ($30)." },
+  { id: "d8", name: "Tumbler Engraving, Both Sides", price: 30, unit: "flat", cat: "drink", kind: "tumbler", byo: true, img: "images/witches-brew-tumbler-both-sides.jpg", desc: "Bring your own stainless or powder-coated tumbler and we engrave the front and the back. A name on one side and a logo or design on the other, like our Witches' Brew tumbler." },
   { id: "d2", name: "Custom Engraved Flask", price: 28, unit: "flat", cat: "drink", kind: "flask", feat: true, desc: "Stainless hip flask included, engraved with your name, date or logo. A classic groomsmen gift." },
   { id: "d7", name: "Flask Engraving", price: 18, unit: "flat", cat: "drink", kind: "flask", byo: true, desc: "Bring your own stainless flask. Name, monogram or date on the front." },
   { id: "d3", name: "20 oz Tumbler", price: 38, unit: "flat", cat: "drink", kind: "tumbler", desc: "We supply a powder-coated stainless tumbler with lid, engraved through to the steel." },

@@ -32,7 +32,7 @@
   }
 
   function art(p, alt) {
-    if (p && p.img) return '<img src="' + p.img + '" alt="' + String(alt || p.name).replace(/"/g, '&quot;') + '" loading="lazy">';
+    if (p && p.img) return '<img src="' + p.img + '" alt="' + String(alt || p.name).replace(/"/g, '&quot;') + '" loading="lazy" decoding="async">';
     return iconSVG(p ? p.kind : 'card');
   }
 
@@ -89,23 +89,37 @@
   }
 
   /* ---------- Sending forms ---------- */
-  // Sends via formEndpoint if set, otherwise opens an email to the shop.
-  function sendForm(subject, fields, statusEl, onDone) {
+  // 1) formEndpoint in config.js (e.g. Formspree) if set
+  // 2) otherwise Netlify Forms (opts.form = the form's name="…")
+  // 3) if that fails, opens the customer's email app with everything filled in
+  // onDone(how) is called with 'endpoint', 'netlify' or 'mail'.
+  function sendForm(subject, fields, statusEl, onDone, opts) {
+    opts = opts || {};
     var say = function (msg, ok) { if (statusEl) { statusEl.textContent = msg; statusEl.className = 'form-status ' + (ok ? 'ok' : 'err'); } };
-    if (CFG.formEndpoint) {
-      var fd = new FormData();
-      fd.append('_subject', subject);
-      Object.keys(fields).forEach(function (k) { fd.append(k, fields[k]); });
-      say('Sending…', true);
-      return fetch(CFG.formEndpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
-        .then(function (r) { if (!r.ok) throw new Error('bad'); say('Sent. We\'ll get back to you soon.', true); if (onDone) onDone(); })
-        .catch(function () { say('That didn\'t send. Try again, or email us at ' + (CFG.email || 'our email') + '.', false); });
+    var email = CFG.email || 'hello@backlotprinting.com';
+    function viaMail(note) {
+      var body = Object.keys(fields).map(function (k) { return k + ': ' + fields[k]; }).join('\n');
+      window.location.href = 'mailto:' + email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      say((note ? note + ' ' : '') + 'Your email app should open with everything filled in. Just press send' + (opts.file ? ', and attach your file to that email.' : '.'), true);
+      if (onDone) onDone('mail');
     }
-    if (!CFG.email) { say('Online forms aren\'t set up yet. Please call or message us.', false); return; }
-    var body = Object.keys(fields).map(function (k) { return k + ': ' + fields[k]; }).join('\n');
-    window.location.href = 'mailto:' + CFG.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-    say('Your email app should open with everything filled in — just press send.', true);
-    if (onDone) onDone();
+    var fd = new FormData();
+    Object.keys(fields).forEach(function (k) { fd.append(k, fields[k]); });
+    if (opts.file) fd.append('Attachment', opts.file);
+    say('Sending…', true);
+    if (CFG.formEndpoint) {
+      fd.append('_subject', subject);
+      return fetch(CFG.formEndpoint, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
+        .then(function (r) { if (!r.ok) throw new Error('bad'); say('', true); if (onDone) onDone('endpoint'); })
+        .catch(function () { viaMail('That didn\'t go through online.'); });
+    }
+    if (opts.form && /^https?:$/.test(location.protocol)) {
+      fd.append('form-name', opts.form);
+      return fetch('/', { method: 'POST', body: fd })
+        .then(function (r) { if (!r.ok) throw new Error('bad'); say('', true); if (onDone) onDone('netlify'); })
+        .catch(function () { viaMail('That didn\'t go through online.'); });
+    }
+    viaMail('');
   }
 
   /* ---------- Fill in settings ---------- */
@@ -119,7 +133,7 @@
     });
     document.querySelectorAll('[data-link="email"]').forEach(function (el) { if (CFG.email) { el.href = 'mailto:' + CFG.email; el.textContent = CFG.email; } });
     document.querySelectorAll('[data-link="phone"]').forEach(function (el) { if (CFG.phone) { el.href = 'tel:' + CFG.phone.replace(/[^\d+]/g, ''); el.textContent = CFG.phone; } });
-    document.querySelectorAll('[data-link="instagram"]').forEach(function (el) { if (CFG.instagram) { el.href = 'https://instagram.com/' + CFG.instagram; if (!el.textContent.trim()) el.textContent = '@' + CFG.instagram; el.target = '_blank'; el.rel = 'noopener'; } });
+    document.querySelectorAll('[data-link="instagram"]').forEach(function (el) { if (CFG.instagram) { el.href = 'https://www.instagram.com/' + CFG.instagram; if (!el.textContent.trim()) el.textContent = '@' + CFG.instagram; el.target = '_blank'; el.rel = 'noopener'; } });
     document.querySelectorAll('[data-link="facebook"]').forEach(function (el) { if (CFG.facebook) { el.href = CFG.facebook; el.target = '_blank'; el.rel = 'noopener'; } });
     document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
   }
@@ -156,5 +170,24 @@
     });
   }
 
-  document.addEventListener('DOMContentLoaded', function () { applyConfig(); setupMenu(); updateCartCount(); seasonalBanner(); });
+  function seasonalBlocks() {
+    document.querySelectorAll('[data-show-until]').forEach(function (el) {
+      if (new Date() > new Date(el.getAttribute('data-show-until') + 'T23:59:59')) el.hidden = true;
+    });
+  }
+
+  /* Sticky "Get a quote" bar on phones: tucks away while the quote form or footer is on screen */
+  function mobileBar() {
+    var bar = document.querySelector('[data-mobile-cta]');
+    if (!bar || !('IntersectionObserver' in window)) return;
+    var targets = [document.getElementById('quote'), document.querySelector('.site-footer')].filter(Boolean);
+    var seen = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) seen.add(e.target); else seen.delete(e.target); });
+      bar.classList.toggle('is-tucked', seen.size > 0);
+    }, { threshold: 0.05 });
+    targets.forEach(function (t) { io.observe(t); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { applyConfig(); setupMenu(); updateCartCount(); seasonalBanner(); seasonalBlocks(); mobileBar(); });
 })();

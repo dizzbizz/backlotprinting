@@ -38,9 +38,23 @@
     if (w) ss = ' srcset="' + w.map(function (x) { return 'images/w/' + name + '-' + x + '.webp ' + x + 'w'; }).join(', ') + '" sizes="' + (sizes || '(max-width: 560px) 50vw, (max-width: 1100px) 33vw, 300px') + '" width="1000" height="1000"';
     return '<img src="' + src + '"' + ss + ' alt="' + String(alt == null ? '' : alt).replace(/"/g, '&quot;') + '" loading="lazy" decoding="async">';
   }
+  var MOCKUPS = {
+    tumbler:[0,2,1], flask:[0,2,0], bottle:[0,0,1], board:[0,1,1],
+    tote:[0,1,0], hoodie:[0,0,0],
+    dogtag:[1,0,0], keychain:[1,1,0], card:[1,2,0], knife:[1,3,0],
+    coaster:[1,0,1], award:[1,1,1], patch:[1,2,1], lighter:[1,3,1],
+    print3d:[1,0,2], photo:[1,1,2], tshirt:[1,2,2], transfer:[1,3,2],
+    namekey:[1,0,3], organizer:[1,1,3], wallet:[1,2,3], golf:[1,3,3],
+    jewelry:[1,0,0], tool:[1,3,3], ornament:[1,2,1]
+  };
+  var MOCKUP_PRODUCTS = {s4:'hoodie',g6:'wallet',e5:'golf',x1:'namekey',x2:'organizer',x3:'organizer',x4:'organizer'};
   function art(p, alt) {
     if (p && p.img) return pic(p.img, alt == null ? p.name : alt);
-    return iconSVG(p ? p.kind : 'card');
+    var kind = p && (MOCKUP_PRODUCTS[p.id] || p.kind), m = MOCKUPS[kind] || MOCKUPS.card;
+    var cols = m[0] ? 4 : 3, rows = m[0] ? 4 : 2;
+    var file = m[0] ? 'mockups-specialty.png' : 'mockups-essentials.png';
+    var label = String((p && p.name) || 'Product') + ' — illustrative example mockup';
+    return '<span class="product-mockup" role="img" aria-label="' + BL.esc(label) + '" style="background-image:url(images/' + file + ');background-size:' + (cols * 100) + '% ' + (rows * 100) + '%;background-position:' + (m[1] * 100 / (cols - 1)) + '% ' + (m[2] * 100 / (rows - 1)) + '%"></span><small class="mockup-caption">Example mockup</small>';
   }
 
   var CATS = [

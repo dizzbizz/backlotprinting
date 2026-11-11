@@ -731,3 +731,67 @@ html, body { overflow-x: clip; }
 .gallery--apparel { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 @media (max-width: 1100px) { .gallery--apparel { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .gallery--apparel { grid-template-columns: repeat(2, minmax(0, 1fr)); } .shot-side .shot span { display: none; } }
+
+/* November refresh: workshop character, clearer hierarchy, real product photography */
+:root { --display: 'Anton', Impact, 'Arial Narrow', sans-serif; --radius-lg: 20px; --radius: 14px; }
+.h1,.h2 { font-weight:400; letter-spacing:0; }
+.h2 { font-size:clamp(32px,3.5vw,50px); }
+.label { font-size:12px; letter-spacing:1.8px; }
+.section { padding-block:72px; }
+.btn { border-radius:8px; }
+.site-header .wrap { min-height:92px; }
+.hero.hero--laser { background:#1e1b17; }
+.hero.hero--laser > .wrap { grid-template-columns:1fr 1fr; gap:48px; padding-block:56px 64px; }
+.hero--laser .brand-headline { font-size:clamp(48px,5.8vw,82px); line-height:1.05; }
+.brand-headline em { color:#e9a58c; font-style:normal; }
+.hero-kicker { text-transform:uppercase; letter-spacing:1.4px; font-size:11px; }
+.hero--laser .lede { font-size:18px; max-width:31em; }
+.hero-facts b { font-family:var(--body); font-size:17px; }
+.hero-facts span { font-size:12px; }
+.feature-mosaic { grid-template-columns:1.35fr 1fr; gap:14px; transform:rotate(-2deg); }
+.feature-mosaic .shot-main { aspect-ratio:auto; height:500px; align-self:stretch; }
+.feature-mosaic .shot-side { grid-template-rows:1fr 1fr; }
+.feature-mosaic .shot { border-radius:12px; overflow:hidden; }
+.feature-mosaic .shot img { width:100%; height:100%; object-fit:cover; }
+.feature-mosaic .shot-side img { object-fit:contain; background:#eee8df; }
+.feature-mosaic .shot span { font-size:11px; }
+.hero-materials ul { font-family:var(--body); font-size:14px; }
+.service-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.service-card { display:block; text-decoration:none; background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+.service-card > img { width:100%; aspect-ratio: 5/4; object-fit:cover; }
+.service-card > div { padding:26px; }
+.service-card h3 { font-family:var(--display); font-weight:400; font-size:30px; }
+.service-card p { color:var(--muted); font-size:15px; min-height:48px; margin:12px 0 22px; }
+.service-card b { font-size:14px; }
+.service-card:hover { border-color:var(--accent); color:var(--ink); }
+.card { border-radius:14px; }
+.card-art { background:#eee8df; }
+@media(max-width:1100px) {
+ .hero.hero--laser > .wrap { grid-template-columns:1fr; }
+ .feature-mosaic { max-width:660px; transform:none; }
+}
+@media(max-width:640px) {
+ .wrap { width:calc(100% - 32px); }
+ .service-grid { grid-template-columns:1fr; }
+ .service-card { display:grid; grid-template-columns:40% 60%; }
+ .service-card > img { height:100%; aspect-ratio:auto; }
+ .service-card > div { padding:18px; }
+ .service-card h3 { font-size:25px; }
+ .service-card p { font-size:13px; min-height:0; }
+ .section { padding-block:48px; }
+ .feature-mosaic .shot-main { height:340px; }
+ .hero.hero--laser > .wrap { padding-block:36px 44px; gap:32px; }
+ .hero-facts { grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+ .hero-facts b { font-size:14px; }
+ .hero-facts span { font-size:11px; }
+}
+
+/* Product example imagery used only when an actual photograph is unavailable. */
+.product-mockup { display:block; width:100%; aspect-ratio:1; background-repeat:no-repeat; background-color:#eee8e0; }
+.card-art .product-mockup,.tile-art .product-mockup { height:100%; }
+.mockup-caption { position:absolute; bottom:8px; left:8px; padding:3px 7px; border-radius:4px; background:rgba(255,255,255,.92); color:#51483e; font:10px/1.4 var(--body); z-index:1; }
+#dlg-icon:has(.product-mockup) { display:block; width:100%; }
+.dlg-art:has(.product-mockup) { align-self:start; min-height:0; aspect-ratio:1; }
+.dlg-art:has(.product-mockup) .mockup-caption { top:42px; bottom:auto; }
+.dlg-art:has(.product-mockup) .dlg-preview { bottom:0; background:rgba(245,241,234,.94); padding:8px; font-family:var(--body); font-size:16px; }
+.order-row .mockup-caption { display:none; }

@@ -30,13 +30,9 @@
       <span class="logo-words"><b>BACK LOT</b><small>PRINTING</small></span>
     </a>
     <nav id="site-nav" class="nav" aria-label="Main">
-      <a href="shop.html">Shop</a>
-      <a href="shop.html?cat=print">3D printing</a>
-      <a href="shop.html?cat=apparel">Custom shirts</a>
-      <a href="index.html#byo">Bring your own</a>
-      <a href="index.html#business">Business &amp; trade</a>
-      <a href="index.html#faq">FAQ</a>
-    </nav>
+ <a href="shop.html">Shop</a><a href="shop.html?cat=apparel">Apparel</a>
+ <a href="index.html#byo">Engraving</a><a href="shop.html?cat=print">3D printing</a>
+ <a href="index.html#work">Our work</a></nav>
     <div class="header-actions">
       <a class="cart-link" href="order.html" data-cart-label aria-label="Your order" aria-current="page">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
@@ -159,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var summary = lines().map(function (x) {
       var pr = BL.priceFor(x.p, x.line.qty); total += pr.total;
       return '- ' + x.line.qty + ' × ' + x.p.name + ' (' + BL.money(pr.each) + ' ea) = $' + pr.total.toFixed(2) +
-        '\n  Engrave: ' + x.line.text + (x.line.notes ? '\n  Notes: ' + x.line.notes : '') + (x.p.byo ? '\n  Customer brings item' : '');
+        '\n  Personalization: ' + x.line.text + (x.line.notes ? '\n  Notes: ' + x.line.notes : '') + (x.p.byo ? '\n  Customer brings item' : '');
     }).join('\n');
     var fields = {
       'Name': f.elements['Name'].value, 'Email': f.elements['Email'].value, 'Phone': f.elements['Phone'].value || '—',

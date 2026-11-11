@@ -74,7 +74,7 @@
   </div>
 
   <div class="grid" id="grid"></div>
-  <p class="empty" id="empty" hidden>Nothing matches that. Try another word, or <a href="index.html#quote">ask us</a> — if it's metal, wood or genuine leather, we can probably engrave it.</p>
+  <p class="empty" id="empty" hidden>Nothing matches that. Try another word, or <a href="index.html#quote">ask us</a>. If it's metal, wood or genuine leather, we can probably engrave it.</p>
 
   <section class="section--tight">
     <div class="byo" style="grid-template-columns:1fr">
@@ -82,7 +82,7 @@
         <div style="max-width:40em">
           <span class="label">Don't see it?</span>
           <h2 class="h2" style="font-size:clamp(30px,3.4vw,44px)">If it fits, we can mark it</h2>
-          <p class="lede" style="margin-top:12px">Stainless, aluminum, brass, titanium, powder-coated metal, wood, genuine leather, slate and stone — flat or gently curved, with up to about 8.5 × 8.5 inches of engraving area.</p>
+          <p class="lede" style="margin-top:12px">Stainless, aluminum, brass, titanium, powder-coated metal, wood, genuine leather, slate and stone, flat or gently curved, with up to about 8.5 × 8.5 inches of engraving area.</p>
         </div>
         <a class="btn btn-light" href="index.html#quote">Ask about your item</a>
       </div>
@@ -101,13 +101,13 @@
         <span class="dlg-price" id="dlg-price"></span>
       </div>
       <p class="muted" id="dlg-desc" style="margin:0"></p>
-      <div class="pills"><span id="dlg-supply"></span><span id="dlg-proof">Proof before we engrave</span><span>Ready in <span data-cfg="turnaround">1–5 business days</span></span></div>
+      <div class="pills"><span id="dlg-supply"></span><span id="dlg-proof">Proof before we engrave</span><span>Ready in <span>1-5 business days</span></span></div>
       <div class="field">
         <label for="dlg-text" id="dlg-ask">What should we engrave?</label>
-        <input id="dlg-text" type="text" maxlength="80" placeholder="Name, date, initials — or 'logo, I'll email it'">
+        <input id="dlg-text" type="text" maxlength="80" placeholder="Name, date, initials, or 'logo, I'll email it'">
       </div>
       <div class="field">
-        <label for="dlg-notes">Notes <span class="hint">(optional — colour, font, placement, deadline)</span></label>
+        <label for="dlg-notes">Notes <span class="hint">(optional: colour, font, placement, deadline)</span></label>
         <input id="dlg-notes" type="text" maxlength="160">
       </div>
       <div class="field">
@@ -188,7 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
     grid.innerHTML = list.map(function (p) {
       var b = badge(p);
       return '<article class="card"><button type="button" class="card-open" data-id="' + p.id + '" aria-label="Personalize ' + BL.esc(p.name) + ', ' + BL.priceLabel(p) + '">' +
-        '<span class="card-art"><span class="' + b[1] + '">' + b[0] + '</span>' + BL.art(p, p.name + ' — engraved example') + '</span>' +
+        '<span class="card-art"><span class="' + b[1] + '">' + b[0] + '</span>' + BL.art(p, p.name + ', engraved example') + '</span>' +
         '<span class="card-name">' + BL.esc(p.name) + '</span><span class="card-desc">' + BL.esc(p.desc) + '</span></button>' +
         '<div class="card-foot"><span class="card-price">' + BL.priceLabel(p) + '</span><button type="button" class="btn btn-dark btn-sm" data-id="' + p.id + '">Personalize</button></div></article>';
     }).join('');
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var b = badge(cur);
     var cat = (BL.CATS.find(function (c) { return c.id === cur.cat; }) || {}).label || '';
     document.getElementById('dlg-badge').textContent = b[0]; document.getElementById('dlg-badge').className = b[1];
-    document.getElementById('dlg-icon').innerHTML = BL.art(cur, cur.name + ' — engraved example');
+    document.getElementById('dlg-icon').innerHTML = BL.art(cur, cur.name + ', engraved example');
     document.getElementById('dlg-cat').textContent = cat;
     document.getElementById('dlg-name').textContent = cur.name;
     document.getElementById('dlg-price').textContent = BL.priceLabel(cur);
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var isPrint = cur.cat === 'apparel', is3D = cur.cat === 'print';
     document.getElementById('dlg-proof').textContent = is3D ? 'Details confirmed before production' : (isPrint ? 'Proof before we print' : 'Proof before we engrave');
     document.getElementById('dlg-ask').textContent = is3D ? 'What would you like us to make?' : (isPrint ? 'What should we print?' : 'What should we engrave?');
-    textIn.placeholder = isPrint ? "Your text or 'design, I'll email it' + sizes & colours" : "Name, date, initials — or 'logo, I'll email it'";
+    textIn.placeholder = isPrint ? "Your text or 'design, I'll email it' + sizes & colours" : "Name, date, initials, or 'logo, I'll email it'";
     document.getElementById('dlg-status').textContent = '';
     textIn.value = presetText || ''; notesIn.value = '';
     qtyIn.min = minQty(cur); qtyIn.value = minQty(cur);
@@ -246,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('dlg-form').addEventListener('submit', function (e) {
     e.preventDefault();
     var st = document.getElementById('dlg-status');
-    if (!textIn.value.trim()) { st.textContent = cur.cat === 'apparel' ? 'Tell us what to print — text, or "design, I\'ll email it".' : 'Tell us what to engrave — a name, date, or "logo".'; st.className = 'form-status err'; textIn.focus(); return; }
+    if (!textIn.value.trim()) { st.textContent = cur.cat === 'apparel' ? 'Tell us what to print: text, or "design, I\'ll email it".' : 'Tell us what to engrave: a name, date, or "logo".'; st.className = 'form-status err'; textIn.focus(); return; }
     var q = Math.max(minQty(cur), parseInt(qtyIn.value, 10) || minQty(cur));
     BL.addToOrder({ id: cur.id, qty: q, text: textIn.value.trim(), notes: notesIn.value.trim() });
     st.innerHTML = 'Added ' + q + ' to your order. <a href="order.html">View order</a>';

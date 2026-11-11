@@ -53,7 +53,7 @@
     var kind = p && (MOCKUP_PRODUCTS[p.id] || p.kind), m = MOCKUPS[kind] || MOCKUPS.card;
     var cols = m[0] ? 4 : 3, rows = m[0] ? 4 : 2;
     var file = m[0] ? 'mockups-specialty.png' : 'mockups-essentials.png';
-    var label = String((p && p.name) || 'Product') + ' — illustrative example mockup';
+    var label = String((p && p.name) || 'Product') + ', illustrative example mockup';
     return '<span class="product-mockup" role="img" aria-label="' + BL.esc(label) + '" style="background-image:url(images/' + file + ');background-size:' + (cols * 100) + '% ' + (rows * 100) + '%;background-position:' + (m[1] * 100 / (cols - 1)) + '% ' + (m[2] * 100 / (rows - 1)) + '%"></span><small class="mockup-caption">Example mockup</small>';
   }
 

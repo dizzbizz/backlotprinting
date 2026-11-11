@@ -81,7 +81,7 @@
       <div class="field"><label for="o-date">Need it by <span class="hint">(optional)</span></label><input id="o-date" name="Needed by" type="date"></div>
       <div class="field"><label for="o-notes">Anything else? <span class="hint">(optional)</span></label><textarea id="o-notes" name="Notes" placeholder="Drop-off time for your own items, logo details, questions…" style="min-height:90px"></textarea></div>
 
-      <p class="notice">This sends your order to us — you're not charged yet. We'll reply with a proof and your final total. Pay by e-transfer or at pickup.</p>
+      <p class="notice">This sends your order to us. You're not charged yet. We'll reply with a proof and your final total. Pay by e-transfer or at pickup.</p>
       <button class="btn btn-accent" type="submit" id="send">Send order request</button>
       <p class="form-status" id="order-status" role="status" aria-live="polite"></p>
     </form>
@@ -158,9 +158,9 @@ document.addEventListener('DOMContentLoaded', function () {
         '\n  Personalization: ' + x.line.text + (x.line.notes ? '\n  Notes: ' + x.line.notes : '') + (x.p.byo ? '\n  Customer brings item' : '');
     }).join('\n');
     var fields = {
-      'Name': f.elements['Name'].value, 'Email': f.elements['Email'].value, 'Phone': f.elements['Phone'].value || '—',
-      'Delivery': f.elements['Delivery'].value, 'Needed by': f.elements['Needed by'].value || '—',
-      'Order': '\n' + summary, 'Estimated total': '$' + total.toFixed(2) + ' + tax', 'Notes': f.elements['Notes'].value || '—'
+      'Name': f.elements['Name'].value, 'Email': f.elements['Email'].value, 'Phone': f.elements['Phone'].value || 'None',
+      'Delivery': f.elements['Delivery'].value, 'Needed by': f.elements['Needed by'].value || 'None',
+      'Order': '\n' + summary, 'Estimated total': '$' + total.toFixed(2) + ' + tax', 'Notes': f.elements['Notes'].value || 'None'
     };
     BL.sendForm('Order request from ' + fields.Name, fields, st, function (how) {
       if (how === 'mail') return;

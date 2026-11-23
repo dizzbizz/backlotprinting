@@ -32,6 +32,12 @@
 <script src="site.js"></script>
 <script src="rack.js" defer></script>
 <script src="enhance.js" defer></script>
+<script src="vendor/three.min.js" defer></script>
+<script src="vendor/OrbitControls.js" defer></script>
+<script src="vendor/SVGLoader.js" defer></script>
+<script src="vendor/RoomEnvironment.js" defer></script>
+<script src="studio.js" defer></script>
+<script src="tumbler.js" defer></script>
 </head>
 <body>
 
@@ -145,48 +151,55 @@
       </div>
 
       <!-- 11. Shirt preview -->
-      <div class="try shirt-try" id="shirt-preview" aria-labelledby="shirt-title">
-        <div class="try-head">
-          <strong id="shirt-title">Design a custom shirt</strong>
-          <div class="seg" role="group" aria-label="Print placement">
-            <button type="button" data-place="center" aria-pressed="true">Centre</button>
-            <button type="button" data-place="left" aria-pressed="false">Left chest</button>
-            <button type="button" data-place="full" aria-pressed="false">Full front</button>
+      <div class="studio" id="shirt-preview" aria-labelledby="studio-title">
+        <div class="studio-top">
+          <strong id="studio-title">Shirt Studio</strong>
+          <div class="seg" role="group" aria-label="Garment">
+            <button type="button" data-garment="tee" aria-pressed="true">Tee</button>
+            <button type="button" data-garment="hoodie" aria-pressed="false">Hoodie</button>
+          </div>
+          <div class="seg" role="group" aria-label="Side">
+            <button type="button" data-side="front" aria-pressed="true">Front</button>
+            <button type="button" data-side="back" aria-pressed="false">Back</button>
           </div>
         </div>
-        <div class="try-stage shirt-stage">
-          <svg id="shirt-svg" viewBox="0 0 320 320" role="img" aria-label="Preview of your shirt">
-            <path id="shirt-body" d="M112 28 Q160 62 208 28 L286 62 L312 132 L262 152 L246 124 V296 a8 8 0 0 1 -8 8 H82 a8 8 0 0 1 -8 -8 V124 L58 152 L8 132 L34 62 Z" stroke-width="2" stroke-linejoin="round"/>
-            <path id="shirt-neck" d="M112 28 Q160 62 208 28 Q160 84 112 28 Z"/>
-            <rect id="shirt-zone" rx="4" fill="none" stroke-dasharray="4 5" stroke-width="1.2"/>
-            <image id="shirt-img" preserveAspectRatio="xMidYMid meet" hidden/>
-            <text id="shirt-t1" text-anchor="middle"></text>
-            <text id="shirt-t2" text-anchor="middle"></text>
-          </svg>
-          <div class="swatches" role="group" aria-label="Shirt colour">
-            <button type="button" class="swatch" data-tee="0" aria-label="Black" aria-pressed="true" style="background:#1B1A17"></button>
-            <button type="button" class="swatch" data-tee="1" aria-label="White" aria-pressed="false" style="background:#F7F5F0"></button>
-            <button type="button" class="swatch" data-tee="2" aria-label="Navy" aria-pressed="false" style="background:#1F2A44"></button>
-            <button type="button" class="swatch" data-tee="3" aria-label="Grey" aria-pressed="false" style="background:#A9ABAE"></button>
-            <button type="button" class="swatch" data-tee="4" aria-label="Red" aria-pressed="false" style="background:#A82424"></button>
-            <button type="button" class="swatch" data-tee="5" aria-label="Forest green" aria-pressed="false" style="background:#24452F"></button>
+        <div class="studio-stage" id="studio-stage">
+          <div class="studio-3d" id="studio-3d" role="img" aria-label="3D shirt preview"></div>
+          <div class="studio-zoombar" role="group" aria-label="Zoom">
+            <button type="button" data-zoom-step="1" aria-label="Zoom in">+</button>
+            <button type="button" data-zoom-step="-1" aria-label="Zoom out">−</button>
+            <button type="button" data-zoom-reset aria-label="Reset view">⟲</button>
           </div>
+          <div class="studio-press" aria-hidden="true"><div class="press-plate"><span>BACK LOT · 310°F</span></div><div class="steam"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="studio-readout" id="studio-readout" aria-live="polite"></div>
+          <div class="studio-swatches" role="group" aria-label="Garment colour"></div>
+          <p class="studio-tip">Drag to spin it around · pinch or scroll to zoom · drag the print to move it</p>
         </div>
-        <div class="try-body">
-          <div class="try-fields">
-            <div class="field"><label for="shirt-in1">Line 1</label><input id="shirt-in1" type="text" maxlength="18" value="YOUR TEAM"></div>
-            <div class="field"><label for="shirt-in2">Line 2 <span class="hint">(optional)</span></label><input id="shirt-in2" type="text" maxlength="24" value="Sherwood Park"></div>
+        <div class="studio-body">
+          <p class="studio-editing" aria-live="polite">Editing the front</p>
+          <div class="studio-places" role="group" aria-label="Print placement"></div>
+          <div class="studio-row">
+            <label class="studio-size"><span>Size</span><input id="studio-size" type="range" min="2" max="13" step="0.25" value="4.5" aria-label="Print width in inches"><b id="studio-size-out">4.5″</b></label>
           </div>
-          <div class="shirt-upload">
-            <label class="btn btn-outline btn-sm" for="shirt-file">Or upload your design</label>
-            <input id="shirt-file" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
-            <button type="button" class="link-btn" id="shirt-clear" hidden>Remove image</button>
-            <span class="hint" id="shirt-file-note">Stays on your device, just for this preview.</span>
+          <div class="studio-fields">
+            <div class="field"><label for="studio-t1">Line 1</label><input id="studio-t1" type="text" maxlength="20" value="YOUR TEAM"></div>
+            <div class="field"><label for="studio-t2">Line 2 <span class="hint">(optional)</span></label><input id="studio-t2" type="text" maxlength="26" value="SHERWOOD PARK"></div>
           </div>
-          <div class="try-foot">
-            <p class="shirt-note">A rough preview only. You'll get a proper proof to approve before we print.</p>
-            <a id="shirt-cta" class="btn btn-accent btn-sm" href="#quote" data-quote-type="Custom shirts, apparel or DTF printing">Get a shirt quote</a>
+          <div class="studio-row studio-style">
+            <div class="studio-fonts" role="group" aria-label="Lettering style"></div>
+            <div class="studio-inks" role="group" aria-label="Print colour"></div>
           </div>
+          <div class="studio-row studio-upload">
+            <label class="btn btn-outline btn-sm" for="studio-file">Upload your logo</label>
+            <input id="studio-file" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+            <button type="button" class="link-btn" id="studio-clear" hidden>Use text instead</button>
+            <span class="hint" id="studio-file-note">Stays on your device, just for this preview.</span>
+          </div>
+          <div class="studio-foot">
+            <button type="button" class="btn btn-dark btn-sm" id="studio-press">Press it 🔥</button>
+            <a id="shirt-cta" class="btn btn-accent btn-sm" href="#quote" data-quote-type="Custom shirts, apparel or DTF printing">Get a quote for this</a>
+          </div>
+          <p class="shirt-note">A preview only. You'll get a proper proof to approve before we print.</p>
         </div>
       </div>
     </div>
@@ -221,17 +234,13 @@
     <div class="rack" data-rack>
       <div class="rack-scroll" tabindex="0" aria-label="Recent customer orders on a clothes rack. Scroll sideways to see more.">
         <ul class="rack-row">
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/links-black-back.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/links-black-back-400.webp"><img src="images/rack/links-black-back.jpg" width="720" height="900" alt="Black hoodie with a large white skull wearing a ball cap printed on the back" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Links &amp; Ink</b><span>Hoodie · 12″ back</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/fastlane-back.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/fastlane-back-400.webp"><img src="images/rack/fastlane-back.jpg" width="720" height="900" alt="Black hoodie with the Fast Lane Transport and Hot Shot logo in cobalt blue and white across the back" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Fast Lane Transport</b><span>Hoodie · full back</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/links-white-front.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/links-white-front-400.webp"><img src="images/rack/links-white-front.jpg" width="720" height="900" alt="White hoodie with a black Links &amp; Ink logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Links &amp; Ink</b><span>Hoodie · left chest</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/market-mania-tee.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/market-mania-tee-400.webp"><img src="images/rack/market-mania-tee.jpg" width="720" height="900" alt="Black Market Mania Events staff tee with a white left-chest logo and a Back Lot Printing kraft hang tag" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Market Mania Events</b><span>Staff tee · left chest</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/links-white-back.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/links-white-back-400.webp"><img src="images/rack/links-white-back.jpg" width="720" height="900" alt="White hoodie with a large black-line skull wearing a ball cap printed on the back" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Links &amp; Ink</b><span>Hoodie · 12″ back</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/fastlane-front.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/fastlane-front-400.webp"><img src="images/rack/fastlane-front.jpg" width="720" height="900" alt="Black hoodie with a small Fast Lane Transport logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Fast Lane Transport</b><span>Hoodie · left chest</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/links-black-front.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/links-black-front-400.webp"><img src="images/rack/links-black-front.jpg" width="720" height="900" alt="Black hoodie with a white Links &amp; Ink logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Links &amp; Ink</b><span>Hoodie · left chest</span></figcaption></figure></li>
-        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/backlot-tee.jpg" data-zoom><picture><source type="image/webp" srcset="images/rack/backlot-tee-400.webp"><img src="images/rack/backlot-tee.jpg" width="720" height="900" alt="Black tee with a small Back Lot Printing logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture></a><figcaption class="rack-tag"><b>Back Lot Printing</b><span>Shop tee · left chest</span></figcaption></figure></li>
+        <li class="hanger" data-flip><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/links-black-front.jpg" data-zoom data-front="images/rack/links-black-front.jpg" data-back="images/rack/links-black-back.jpg"><span class="garment-3d"><picture class="face face-front"><source type="image/webp" srcset="images/rack/links-black-front-400.webp"><img src="images/rack/links-black-front.jpg" width="720" height="900" alt="Black hoodie with a white Links &amp; Ink logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture><picture class="face face-back"><source type="image/webp" srcset="images/rack/links-black-back-400.webp"><img src="images/rack/links-black-back.jpg" width="720" height="900" alt="Back of the black hoodie with a large white skull wearing a ball cap" loading="lazy" decoding="async" draggable="false"></picture></span><span class="flip-badge" aria-hidden="true">Front</span></a><figcaption class="rack-tag"><b>Links &amp; Ink</b><span>Hoodie · chest + 12″ back</span></figcaption></figure></li>
+        <li class="hanger" data-flip><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/fastlane-front.jpg" data-zoom data-front="images/rack/fastlane-front.jpg" data-back="images/rack/fastlane-back.jpg"><span class="garment-3d"><picture class="face face-front"><source type="image/webp" srcset="images/rack/fastlane-front-400.webp"><img src="images/rack/fastlane-front.jpg" width="720" height="900" alt="Black hoodie with a small Fast Lane Transport logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture><picture class="face face-back"><source type="image/webp" srcset="images/rack/fastlane-back-400.webp"><img src="images/rack/fastlane-back.jpg" width="720" height="900" alt="Back of the black hoodie with the Fast Lane Transport and Hot Shot logo in cobalt and white" loading="lazy" decoding="async" draggable="false"></picture></span><span class="flip-badge" aria-hidden="true">Front</span></a><figcaption class="rack-tag"><b>Fast Lane Transport</b><span>Hoodie · chest + full back</span></figcaption></figure></li>
+        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/market-mania-tee.jpg" data-zoom data-front="images/rack/market-mania-tee.jpg"><span class="garment-3d"><picture class="face face-front"><source type="image/webp" srcset="images/rack/market-mania-tee-400.webp"><img src="images/rack/market-mania-tee.jpg" width="720" height="900" alt="Black Market Mania Events staff tee with a white left-chest logo and a Back Lot Printing hang tag" loading="lazy" decoding="async" draggable="false"></picture></span></a><figcaption class="rack-tag"><b>Market Mania Events</b><span>Staff tee · left chest</span></figcaption></figure></li>
+        <li class="hanger"><figure class="hanger-swing"><svg class="hanger-wire" viewBox="0 -4 160 74" aria-hidden="true"><path d="M80 34 V24 C80 20 92 18 92 9 C92 2 86 -1 80 -1 C74 -1 69 3 69 8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M80 32 L10 60 C4 63 6 68 12 68 H148 C154 68 156 63 150 60 Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/></svg><a class="garment" href="images/rack/backlot-tee.jpg" data-zoom data-front="images/rack/backlot-tee.jpg"><span class="garment-3d"><picture class="face face-front"><source type="image/webp" srcset="images/rack/backlot-tee-400.webp"><img src="images/rack/backlot-tee.jpg" width="720" height="900" alt="Black tee with a small Back Lot Printing logo on the left chest" loading="lazy" decoding="async" draggable="false"></picture></span></a><figcaption class="rack-tag"><b>Back Lot Printing</b><span>Shop tee · left chest</span></figcaption></figure></li>
         </ul>
       </div>
-      <p class="rack-hint">Brush past or swipe the rack to swing the shirts. Tap one to see it up close.</p>
+      <p class="rack-hint">Brush past the shirts to swing them. Hover or tap a shirt to flip it and see the back.</p>
     </div>
 
     <h3 class="h3 apparel-sub">More from the shop</h3>
@@ -302,58 +311,50 @@
 <section class="section try-section" id="try">
   <div class="wrap try-wrap">
     <div class="try-copy">
-      <h2 class="h2">See your name on it</h2>
-      <p class="lede">Engraving more your thing? Type a name or a date, pick a finish and a lettering style, and get a feel for it before you order. You'll still get a proper proof to approve before anything is engraved.</p>
+      <h2 class="h2">Spin it. Zoom in. See it engraved.</h2>
+      <p class="lede">Grab the tumbler and turn it around. Put a name or logo on the front, something different on the back, pick a colour, then hit Engrave and watch the laser go. You'll still get a proper proof to approve before anything is engraved.</p>
     </div>
-    <div class="try" aria-labelledby="try-title">
-      <div class="try-head">
-        <strong id="try-title">Try it: see your engraving</strong>
-        <div class="seg" role="group" aria-label="Product">
-          <button type="button" data-prod="tumbler" aria-pressed="true">Tumbler</button>
-          <button type="button" data-prod="flask" aria-pressed="false">Flask</button>
-          <button type="button" data-prod="tag" aria-pressed="false">Dog tag</button>
+    <div class="studio tstudio" id="tumbler-studio" aria-labelledby="ts-title">
+      <div class="studio-top">
+        <strong id="ts-title">Tumbler Studio</strong>
+        <div class="seg" role="group" aria-label="Side">
+          <button type="button" data-tside="front" aria-pressed="true">Front</button>
+          <button type="button" data-tside="back" aria-pressed="false">Back</button>
         </div>
       </div>
-      <div class="try-stage">
-        <svg id="try-svg" viewBox="0 0 240 300" role="img" aria-label="Preview of your engraving">
-          <g id="shape-tumbler">
-            <path class="body" d="M66 34 H174 L160 272 a14 14 0 0 1 -14 13 H94 a14 14 0 0 1 -14 -13 Z"/>
-            <path class="lid" d="M62 34 H178 a6 6 0 0 0 0 -14 H62 a6 6 0 0 0 0 14 Z"/>
-            <path d="M76 50 Q86 160 92 262" stroke="rgba(255,255,255,0.13)" stroke-width="9" fill="none" stroke-linecap="round"/>
-          </g>
-          <g id="shape-flask" hidden>
-            <rect class="lid" x="100" y="18" width="40" height="30" rx="4"/>
-            <rect class="body" x="56" y="46" width="128" height="236" rx="22"/>
-            <path d="M70 66 V262" stroke="rgba(255,255,255,0.13)" stroke-width="9" stroke-linecap="round"/>
-          </g>
-          <g id="shape-tag" hidden>
-            <path d="M120 8 Q70 30 120 70" stroke="#8E9196" stroke-width="3" fill="none" stroke-dasharray="2 4"/>
-            <rect class="body" x="44" y="60" width="152" height="214" rx="46"/>
-            <circle cx="120" cy="90" r="10" fill="#EDE6DA"/>
-          </g>
-          <text id="try-l1" x="120" y="144" text-anchor="middle"></text>
-          <text id="try-l2" x="120" y="172" text-anchor="middle"></text>
-        </svg>
-        <div class="swatches" role="group" aria-label="Finish">
-          <button type="button" class="swatch" data-fin="0" aria-label="Matte black" aria-pressed="true" style="background:#1B1A17"></button>
-          <button type="button" class="swatch" data-fin="1" aria-label="Stainless" aria-pressed="false" style="background:#B9BCC0"></button>
-          <button type="button" class="swatch" data-fin="2" aria-label="Sage" aria-pressed="false" style="background:#6E8B6B"></button>
-          <button type="button" class="swatch" data-fin="3" aria-label="Navy" aria-pressed="false" style="background:#1F2A44"></button>
+      <div class="studio-stage" id="ts-stage">
+        <div class="studio-3d" id="ts-3d" role="img" aria-label="3D tumbler preview"></div>
+        <div class="studio-zoombar" role="group" aria-label="Zoom">
+          <button type="button" data-tzoom="1" aria-label="Zoom in">+</button>
+          <button type="button" data-tzoom="-1" aria-label="Zoom out">−</button>
+          <button type="button" data-tzoom-reset aria-label="Reset view">⟲</button>
         </div>
+        <div class="laser" aria-hidden="true"><i class="beam"></i><i class="spot"></i></div>
+        <div class="studio-readout" id="ts-readout" aria-live="polite"></div>
+        <div class="studio-swatches ts-swatches" role="group" aria-label="Tumbler colour"></div>
+        <p class="studio-tip">Drag to spin it around · pinch or scroll to zoom · drag the engraving to move it</p>
       </div>
-      <div class="try-body">
-        <div class="try-fields">
-          <div class="field"><label for="try-in1">Line 1</label><input id="try-in1" type="text" maxlength="16" value="The Millers"></div>
-          <div class="field"><label for="try-in2">Line 2 <span class="hint">(optional)</span></label><input id="try-in2" type="text" maxlength="22" value="EST. 2026"></div>
+      <div class="studio-body">
+        <p class="studio-editing" id="ts-editing" aria-live="polite">Editing the front</p>
+        <div class="studio-row">
+          <label class="studio-size"><span>Size</span><input id="ts-size" type="range" min="1" max="3.75" step="0.25" value="2.5" aria-label="Engraving width in inches"><b id="ts-size-out">2.5″</b></label>
         </div>
-        <div class="try-foot">
-          <div class="font-picks" role="group" aria-label="Lettering">
-            <button type="button" data-font="0" aria-pressed="true" style="font-family: Fraunces, Georgia, serif; font-size: 17px;">Classic</button>
-            <button type="button" data-font="1" aria-pressed="false" style="font-family: Yellowtail, cursive; font-size: 22px;">Script</button>
-            <button type="button" data-font="2" aria-pressed="false" style="font-family: Anton, Impact, sans-serif; font-size: 17px;">Block</button>
-          </div>
-          <a id="try-cta" class="btn btn-accent btn-sm" href="shop.html?item=d1">Personalize this</a>
+        <div class="studio-fields">
+          <div class="field"><label for="ts-t1">Line 1</label><input id="ts-t1" type="text" maxlength="18" value="The Millers"></div>
+          <div class="field"><label for="ts-t2">Line 2 <span class="hint">(optional)</span></label><input id="ts-t2" type="text" maxlength="24" value="EST. 2026"></div>
         </div>
+        <div class="studio-fonts ts-fonts" role="group" aria-label="Lettering style"></div>
+        <div class="studio-row studio-upload">
+          <label class="btn btn-outline btn-sm" for="ts-file">Upload a logo</label>
+          <input id="ts-file" class="visually-hidden" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+          <button type="button" class="link-btn" id="ts-clear" hidden>Use text instead</button>
+          <span class="hint" id="ts-file-note">Stays on your device, just for this preview.</span>
+        </div>
+        <div class="studio-foot">
+          <button type="button" class="btn btn-dark btn-sm" id="ts-engrave">Engrave it ✨</button>
+          <a id="try-cta" class="btn btn-accent btn-sm" href="shop.html?item=d1">Order this tumbler</a>
+        </div>
+        <p class="shirt-note">A preview only. You'll get a proper proof to approve before we engrave anything.</p>
       </div>
     </div>
   </div>
@@ -712,108 +713,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return '<tr><td><a href="shop.html?item=' + p.id + '">' + BL.esc(p.name) + '</a>' + (p.min ? ' <small>min. ' + p.min + '</small>' : '') + '</td><td>' + BL.priceLabel(p) + '</td><td>' + vol + '</td></tr>';
   }).join('');
 
-  /* Shirt preview */
-  (function () {
-    var TEES = [['#1B1A17', '#2C2A25', '#F5F1EA', 'black'], ['#F7F5F0', '#E4E0D8', '#1E1B17', 'white'], ['#1F2A44', '#2A3757', '#F5F1EA', 'navy'], ['#A9ABAE', '#96989B', '#1E1B17', 'grey'], ['#A82424', '#8E1D1D', '#FFFFFF', 'red'], ['#24452F', '#1B3524', '#F5F1EA', 'forest green']];
-    var ZONES = { center: [105, 96, 110, 84, 'centre chest'], left: [176, 92, 46, 40, 'left chest'], full: [92, 92, 136, 160, 'full front'] };
-    var s = { tee: 0, place: 'center', img: null };
-    var $ = function (id) { return document.getElementById(id); };
-    var a = $('shirt-in1'), b = $('shirt-in2'), t1 = $('shirt-t1'), t2 = $('shirt-t2'), im = $('shirt-img'), zone = $('shirt-zone'), file = $('shirt-file'), clear = $('shirt-clear'), note = $('shirt-file-note');
-    function fit(text, base, width) { return Math.max(6, Math.min(base, Math.floor(width / (Math.max(1, text.length) * 0.56)))); }
-    function draw() {
-      var c = TEES[s.tee], z = ZONES[s.place];
-      $('shirt-body').setAttribute('fill', c[0]); $('shirt-body').setAttribute('stroke', s.tee === 1 ? '#CFC8BC' : c[1]);
-      $('shirt-neck').setAttribute('fill', c[1]);
-      zone.setAttribute('x', z[0]); zone.setAttribute('y', z[1]); zone.setAttribute('width', z[2]); zone.setAttribute('height', z[3]);
-      zone.setAttribute('stroke', c[2]); zone.setAttribute('opacity', s.img ? '.25' : '.4');
-      var cx = z[0] + z[2] / 2, cy = z[1] + z[3] / 2;
-      if (s.img) {
-        im.removeAttribute('hidden'); im.style.display = '';
-        im.setAttribute('href', s.img); im.setAttribute('x', z[0]); im.setAttribute('y', z[1]); im.setAttribute('width', z[2]); im.setAttribute('height', z[3]);
-        t1.textContent = ''; t2.textContent = '';
-      } else {
-        im.setAttribute('hidden', ''); im.style.display = 'none';
-        var two = b.value.trim().length > 0, big = s.place === 'left' ? 13 : s.place === 'full' ? 30 : 24;
-        [t1, t2].forEach(function (el) { el.setAttribute('fill', c[2]); el.setAttribute('x', cx); });
-        t1.setAttribute('font-family', 'Anton, Impact, sans-serif'); t2.setAttribute('font-family', 'DM Sans, sans-serif'); t2.setAttribute('font-weight', '700');
-        t1.textContent = a.value; t2.textContent = b.value;
-        var f1 = fit(a.value, big, z[2]), f2 = fit(b.value, Math.round(big * 0.5), z[2] * 1.05);
-        t1.setAttribute('font-size', f1); t2.setAttribute('font-size', f2);
-        t1.setAttribute('y', two ? cy : cy + f1 * 0.35); t2.setAttribute('y', cy + f2 + 6);
-      }
-      var what = s.img ? 'my uploaded design' : '"' + [a.value, b.value].filter(function (x) { return x.trim(); }).join(' / ') + '"';
-      $('shirt-cta').setAttribute('data-quote-note', 'From the shirt preview: ' + c[3] + ' shirt, ' + z[4] + ' print, ' + what + '.');
-      $('shirt-cta').setAttribute('data-quote-colour', c[3]);
-      $('shirt-cta').setAttribute('data-quote-place', s.place === 'left' ? 'Left chest' : 'Front');
-      $('shirt-svg').setAttribute('aria-label', 'Preview: ' + c[3] + ' shirt with ' + (s.img ? 'your uploaded design' : (a.value || 'your text')) + ' on the ' + z[4]);
-    }
-    document.querySelectorAll('[data-tee]').forEach(function (x) { x.addEventListener('click', function () { s.tee = +x.dataset.tee; press('[data-tee]', 'data-tee', s.tee); draw(); }); });
-    document.querySelectorAll('[data-place]').forEach(function (x) { x.addEventListener('click', function () { s.place = x.dataset.place; press('[data-place]', 'data-place', s.place); draw(); }); });
-    a.addEventListener('input', function () { draw(); }); b.addEventListener('input', function () { draw(); });
-    file.addEventListener('change', function () {
-      var f = file.files[0]; if (!f) return;
-      if (!/^image\//.test(f.type)) { note.textContent = 'That file type can\'t be previewed, but you can still attach it to your quote.'; return; }
-      var r = new FileReader();
-      r.onload = function () { s.img = r.result; clear.hidden = false; note.textContent = f.name + ' (stays on your device, attach it again in the quote form)'; draw(); };
-      r.readAsDataURL(f);
-    });
-    clear.addEventListener('click', function () { s.img = null; file.value = ''; clear.hidden = true; note.textContent = 'Stays on your device, just for this preview.'; draw(); });
-    draw();
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
-  })();
-
   /* Business price table */
   var bizIds = ['b3', 'b2', 'b4', 'b1', 'b6', 'b5'];
   document.getElementById('biz-rows').innerHTML = bizIds.map(byId).filter(Boolean).map(function (p) {
     var vol = p.tiers && p.tiers.length ? BL.money(p.tiers[p.tiers.length - 1][1]) + (p.unit === 'ea' ? ' ea' : '') + ' at ' + p.tiers[p.tiers.length - 1][0] + '+' : 'Same price';
     return '<tr><td>' + BL.esc(p.name) + '</td><td>' + BL.priceLabel(p) + '</td><td>' + vol + '</td></tr>';
   }).join('');
-
-  /* Live preview */
-  var FINISHES = [['#1B1A17', '#3A362D', '#D9D2C4'], ['#B9BCC0', '#8E9196', '#2A2620'], ['#6E8B6B', '#4E664C', '#F5F1EA'], ['#1F2A44', '#141C30', '#E6E1D6']];
-  var FONTS = [["Fraunces, Georgia, serif", 0.52, 30], ["Yellowtail, cursive", 0.46, 38], ["Anton, Impact, sans-serif", 0.46, 34]];
-  var PRODUCTS = { tumbler: ['d1', 'Personalize this'], flask: ['d2', 'Order this flask: ' + BL.priceLabel(byId('d2') || { price: 28 })], tag: ['t1', 'Order this tag: ' + BL.priceLabel(byId('t1') || { price: 15 })] };
-  var state = { prod: 'tumbler', fin: 0, font: 0 };
-  var in1 = document.getElementById('try-in1'), in2 = document.getElementById('try-in2');
-  var l1 = document.getElementById('try-l1'), l2 = document.getElementById('try-l2');
-  var cta = document.getElementById('try-cta');
-
-  function fit(text, base, ratio, width) {
-    var len = Math.max(1, (text || '').length);
-    return Math.max(12, Math.min(base, Math.floor(width / (len * ratio))));
-  }
-  function render() {
-    ['tumbler', 'flask', 'tag'].forEach(function (k) {
-      var g = document.getElementById('shape-' + k);
-      if (k === state.prod) { g.removeAttribute('hidden'); g.style.display = ''; }
-      else { g.setAttribute('hidden', ''); g.style.display = 'none'; }
-    });
-    var f = FINISHES[state.fin], ft = FONTS[state.font];
-    document.querySelectorAll('#try-svg .body').forEach(function (el) { el.setAttribute('fill', f[0]); });
-    document.querySelectorAll('#try-svg .lid').forEach(function (el) { el.setAttribute('fill', f[1]); });
-    var width = state.prod === 'tag' ? 124 : 104;
-    var mid = state.prod === 'tag' ? 180 : state.prod === 'flask' ? 160 : 150;
-    var two = in2.value.trim().length > 0;
-    [l1, l2].forEach(function (el) { el.setAttribute('font-family', ft[0]); el.setAttribute('fill', f[2]); });
-    l1.textContent = in1.value; l2.textContent = in2.value;
-    l1.setAttribute('font-size', fit(in1.value, ft[2], ft[1], width));
-    l2.setAttribute('font-size', fit(in2.value, Math.round(ft[2] * 0.5), ft[1], width));
-    l1.setAttribute('y', two ? mid - 6 : mid + 8); l2.setAttribute('y', mid + 22);
-    var p = PRODUCTS[state.prod];
-    var text = [in1.value, in2.value].filter(function (s) { return s.trim(); }).join(' / ');
-    cta.href = 'shop.html?item=' + p[0] + (text ? '&text=' + encodeURIComponent(text) : '');
-    cta.textContent = p[1];
-    document.getElementById('try-svg').setAttribute('aria-label', 'Preview: ' + state.prod + ' engraved with ' + (text || 'your text'));
-  }
-  function press(groupSel, attr, val) {
-    document.querySelectorAll(groupSel).forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute(attr) === String(val) ? 'true' : 'false'); });
-  }
-  document.querySelectorAll('[data-prod]').forEach(function (b) { b.addEventListener('click', function () { state.prod = b.dataset.prod; press('[data-prod]', 'data-prod', state.prod); render(); }); });
-  document.querySelectorAll('[data-fin]').forEach(function (b) { b.addEventListener('click', function () { state.fin = +b.dataset.fin; press('[data-fin]', 'data-fin', state.fin); render(); }); });
-  document.querySelectorAll('[data-font]').forEach(function (b) { b.addEventListener('click', function () { state.font = +b.dataset.font; press('[data-font]', 'data-font', state.font); render(); }); });
-  in1.addEventListener('input', render); in2.addEventListener('input', render);
-  render();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
 
   /* "Book a drop-off" and ?type=byo preselect the order type */
   var typeSel = document.getElementById('q-type');
@@ -825,7 +730,7 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[data-quote-type]').forEach(function (a) {
     a.addEventListener('click', function () {
       var note = a.getAttribute('data-quote-note'), msg = document.getElementById('q-msg');
-      if (note && msg.value.indexOf('From the shirt preview') === -1) msg.value = (msg.value ? msg.value + '\n' : '') + note;
+      if (note && msg.value.indexOf('From the ') === -1) msg.value = (msg.value ? msg.value + '\n' : '') + note;
       if (a.getAttribute('data-quote-colour') && !document.getElementById('q-gcolour').value) document.getElementById('q-gcolour').value = a.getAttribute('data-quote-colour');
       if (a.getAttribute('data-quote-place')) document.getElementById('q-place').value = a.getAttribute('data-quote-place');
     });

@@ -94,6 +94,22 @@
       for (var i = 0; i < state.length; i++) kick(i, -d * 1.4);
     }, { passive: true });
 
+    // Flip a shirt to its back. On touch, the first tap flips; on a mouse, hover flips and a click opens the photo you're looking at.
+    items.forEach(function (li) {
+      if (!li.hasAttribute('data-flip')) return;
+      var a = li.querySelector('a.garment'), badge = li.querySelector('.flip-badge');
+      function show(back) {
+        li.classList.toggle('is-flipped', back);
+        if (badge) badge.textContent = back ? 'Back' : 'Front';
+        a.setAttribute('href', back ? a.getAttribute('data-back') : a.getAttribute('data-front'));
+      }
+      li.addEventListener('mouseenter', function () { if (matchMedia('(hover: hover)').matches) show(true); });
+      li.addEventListener('mouseleave', function () { if (matchMedia('(hover: hover)').matches) show(false); });
+      a.addEventListener('click', function (e) {
+        if (!matchMedia('(hover: hover)').matches) { e.preventDefault(); e.stopPropagation(); show(!li.classList.contains('is-flipped')); }
+      }, true);
+    });
+
     // A drag shouldn't open the photo. A real click still does (site.js handles the lightbox).
     row.addEventListener('click', function (e) {
       if (moved > 6) { e.preventDefault(); e.stopPropagation(); moved = 0; }

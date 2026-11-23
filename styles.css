@@ -949,3 +949,110 @@ html, body { overflow-x: clip; }
   .tb-stage { height: 250px; order: -1; }
   .tb-tag { width: min(92%, 380px); }
 }
+
+/* ---------- Shirt Studio (studio.js) ---------- */
+.studio { background: var(--surface); border-radius: var(--radius-lg); box-shadow: 0 30px 70px rgba(30,27,23,.16); overflow: hidden; }
+.studio-top { display: flex; align-items: center; gap: 10px; padding: 16px 18px; border-bottom: 1px solid var(--sand); flex-wrap: wrap; }
+.studio-top strong { font-family: var(--display); font-size: 20px; margin-right: auto; }
+.studio-stage { position: relative; height: 440px; background: radial-gradient(120% 90% at 50% 20%, #EFE9DE 0%, #DCD3C3 70%, #CFC5B3 100%); perspective: 1100px; overflow: hidden; user-select: none; }
+.studio-stage::after { content: ""; position: absolute; left: 50%; bottom: 26px; width: 58%; height: 26px; margin-left: -29%; border-radius: 50%; background: radial-gradient(closest-side, rgba(30,27,23,.28), transparent); pointer-events: none; }
+.studio-tilt { position: absolute; inset: 14px 60px 20px; transition: transform .35s ease-out; transform-style: preserve-3d; }
+.studio-flip { width: 100%; height: 100%; transition: transform .23s ease-in, opacity .23s; transform-style: preserve-3d; }
+.studio-flip.st-out { transform: rotateY(90deg) scale(.96); opacity: .4; }
+.studio-flip.st-in { transform: rotateY(-90deg) scale(.96); opacity: .4; transition: none; }
+#studio-svg { width: 100%; height: 100%; display: block; filter: drop-shadow(0 18px 22px rgba(30,27,23,.28)); }
+.st-print { cursor: grab; }
+.st-dragging .st-print { cursor: grabbing; }
+.st-grab { stroke: transparent; stroke-width: 1.5; stroke-dasharray: 5 4; }
+.studio:not(.st-pressing) .studio-stage:hover .st-grab { stroke: rgba(194,59,18,.55); }
+.st-pop { animation: stPop .45s cubic-bezier(.2,.9,.3,1.3); transform-box: fill-box; }
+@keyframes stPop { from { opacity: .2; } to { opacity: 1; } }
+.studio-readout { position: absolute; left: 14px; top: 14px; background: rgba(30,27,23,.86); color: var(--paper); font-size: 13px; font-weight: 700; padding: 6px 12px; border-radius: 999px; }
+.studio-tip { position: absolute; left: 14px; bottom: 12px; margin: 0; font-size: 12px; color: #6B6254; }
+.st-empty .studio-tip { visibility: hidden; }
+.studio-swatches { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 9px; }
+.studio-swatches .swatch { width: 30px; height: 30px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.3), 0 0 0 2px #E8E1D4; transition: transform .2s; }
+.studio-swatches .swatch:hover { transform: scale(1.12); }
+/* heat press */
+.studio-press { position: absolute; inset: 0; pointer-events: none; }
+.press-plate { position: absolute; left: 12%; right: 12%; top: -70%; height: 62%; border-radius: 14px; background: linear-gradient(180deg, #4a4640, #26231f 60%, #1b1916); box-shadow: 0 30px 40px rgba(0,0,0,.45), inset 0 -10px 0 #111; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 18px; transition: top .38s cubic-bezier(.6,0,.9,.4); }
+.press-plate span { font: 700 13px/1 var(--body); letter-spacing: 3px; color: #e9a58c; }
+.st-pressing .press-plate { top: 14%; }
+.st-lift .press-plate { top: -70%; transition: top .4s cubic-bezier(.2,.7,.3,1); }
+.st-hot .press-plate { box-shadow: 0 30px 40px rgba(0,0,0,.45), inset 0 -10px 0 #111, 0 0 60px rgba(227,91,30,.55); }
+.st-pressing .st-print { opacity: 0; }
+.steam { position: absolute; left: 20%; right: 20%; top: 70%; height: 10px; }
+.steam i { position: absolute; bottom: 0; width: 34px; height: 34px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.75), transparent); opacity: 0; }
+.steam i:nth-child(1) { left: 2%; } .steam i:nth-child(2) { left: 24%; animation-delay: .12s !important; } .steam i:nth-child(3) { left: 48%; animation-delay: .05s !important; } .steam i:nth-child(4) { left: 70%; animation-delay: .2s !important; } .steam i:nth-child(5) { left: 90%; animation-delay: .08s !important; }
+.st-hot .steam i { animation: stSteam 1s ease-out infinite; }
+@keyframes stSteam { 0% { opacity: 0; transform: translateY(0) scale(.6); } 30% { opacity: .9; } 100% { opacity: 0; transform: translateY(-120px) scale(1.8); } }
+.st-peel .studio-stage::before { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(105deg, transparent 35%, rgba(255,255,255,.55) 48%, rgba(255,255,255,.1) 56%, transparent 66%); animation: stPeel 1.1s ease-out forwards; }
+@keyframes stPeel { from { transform: translateX(-80%); } to { transform: translateX(90%); } }
+/* controls */
+.studio-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 14px; }
+.studio-places, .studio-fonts { display: flex; flex-wrap: wrap; gap: 8px; }
+.studio-chip { border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 7px 14px; font: 700 14px var(--body); cursor: pointer; transition: border-color .2s, background .2s, color .2s, transform .15s; }
+.studio-chip:hover { border-color: var(--ink); }
+.studio-chip[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.studio-fonts .studio-chip { font-size: 15px; }
+.studio-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.studio-size { display: flex; align-items: center; gap: 12px; width: 100%; font-weight: 700; font-size: 14px; }
+.studio-size input { flex: 1; accent-color: var(--accent); }
+.studio-size b { min-width: 46px; text-align: right; font-family: var(--display); font-size: 18px; }
+.studio-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.studio-fields .field input { width: 100%; }
+.studio-style { justify-content: space-between; }
+.studio-inks { display: flex; gap: 8px; }
+.ink-dot { width: 26px; height: 26px; border-radius: 50%; border: none; cursor: pointer; box-shadow: inset 0 0 0 1px rgba(0,0,0,.3); }
+.ink-dot.ink-auto { background: linear-gradient(135deg, #F6F4EF 50%, #151413 50%); }
+.ink-dot[aria-pressed="true"] { outline: 3px solid var(--accent); outline-offset: 2px; }
+.studio-foot { display: flex; gap: 10px; flex-wrap: wrap; }
+.studio .shirt-note { margin: 0; font-size: 13px; color: var(--muted); }
+@media (max-width: 560px) {
+  .studio-stage { height: 380px; }
+  .studio-tilt { inset: 10px 48px 18px 8px; }
+  .studio-fields { grid-template-columns: 1fr; }
+  .studio-swatches { right: 8px; gap: 7px; }
+  .studio-swatches .swatch { width: 28px; height: 28px; }
+}
+
+@media (max-width: 560px) { .studio-top strong { display: none; } .studio-top { justify-content: space-between; padding: 12px; } .studio-top .seg button { min-height: 40px; padding: 0 14px; } }
+
+/* Rack: one hanger per client, flips to show the back */
+.garment-3d { display: block; position: relative; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.2,.8,.2,1); }
+.garment .face { display: block; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.garment .face-back { position: absolute; inset: 0; transform: rotateY(180deg); }
+.garment .face img { display: block; width: 100%; aspect-ratio: 4 / 5; height: auto; object-fit: cover; }
+.garment { perspective: 1200px; overflow: visible !important; background: transparent !important; box-shadow: none !important; }
+.garment .face { border-radius: 18px 18px 14px 14px; overflow: hidden; box-shadow: 0 10px 22px rgba(30,27,23,.16), 0 2px 4px rgba(30,27,23,.08); background: var(--img-bg); }
+.hanger.is-flipped .garment-3d { transform: rotateY(180deg); }
+.flip-badge { position: absolute; right: 10px; top: 34px; z-index: 4; background: rgba(30,27,23,.85); color: var(--paper); font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; pointer-events: none; transition: background .3s; }
+.hanger.is-flipped .flip-badge { background: var(--accent); }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .hanger[data-flip]:hover .garment-3d { transform: rotateY(180deg); }
+  .hanger:hover .garment { transform: translateY(-6px) scale(1.035); }
+  .hanger:hover .garment img { transform: none; }
+}
+
+/* Shirt Studio 3D */
+.studio-3d { position: absolute; inset: 0; touch-action: none; }
+.studio-3d canvas { width: 100% !important; height: 100% !important; display: block; cursor: grab; outline: none; }
+.st-dragging .studio-3d canvas { cursor: grabbing; }
+.studio-stage { height: 480px; }
+.studio-zoombar { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 6px; z-index: 2; }
+.studio-zoombar button { width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,.88); color: var(--ink); font-size: 20px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 10px rgba(30,27,23,.15); }
+.studio-zoombar button:hover { background: var(--ink); color: var(--paper); }
+.studio-tip { right: 60px; left: 14px; text-align: center; }
+.studio-editing { margin: 0; font-size: 13px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+.studio-swatches, .studio-readout, .studio-tip { z-index: 2; }
+.st-no3d .studio-stage::before { content: "The 3D preview needs a newer browser. You can still pick everything below and get a quote."; position: absolute; inset: 0; display: grid; place-items: center; padding: 30px; text-align: center; color: var(--muted); }
+@media (max-width: 560px) { .studio-stage { height: 420px; } .studio-zoombar { left: 8px; } }
+
+/* Tumbler Studio */
+.try-section .try-wrap { align-items: center; }
+.tstudio .studio-stage { background: radial-gradient(110% 90% at 50% 25%, #F1ECE3 0%, #DCD3C3 70%, #CDC3B1 100%); }
+.laser { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .2s; z-index: 1; }
+.ts-lasering .laser { opacity: 1; }
+.laser .spot { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; border-radius: 50%; background: radial-gradient(closest-side, #fff 0, #ffd6a8 30%, rgba(255,120,40,.7) 55%, transparent 100%); box-shadow: 0 0 18px 6px rgba(255,140,60,.55); }
+.laser .beam { position: absolute; top: 0; width: 2px; margin-left: -1px; background: linear-gradient(180deg, rgba(255,120,40,0), rgba(255,170,90,.75)); filter: blur(.4px); }
+.ts-lasering .studio-stage { box-shadow: inset 0 0 120px rgba(255,120,40,.18); }

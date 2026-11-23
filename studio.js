@@ -19,12 +19,13 @@
   ];
   // units per inch, and placements: [label, centre x, top y, width in inches]
   var G = {
-    tee: { upi: 10, label: 'T-shirt', quote: 'T-shirt',
-      front: { left: ['Left chest', 249, 112, 4.5], centre: ['Centre chest', 200, 106, 10], full: ['Full front', 200, 100, 12] },
-      back: { full: ['Full back', 200, 82, 12], neck: ['Back of neck', 200, 60, 2.5] } },
-    hoodie: { upi: 9.5, label: 'Hoodie', quote: 'Hoodie',
-      front: { left: ['Left chest', 256, 126, 4.5], centre: ['Centre chest', 200, 204, 9], full: ['Full front', 200, 200, 11] },
-      back: { full: ['Full back', 200, 158, 12], upper: ['Upper back', 200, 150, 9] } }
+    // collar: where the neck seam sits on each side; vpi: drawing units per real inch going down the garment
+    tee: { upi: 10, vpi: 13, collar: { front: 63, back: 49 }, label: 'T-shirt', quote: 'T-shirt',
+      front: { left: ['Left chest', 245, 109, 4.5], centre: ['Centre chest', 200, 106, 10], full: ['Full front', 200, 100, 12] },
+      back: { full: ['Full back', 200, 124, 12], neck: ['Back of neck', 200, 62, 2.5] } },
+    hoodie: { upi: 9.5, vpi: 13.5, collar: { front: 60, back: 70 }, label: 'Hoodie', quote: 'Hoodie',
+      front: { left: ['Left chest', 252, 108, 4.5], centre: ['Centre chest', 200, 204, 9], full: ['Full front', 200, 200, 11] },
+      back: { full: ['Full back', 200, 148, 12], upper: ['Upper back', 200, 148, 9] } }
   };
   var PATHS = {
     teeBody: 'M148 38 L78 64 Q60 72 52 88 L18 158 L72 184 L96 140 L96 420 Q96 430 106 430 H294 Q304 430 304 420 L304 140 L328 184 L382 158 L348 88 Q340 72 322 64 L252 38 Q200 74 148 38 Z',
@@ -357,15 +358,16 @@
     if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; if (visible) loop(); }, { threshold: 0.02 }).observe(stage);
 
     // ---------- readout + quote ----------
+    function below(side, d) { var g = G[S.garment]; return Math.max(0, (d.top - g.collar[side]) / g.vpi).toFixed(1); }
     function updateReadout() {
       var d = D(), p = G[S.garment][S.side][d.place], b = printBox[S.side];
       readout.textContent = !b.w ? (S.side === 'back' ? 'Back: no print yet' : 'Front: no print yet')
-        : (S.side === 'back' ? 'Back · ' : 'Front · ') + (p ? p[0] : 'Custom spot') + ' · ' + d.w + '″ × ' + (b.h / G[S.garment].upi).toFixed(1) + '″';
+        : (S.side === 'back' ? 'Back · ' : 'Front · ') + (p ? p[0] : 'Custom spot') + ' · ' + d.w + '″ × ' + (b.h / G[S.garment].upi).toFixed(1) + '″ · ' + below(S.side, d) + '″ below collar';
       var parts = [];
       ['front', 'back'].forEach(function (side) {
         var x = S[side]; if (!hasPrint(x)) return;
         var pl = G[S.garment][side][x.place];
-        parts.push(side + ': ' + (x.img ? 'my logo' : '"' + [x.t1, x.t2].filter(function (v) { return v.trim(); }).join(' / ') + '"') + ', ' + (pl ? pl[0].toLowerCase() : 'custom spot') + ', about ' + x.w + '″ wide');
+        parts.push(side + ': ' + (x.img ? 'my logo' : '"' + [x.t1, x.t2].filter(function (v) { return v.trim(); }).join(' / ') + '"') + ', ' + (pl ? pl[0].toLowerCase() : 'custom spot') + ', about ' + x.w + '″ wide, top ' + below(side, x) + '″ below collar');
       });
       var colour = COLOURS[S.colour][0].toLowerCase(), hf = hasPrint(S.front), hb = hasPrint(S.back);
       cta.setAttribute('data-quote-note', 'From the Shirt Studio: ' + colour + ' ' + G[S.garment].label.toLowerCase() + '. ' + parts.join('; ') + '.');
